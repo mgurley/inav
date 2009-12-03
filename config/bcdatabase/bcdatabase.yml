@@ -1,0 +1,8 @@
+default:
+  adapter: postgresql
+  host: localhost
+
+inav_development:
+  database: inav_development
+  username: inav_development
+  password: inav_development
