@@ -109,7 +109,7 @@ module PatientStudyCalendar
         end
         studies
       rescue Exception => e
-        RAILS_DEFAULT_LOGGER.error "Caught an error trying to find all Sdudies. " + "Error message: #{e.message}."
+        RAILS_DEFAULT_LOGGER.error "Caught an error trying to find all Studies. " + "Error message: #{e.message}."
         raise e
       end
 
