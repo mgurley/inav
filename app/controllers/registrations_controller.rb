@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.xml
   def index
-    @registrations = Registration.search(params[:page], params['sort'], params['status'],  params['patients'], 'Booch', params['search'] )
+    @registrations = Registration.search(params[:page], params['sort'], params['status'],  params['patients'], session[:cas_user], params['search'])
 
     respond_to do |format|
       format.html # index.html.erb
