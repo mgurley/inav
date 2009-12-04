@@ -24,13 +24,3 @@ function update_select_options( target, opts_array, clear_select_list ) {
         }
     }
 }
-
-function updateProvider(element, value, hiddenField, modelID) {
-	var url =  '/inav/providers/' + modelID + '/auto_complete_show.js';
-
-	var update = new Ajax.Updater(
-		{success:'patientproviderassignmentprovider'},
-	   url,
-		{method: 'get', parameters: { id: modelID }}
-		);
-}

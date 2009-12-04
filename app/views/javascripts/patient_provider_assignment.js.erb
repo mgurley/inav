@@ -9,15 +9,15 @@ function patientProviderRelationshipTypeInit() {
 
   	if (patient_provider_relationship_types.get(value))
   	{
-  		$('patient_provider_assignment_relationship_description').writeAttribute('readonly',false);	
-		$('patient_provider_assignment_relationship_description').removeClassName('readonly')		
+  		$('patient_provider_assignment_relationship_description').writeAttribute('readonly',false);
+		$('patient_provider_assignment_relationship_description').removeClassName('readonly')
 	}
 	else
 	{
-		$('patient_provider_assignment_relationship_description').writeAttribute('readonly',true);	
-		$('patient_provider_assignment_relationship_description').addClassName('readonly')		
+		$('patient_provider_assignment_relationship_description').writeAttribute('readonly',true);
+		$('patient_provider_assignment_relationship_description').addClassName('readonly')
 	}
-	
+
 }
 
 function patientProviderRelationshipTypeSelected() {
@@ -25,7 +25,7 @@ function patientProviderRelationshipTypeSelected() {
 	elt = $('patient_provider_assignment_patient_provider_relationship_type_id');
   	value = elt.options[elt.selectedIndex].value;
 	text  = elt.options[elt.selectedIndex].text;
-	
+
   	if (patient_provider_relationship_types.get(value))
   	{
 		$('patient_provider_assignment_relationship_description').value ="";
@@ -34,7 +34,16 @@ function patientProviderRelationshipTypeSelected() {
 	{
 		$('patient_provider_assignment_relationship_description').value = text;
 	}
-	
+
+}
+
+function updateProvider(element, value, hiddenField, modelID) {
+  var url =  '<%= providers_path -%>/' + modelID + '/auto_complete_show.js';
+	var update = new Ajax.Updater(
+		{success:'patientproviderassignmentprovider'},
+	   url,
+		{method: 'get', parameters: { id: modelID }}
+		);
 }
 
 document.observe('dom:loaded', function() {
