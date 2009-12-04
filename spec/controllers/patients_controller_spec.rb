@@ -1,7 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PatientsController do
-
   before(:each) do
     CASClient::Frameworks::Rails::Filter.stub(:filter).and_return(true)
   end
@@ -14,9 +13,7 @@ describe PatientsController do
     @mock_patient_view ||= mock_model(PatientView, stubs)
   end
   
-  
   describe "responding to GET index" do
-
     it "should expose all patients as @patients" do      
       PatientView.should_receive(:find).with(:all,{:order=>"last_name", :limit=>10, :offset=>0}).and_return([mock_patient_view])
       get :index
@@ -24,7 +21,6 @@ describe PatientsController do
     end
 
     describe "with mime type of xml" do
-  
       it "should render all patients as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         PatientView.should_receive(:find).with(:all).and_return(patients = mock("Array of Patients"))
@@ -32,13 +28,10 @@ describe PatientsController do
         get :index
         response.body.should == "generated XML"
       end
-    
     end
-
   end
 
-  describe "responding to GET show" do
-  
+  describe "responding to GET show" do  
     it "should expose the requested patient as @patient" do
       Patient.should_receive(:find).with("37").and_return(mock_patient)
       get :show, :id => "37"
@@ -46,7 +39,6 @@ describe PatientsController do
     end
     
     describe "with mime type of xml" do
-  
       it "should render the requested patient as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         Patient.should_receive(:find).with("37").and_return(mock_patient)
@@ -54,35 +46,27 @@ describe PatientsController do
         get :show, :id => "37"
         response.body.should == "generated XML"
       end
-  
     end
-    
   end
   
-  describe "responding to GET new" do
-  
+  describe "responding to GET new" do  
     it "should expose a new patient as @patient" do
       Patient.should_receive(:new).and_return(mock_patient)
       get :new
       assigns[:patient].should equal(mock_patient)
     end
-  
   end
   
-  describe "responding to GET edit" do
-  
+  describe "responding to GET edit" do  
     it "should expose the requested patient as @patient" do
       Patient.should_receive(:find).with("37").and_return(mock_patient)
       get :edit, :id => "37"
       assigns[:patient].should equal(mock_patient)
     end
-  
   end
   
   describe "responding to POST create" do
-  
     describe "with valid params" do
-      
       it "should expose a newly created patient as @patient" do
         Patient.should_receive(:new).with({'these' => 'params'}).and_return(mock_patient(:save => true,:attributes => {}))
         Patient.should_receive(:duplicate?).and_return(false)
@@ -113,7 +97,6 @@ describe PatientsController do
     end
     
     describe "with invalid params" do
-  
       it "should expose a newly created but unsaved patient as @patient" do
         Patient.stub!(:new).with({'these' => 'params'}).and_return(mock_patient(:save => false, :attributes =>{}))
         Patient.should_receive(:duplicate?).and_return(false)
@@ -140,9 +123,7 @@ describe PatientsController do
   end
   
   describe "responding to PUT udpate" do
-  
     describe "with valid params" do
-  
       it "should update the requested patient" do
         Patient.should_receive(:find).with("37").and_return(mock_patient(:attributes= =>true))
         mock_patient.should_receive(:save)
@@ -160,11 +141,9 @@ describe PatientsController do
         put :update, :id => "1", :patient => {:these => 'params'}
         response.should redirect_to(patient_url(mock_patient))
       end
-  
     end
     
     describe "with invalid params" do
-  
       it "should update the requested patient" do
         Patient.should_receive(:find).with("37").and_return(mock_patient(:attributes= =>true))
         mock_patient.should_receive(:save)
@@ -182,24 +161,14 @@ describe PatientsController do
         put :update, :id => "1", :patient => {:these => 'params'}
         response.should render_template('edit')
       end
-  
     end
-  
   end
   
   describe "responding to DELETE destroy" do
-    # it "should redirect to the patients list" do
-    #   Patient.stub!(:find).and_return(mock_patient)
-    #   mock_patient.should_receive(:destroy)
-    #   delete :destroy, :id => "1"
-    #   response.should redirect_to(patients_url)
-    # end
-    
-    # it "should destroy the requested patient" do
-    #   Patient.should_receive(:find).with("37").and_return(mock_patient)
-    #   mock_patient.should_receive(:destroy)
-    #   @mock_patient.errors.full_messages.should_receive(:join)
-    #   delete :destroy, :id => "37"
-    # end
+    it "should redirect to the patients list" do
+      Patient.stub!(:find).and_return(mock_patient)
+      delete :destroy, :id => "1"
+      response.should redirect_to(patients_url)
+    end
   end
 end
