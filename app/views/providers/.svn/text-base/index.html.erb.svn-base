@@ -1,0 +1,19 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Providers', providers_url) %>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Providers"%>
+<% end %>
+
+<div id="providerinfo">
+	<% form_tag providers_path, :method => 'get', :id => "providersearchform" do %>
+	  <p>
+	    <%= text_field_tag :search, params[:search] %>
+	    <%= submit_tag "Search", :name => nil %><span class="small">&nbsp;(First Name, Last Name or NPI)</span>
+	  </p>
+	<% end %>
+
+
+	<%= render :partial => 'providers', :layout => nil %>
+</div>

@@ -1,0 +1,37 @@
+ <div id="address_show">
+	<% unless address_show.address_type.name.nil? or  address_show.address_type.name.blank? %>
+		<label><%= address_show.address_type.name %></labelœ> <br /> 
+	<% end %>
+
+	<% unless address_show.attention.nil? or  address_show.attention.blank? %>
+		<%= address_show.attention %> <br /> 
+	<% end %>
+
+	<% unless address_show.attention.nil? or  address_show.attention.blank? %>
+		<%= address_show.attention %> <br /> 
+	<% end %>
+
+	<% unless address_show.address_line_1.nil? or  address_show.address_line_1.blank? %>
+		<%= address_show.address_line_1 %> <br /> 
+	<% end %>
+
+	<% unless address_show.address_line_2.nil? or address_show.address_line_2.blank?  %>
+		<%= address_show.address_line_2 %> <br /> 
+	<% end %>
+
+	<% unless address_show.city.nil? or address_show.city.blank? %>
+		<span><%= address_show.city %></span>
+	<% end %>
+
+	<% unless address_show.state_province_name.nil? or address_show.state_province_name.blank? %>
+		<span><%= address_show.state_province_name %></span>
+	<% end %>
+
+	<% unless address_show.postal_code.nil? or address_show.postal_code.blank? %>
+		<span><%= address_show.postal_code %> </span> <br /> 
+	<% end %>
+
+	<% unless address_show.country.name.nil? or address_show.country.name.blank? %>
+		<%= address_show.country.name %> <br />
+	<% end %>
+</div>

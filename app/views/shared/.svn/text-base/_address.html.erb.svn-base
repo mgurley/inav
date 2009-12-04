@@ -1,0 +1,26 @@
+<div class="address">
+	<div class="row">
+		<div class="label"><%= f.label :address_type_id, "Address Type: *" %></div>
+		<div class="value"><%= f.select :address_type_id, get_address_types, {:include_blank => true } %>&nbsp;<%= error_message_on f.object, "address_type_id" %><%= f.remove_link('Remove') %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= f.label :address_line_1, "Address 1: *" %></div>
+		<div class="value"><%= f.text_field :address_line_1 %>&nbsp;<%= error_message_on f.object, "address_line_1" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= f.label :address_line_2, "Address 2:" %>&nbsp;</div>
+		<div class="value"><%= f.text_field :address_line_2 %>&nbsp;<%= error_message_on f.object, "address_line_2" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= f.label :city, "Country/State: *" %></div>
+		<div class="value"><%= f.select :country_id, get_countries, {:include_blank => true } %>&nbsp;&nbsp;<%= f.select :state_province_name, get_state_provinces, {:include_blank => true } %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= f.label :city, "City: *" %></div>
+		<div class="value"><%= f.text_field :city %>&nbsp;<%= error_message_on f.object, "city" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= f.label :postal_code, "Postal Code: *" %></div>
+		<div class="value"><%= f.text_field :postal_code %>&nbsp;<%= error_message_on f.object, "postal_code" %></div>
+	</div>
+</div>

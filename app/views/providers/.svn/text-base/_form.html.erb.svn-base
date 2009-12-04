@@ -1,0 +1,57 @@
+<div id="providergeneralinfo">
+	<h3 class="plain">General Information</h3>
+	<div class="row">
+		<div class="label"><%= form.label :provider_type, "Type: *"%></div>
+		<div class="value"><%= form.select :provider_type_id,
+	  	       get_provider_types,
+	             {:include_blank => true } %><%= error_message_on_tag "patient", "provider_type_id" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= form.label :first_name, "First Name: *" %></div>
+		<div class="value"><%= form.text_field :first_name %><%= error_message_on_tag "provider", "first_name" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= form.label :middle_name, "Middle Name:" %></div>
+		<div class="value"><%= form.text_field :middle_name %><%= error_message_on_tag "provider", "middle_name" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= form.label :last_name, "Last Name: *" %></div>
+		<div class="value"><%= form.text_field :last_name %><%= error_message_on_tag "provider", "last_name" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'provider_national_provider_identifier', 'NPI:'  %></div>
+		<div class="value"> <%= form.text_field :national_provider_identifier, :maxlength =>10 %><%= error_message_on_tag "provider", "national_provider_identifier" %></div>
+	</div>
+	<div class="row">
+		<div class="label"> <%= form.label :note, "Note:" %></div>
+		<div class="value"><%= form.text_area :note, :rows => 10, :cols => 30 %></div>
+	</div>
+	<div class="row">
+		<div class="label">&nbsp;</div>
+		<div class="submit"><%= form.submit "Save" %>&nbsp;&nbsp;<%= link_to 'Cancel', provider_referrer_url %></div>
+	</div>
+</div>
+
+<div id="provideraddressinfo">
+	<h3 class="plain">Addresses</h3>
+
+	<div id="addresses">
+		<%= form.render_associated_form(@provider.addresses, :partial => 'shared/address') %>
+	</div>
+	<%= form.add_associated_link('Add', @provider.addresses.build, :partial => 'shared/address') %>
+</div>
+
+<div id="providercontactinfo">
+	<h3 class="plain">Contact Mechanisms</h3>
+	<div>
+		<table id="contact_mechanisms">
+			<tr>
+				<th class='select'>Type: *</th>
+				<th class='input-text'>Code: *</th>
+				<td></td/>
+			</tr>
+		<%= form.render_associated_form(@provider.contact_mechanisms, :partial => 'shared/contact_mechanism')%>
+		</table>
+	</div>
+	<%= form.add_associated_link('Add', @provider.contact_mechanisms.build, :partial => 'shared/contact_mechanism') %>
+</div>

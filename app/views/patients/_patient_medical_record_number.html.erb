@@ -1,0 +1,13 @@
+<tr class="patient_medical_record_number childform">
+	<td>
+		<%= f.select :medical_record_number_type_id, MedicalRecordNumberType.find(:all, :order=>'name').collect { | a | [a.name, a.id] }, {:include_blank => true } %>
+		<%= f.error_message_on(:medical_record_number_type_id)  %>
+	</td>
+	<td>
+		<%= f.text_field :medical_record_number %>
+		<%= f.error_message_on(:medical_record_number) %>
+	</td>
+	<td>
+		<%= f.remove_link('Remove') %>
+	</td>
+</tr>

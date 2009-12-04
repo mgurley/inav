@@ -1,0 +1,1 @@
+<p class="welcome">Welcome <%= session[:bcsec_user].full_name %></p>

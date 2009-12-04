@@ -1,0 +1,35 @@
+<div class='row'>
+	<%= link_to 'Add Provider', new_provider_path%>
+</div>
+<table id="container">
+  <thead>
+	<tr>
+      <th <%= sort_td_class_helper "first_name" %>>
+        <%= sort_link_helper "First Name", "first_name" %>
+      </th>
+      <th <%= sort_td_class_helper "last_name" %>>
+        <%= sort_link_helper "Last Name", "last_name" %>
+	  </th>
+      <th <%= sort_td_class_helper "provider_types_name" %>>
+        <%= sort_link_helper "Type", "provider_types_name" %>
+	  </th>
+      <th <%= sort_td_class_helper "national_provider_identifier" %>>
+        <%= sort_link_helper "NPI", "national_provider_identifier" %>
+	  </th>
+	  <th></th>
+	</tr>
+  </thead>
+  <tbody>
+    <% @providers.each do |provider| %>
+    <tr class="<%= cycle("","oddrow") %>">
+	  <td><%= link_to provider.first_name, provider_path(provider) %></td>
+	  <td><%= link_to provider.last_name, provider_path(provider) %></td>
+	  <td><%= provider.provider_types_name %></td>
+	  <td><%= provider.national_provider_identifier %></td>
+	  <td><%= link_to 'View', provider_path(provider) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @providers %>

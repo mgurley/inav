@@ -1,0 +1,28 @@
+<div id="provider">
+	<%= render :partial => 'providers/provider_show_general_information', :locals => {:provider => @provider, :navigaiton => true, :float => nil} %>
+	<div id="provideraddressinfo">
+		<h3 class="plain">Addresses</h3>
+		<% if @provider.addresses.size > 0 %>
+			<div id="addresses">
+				<%= render :partial => 'shared/address_show', :collection =>@provider.addresses %>
+			</div>
+		<% end %>
+	</div>
+	<div id="providercontactinfo">
+		<h3 class="plain">Contact Mechanisms</h3>
+		<% if @provider.contact_mechanisms.size > 0 %>
+
+			<table class="container">
+				<thead>
+				<tr>
+					<th class='select'>Type *</th>
+					<th class='input-text'>Code *</th>
+				</tr>
+				</thead>
+				<tbody>
+				<%= render :partial => 'shared/contact_mechanism_show', :collection =>@provider.contact_mechanisms %>
+				</tbody>
+			</table>
+		<% end %>
+	</div>
+</div>

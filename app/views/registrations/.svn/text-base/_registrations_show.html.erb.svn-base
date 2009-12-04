@@ -1,0 +1,29 @@
+<table class="container">
+  <thead>
+    <tr>
+      <th>Status</th>
+	  <th>Protocol</th>
+      <th>Segment</th>
+	  <th>Due</th>
+	  <th>Overdue</th>
+      <th> Referring Provider</th>
+	  <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% registrations.each do |registration| %>
+    <tr class="<%= cycle("oddrow","", :name => "registrations") %>">
+	  <td><%= registration.status(session[:cas_pgt]) %></td>
+	  <td><%= link_to (h registration.study_assigned_identifier), registration.registration_assignment_url %></td>
+	  <td><%= link_to (h registration.study_segment_name), registration.registration_assignment_url %></td>
+	  <td><%= registration.due_activites(session[:cas_pgt]).size.to_s %>&nbsp;of&nbsp;(<%= registration.activites(session[:cas_pgt]).size.to_s %>)</td>
+	  <td><%= registration.overdue_activites(session[:cas_pgt]).size.to_s %>&nbsp;of&nbsp;(<%= registration.activites(session[:cas_pgt]).size.to_s %>)</td>
+	  <td><%= link_to registration.provider.full_name , provider_path(registration.provider) %></td>
+      <td><%= link_to 'Edit', edit_patient_registration_path(@patient, registration) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+

@@ -1,0 +1,20 @@
+<h1>Listing provider_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% for provider_type in @provider_types %>
+  <tr>
+    <td><%=h provider_type.name %></td>
+    <td><%= link_to 'Show', provider_type %></td>
+    <td><%= link_to 'Edit', edit_provider_type_path(provider_type) %></td>
+    <td><%= link_to 'Destroy', provider_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New provider_type', new_provider_type_path %>

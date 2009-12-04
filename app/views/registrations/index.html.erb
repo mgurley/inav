@@ -1,0 +1,31 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Registrations', registrations_url) %>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Registrations"%>
+<% end %>
+
+<div id="registrationinfo">
+	<% form_tag registrations_path, :method => 'get', :id => "registrationsearchform" do %>
+			<span class="radiobuttongroup">
+				<%= radio_button_tag(:patients, "mine", checked?(params[:patients],"mine", true)) %>
+			    <%= label_tag(:patients_mine, "My Patients") %>
+				<%= radio_button_tag(:patients, "all", checked?(params[:patients],"all", false)) %>
+			    <%= label_tag(:patients_all, "All Patients") %>
+			</span>
+			<span class="radiobuttongroup">
+				<%= radio_button_tag(:status, "active", checked?(params[:status],"active", true)) %>
+			    <%= label_tag(:status_active, "Active") %>
+				<%= radio_button_tag(:status, "inactive",checked?(params[:status],"inactive", false)) %>
+			    <%= label_tag(:status_inactive, "Inactive") %>			
+				<%= radio_button_tag(:status, "all",checked?(params[:status],"all", false)) %>
+			    <%= label_tag(:status_inactive, "All") %>			
+			</span>			
+			<%= text_field_tag :search, params[:search] %>
+			<%= submit_tag "Search", :name => nil %><span class="small">&nbsp;(First Name or Last Name)</span>
+	<% end %>
+
+
+	<%= render :partial => 'registrations', :layout => nil %>
+</div>

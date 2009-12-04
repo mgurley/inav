@@ -1,0 +1,41 @@
+<div class='row'>
+	<%= link_to 'Add Patient', new_patient_path%>
+</div>
+
+<table id="container">
+  <thead>
+    <tr>
+	    <th <%= sort_td_class_helper "last_name" %>>
+	        <%= sort_link_helper "Last Name", "last_name" %>
+		  </th>
+      <th <%= sort_td_class_helper "first_name" %>>
+        <%= sort_link_helper "First Name", "first_name" %>
+      </th>
+      <th <%= sort_td_class_helper "gender" %>>
+        <%= sort_link_helper "Gender", "gender" %>
+	  </th>
+      <th <%= sort_td_class_helper "date_of_birth" %>>
+        <%= sort_link_helper "Date of Birth", "date_of_birth" %>
+	  </th>
+      <th <%= sort_td_class_helper "medical_record_number" %>>
+        <%= sort_link_helper "MRN", "medical_record_number" %>
+	  </th>
+	  <th></th>
+      </tr>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+    <tr class="<%= cycle("","oddrow") %>">
+		<td><%= link_to patient.last_name, patient_path(patient) %></td>
+	  <td><%= link_to patient.first_name, patient_path(patient) %></td>	  
+	  <td><%= h patient.gender_types_name %></td>
+	  <td><%= h format_date(patient.date_of_birth) %></td>
+	  <td><%= h patient.medical_record_number %></td>
+	  <td><%= link_to 'View', patient_path(patient) %></td>
+		<td><%= link_to 'Destroy', patient_path(patient), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @patients %>

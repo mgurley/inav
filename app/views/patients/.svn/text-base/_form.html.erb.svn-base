@@ -1,0 +1,72 @@
+<div id="patienteditgeneralinfo">
+	<h3 class="plain">General Information</h3>
+	<div class="row">
+		<div class="label"><%= form.label :first_name, "First Name: *" %></div>
+		<div class="value"><%= form.text_field :first_name %>&nbsp;<%= error_message_on_tag "patient", "first_name" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= form.label :middle_name, "Middle Name:" %></div>
+		<div class="value"><%= form.text_field :middle_name %>&nbsp;<%= error_message_on_tag "patient", "middle_name" %></div>
+	</div>
+	<div class="row">
+		<div class="label"> <%= form.label :last_name, "Last Name: *" %></div>
+		<div class="value"><%= form.text_field :last_name %>&nbsp;<%= error_message_on_tag "patient", "last_name" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= form.label :date_of_birth, "Date of Birth: *"%></div>
+		<div class="value"><%= form.calendar_date_select :date_of_birth, :year_range => 130.years.ago..0.years.from_now %>&nbsp;<%= error_message_on_tag "patient", "date_of_birth" %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%= form.label :gender_type_id, "Gender: *"%></div>
+		<div class="value">  <%= form.select :gender_type_id,
+		  	       get_gender_types,
+		             {:include_blank => true } %>&nbsp;<%= error_message_on_tag "patient", "gender_type_id" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="label"> <%= form.label :note, "Note:" %></div>
+		<div class="value"><%= form.text_area :note, :rows => 10, :cols => 30 %></div>
+	</div>
+	<div class="row">
+		<div class="label">&nbsp;</div>
+		<div class="submit"><%= form.submit "Save" %>&nbsp;&nbsp;<%= link_to 'Cancel', patient_referrer_url %></div>
+	</div>
+</div>
+
+<div id="patienteditaddressinfo">
+	<h3 class="plain">Addresses</h3>
+
+	<div id="addresses">
+		<%= form.render_associated_form(@patient.addresses, :partial => 'shared/address') %>
+	</div>
+	<%= form.add_associated_link('Add', @patient.addresses.build, :partial => 'shared/address') %>
+</div>
+
+<div id="patienteditcontactinfo">
+	<h3 class="plain">Contact Mechanisms</h3>
+	<div>
+		<table id="contact_mechanisms">
+			<tr>
+				<th class='select'>Type: *</th>
+				<th class='input-text'>Code: *</th>
+				<td></td/>
+			</tr>
+		<%= form.render_associated_form(@patient.contact_mechanisms, :partial => 'shared/contact_mechanism')%>
+		</table>
+	</div>
+	<%= form.add_associated_link('Add', @patient.contact_mechanisms.build, :partial => 'shared/contact_mechanism') %>
+</div>
+<div id="patienteditmedicalnumberinfo">
+	<h3 class="plain">Medical Record Numbers</h3>
+	<div>
+		<table id="patient_medical_record_numbers">
+			<tr>
+				<th class='select'>Type: *</th>
+				<th class='input-text'>Number: *</th>
+				<td></td/>
+			</tr>
+		<%= form.render_associated_form(@patient.patient_medical_record_numbers)%>
+		</table>
+	</div>
+	<%=form.add_associated_link('Add', @patient.patient_medical_record_numbers.build) %>
+</div>

@@ -1,0 +1,62 @@
+<% stylesheet 'registrations' %>
+
+<table id="container">
+ 	<thead>
+		<tr>
+	    <th <%= sort_td_class_helper "last_name" %>>
+	        <%= sort_link_helper "Last Name", "last_name" %>
+		  </th>
+			<th <%= sort_td_class_helper "first_name" %>>
+	        <%= sort_link_helper "First Name", "first_name" %>
+	    </th>
+	    <th <%= sort_td_class_helper "gender_type_name" %>>
+	        <%= sort_link_helper "Gender", "gender_type_name" %>
+		  </th>
+			<th>Age</th>
+	    <th <%= sort_td_class_helper "study_assigned_identifier" %>>
+	        <%= sort_link_helper "Protocol", "study_assigned_identifier" %>
+		  </th>
+	    <th <%= sort_td_class_helper "study_segment_name" %>>
+	        <%= sort_link_helper "Segment", "study_segment_name" %>
+		  </th>
+	    <th <%= sort_td_class_helper "inflection_date" %>>
+	        <%= sort_link_helper "Inflection Date", "inflection_date" %>
+		  </th>
+	    <th <%= sort_td_class_helper "registration_date" %>>
+	        <%= sort_link_helper "Registration Date", "registration_date" %>
+		  </th>
+	    <th <%= sort_td_class_helper "outcome_type_name" %>>
+	        <%= sort_link_helper "Outcome", "outcome_type_name" %>
+		  </th>
+	    <th <%= sort_td_class_helper "outcome_date" %>>
+	        <%= sort_link_helper "End Date", "outcome_date" %>
+		  </th>
+			<th>Inf. Interval</th>
+			<th>Reg. Interval</th>
+	    <th <%= sort_td_class_helper "subject_coordinator_name" %>>
+	        <%= sort_link_helper "Navigator", "subject_coordinator_name" %>
+		  </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% registrations.each do |registration| %>
+    <tr class="<%= cycle("","oddrow") %>">
+		  <td title="Go to Patient's Profile"><%= link_to registration.patient.last_name, patient_path(registration.patient) %></td>
+		  <td title="Go to Patient's Profile"><%= link_to registration.patient.first_name, patient_path(registration.patient) %></td>
+			<td><%= h registration.patient.gender_type.name %></td>	
+		  <td><%= h registration.patient.age %></td>	
+		  <td title="Go to Patient's Calendar"><%= link_to (h registration.study_assigned_identifier), registration.registration_assignment_url %></td>
+		  <td title="Go to Patient's Calendar"><%= link_to (h registration.study_segment_name), registration.registration_assignment_url %></td>
+			<td><%= h format_date(registration.inflection_date) %></td>
+			<td><%= h format_date(registration.created_at) %></td>
+			<td><%= h registration.outcome_type.name%></td>
+			<td><%= h format_date(registration.outcome_date)%></td>
+			<td><%= h registration.inflection_interval %></td>
+			<td><%= h registration.registration_interval %></td>
+		  <td><%= registration.subject_coordinator_name%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @registrations %>

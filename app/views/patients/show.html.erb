@@ -1,0 +1,14 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Patients', patients_url) %>
+	/
+	<%= link_to("View Patient #{@patient.full_name}", patient_url(@patient)) %>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "View Patient"%>
+<% end %>
+
+
+<div id="patientinfo">
+	<%= render :partial => 'patient_show', :locals => {:patient => @patient}%>
+</div>

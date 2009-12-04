@@ -1,0 +1,17 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Providers', providers_url) %>
+	/
+	<%= link_to('Add Provider', new_provider_url) %>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Add Provider"%>
+<% end %>
+
+<div id="providerinfo">
+	<% form_for(@provider) do |f| %>	
+
+		<%= render :partial => f %>		 
+
+	<% end %>
+</div>

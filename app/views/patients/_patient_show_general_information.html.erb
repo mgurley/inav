@@ -1,0 +1,38 @@
+<div id="patientgeneralinfo">
+	<h3 class="plain">General Information</h3>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_first_name', 'First Name:'  %></div>
+		<div class="value"><%=text_field_tag 'first_name', @patient.first_name, :disabled => true %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_middle_name', 'Middle Name:'  %></div>
+		<div class="value"><%=text_field_tag 'middle_name', @patient.middle_name, :disabled => true %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_last_name', 'Last Name:'  %></div>
+		<div class="value"><%=text_field_tag 'last_name', @patient.last_name, :disabled => true %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_date_of_birth', 'Date of Birth:'  %></div>
+		<div class="value"><%=text_field_tag 'date_of_birth', format_date(@patient.date_of_birth), :disabled => true %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_age', 'Age:'  %></div>
+		<div class="value"><%=text_field_tag 'age', @patient.age, :disabled => true %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_gender_type_name', 'Gender:'  %></div>
+		<div class="value"><%=text_field_tag 'patient_gender_type_name', @patient.gender_type.name, :disabled => true %></div>
+	</div>
+	<div class="row">
+		<div class="label"><%=label_tag 'patient_note', 'Note:'  %></div>
+		<div class="value"><%=text_area_tag 'patient_note', @patient.note, :rows => 10, :readonly=> true %></div>
+	</div>
+	<% if navigaiton %>
+		<div class="row">
+			<%= link_to 'Edit', edit_patient_path(@patient) %> |
+			<%= link_to 'Patients', patients_url %> |
+			<%= link_to 'Back', patient_referrer_url %>
+		</div>
+	<% end %>
+</div>

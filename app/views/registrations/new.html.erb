@@ -1,0 +1,56 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Patients', patients_url) %>
+	/
+	<%= link_to('View Patient', patient_url(@patient)) %>
+	/
+	<%= link_to "Register Patient #{@patient.full_name} on Protocol", new_patient_registration_path(@patient)%>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Register Patient on Protocol"%>
+<% end %>
+
+<div id="registration">
+	<%= render :partial => 'patients/patient_show_general_information', :locals => {:patient => @patient, :navigaiton => false	} %>
+
+	<div id="registrationform" class="clear">		
+		<% form_for([@patient, @registration]) do |f| %>
+			<%= error_message_on @registration, :id %>
+			<div class="row">
+				<div class="label"><%= f.label :study_assigned_identifier, "Protocol: *"%></div>
+				<div class="value"><%= f.select	:study_assigned_identifier,
+						get_studies,
+					{:include_blank => true }, 
+				           :onchange => remote_function( :url => { :action => :change_study }, :method =>:get, :with => "'study_assigned_identifier='+this.value")%><%= error_message_on_tag "registration", "study_assigned_identifier" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="label"><%= f.label :study_segment_id, "Epoch/Segment: *"%></div>
+				<div class="value"><%= f.select :study_segment_id, ['',''],
+				           {:include_blank => true },								
+					 :onchange => "full_name = this.options[this.selectedIndex].text;full_name = full_name.split('|');epoch_name = full_name[0].strip();study_segment_name=full_name[1].strip();$('registration_epoch_name').value = epoch_name;$('registration_study_segment_name').value = study_segment_name;"
+					%>
+				<%=f.hidden_field :epoch_name   %>
+				<%=f.hidden_field :study_segment_name   %><%= error_message_on_tag "registration", "study_segment_id" %>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="label"><%= f.label :referring_provider_id, "Referring Provider: *"%></div>
+				<div class="value"><%= f.select	:referring_provider_id,
+						get_providers_for_patient(@patient),
+					{:include_blank => true }
+				      %><%= error_message_on_tag "registration", "referring_provider_id" %>
+				</div>
+			</div>			
+			<div class="row">
+				<div class="label"><%= f.label :inflection_date, "Inflection Date:"%></div>
+				<div class="value"><%= f.calendar_date_select :inflection_date %>&nbsp;<%= error_message_on_tag "registration", "inflection_date" %></div>
+			</div>	
+			<div class="row">
+				<div class="label">&nbsp;</div>
+				<div class="submit"><%= f.submit "Save" %>&nbsp;&nbsp;<%= link_to 'Cancel',patient_path(@patient) %></div>
+			</div>
+		<% end %>
+	</div>
+</div>

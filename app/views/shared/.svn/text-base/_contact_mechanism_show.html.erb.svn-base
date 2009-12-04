@@ -1,0 +1,8 @@
+<tr class="contact_mechanism <%=cycle("oddrow","", :name => "contact_mechanisms")%>">
+	<td>
+		<%= contact_mechanism_show.contact_mechanism_type.name%>
+	</td>
+	<td>
+		<%= contact_mechanism_show.contact_mechanism_code%>
+	</td>
+</tr>

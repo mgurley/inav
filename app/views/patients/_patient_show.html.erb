@@ -1,0 +1,68 @@
+<% stylesheet 'patient' %>
+
+<div id="patient">
+	<%= render :partial => 'patients/patient_show_general_information', :locals => {:patient => @patient, :navigaiton => true }%>
+	<div id="patientaddressinfo">
+		<h3 class="plain">Addresses</h3>
+		<div id="addresses">
+			<%= render :partial => 'shared/address_show', :collection =>@patient.addresses %>
+		</div>
+	</div>
+	<div id="patientcontactinfo">
+		<h3 class="plain">Contact Mechanisms</h3>
+		<div>
+			<% if @patient.contact_mechanisms.size > 0 %>
+				<table class="container">
+					<thead>
+					<tr>
+						<th class='select'>Type</th>
+						<th class='input-text'>Code</th>
+					</tr>
+					</thead>
+					<tbody>
+					<%= render :partial => 'shared/contact_mechanism_show', :collection =>@patient.contact_mechanisms %>
+					</tbody>
+				</table>
+			<% end  %>
+		</div>
+	</div>
+	<div id="patientmedicalnumberinfo">
+		<h3 class="plain">Medical Record Numbers</h3>
+		<div>
+			<% if @patient.patient_medical_record_numbers.size > 0 %>
+				<table class="container">
+					<thead>
+					<tr>
+						<th class='select'>Type</th>
+						<th class='input-text'>Number</th>
+					</tr>
+					</thead>
+					<tbody>
+					<%= render :partial => 'patient_medical_record_number_show', :collection =>@patient.patient_medical_record_numbers %>
+					</tbody>
+				</table>
+			<% end %>
+		</div>
+	</div>
+</div>
+<div id="patientassignments">
+	 <div id="patientinforegistrations"
+		<h3 class="plain">Protocols</h3>
+		<div class='row'>
+			<%= link_to 'Register Patient on Protocol ', new_patient_registration_path(@patient)%>
+		</div>
+		<% if @patient.registrations.size > 0 %>
+			<%= render :partial => 'registrations/registrations_show', :layout => nil, :locals =>{:registrations => @patient.registrations} %>
+		<% end %>
+	</div>
+	<br />
+	<div id="patientinfoproviders"
+		<h3 class="plain">Providers</h3>
+		<div class='row'>
+			<%= link_to 'Assign Provider to Patient ', new_patient_patient_provider_assignment_path(@patient)%>
+		</div>
+		<% if @patient.providers.size > 0 %>
+			<%= render :partial => 'patient_provider_assignments/providers', :layout => nil %>
+		<% end %>
+	</div>
+</div>

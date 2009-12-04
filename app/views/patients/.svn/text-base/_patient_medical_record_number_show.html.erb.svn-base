@@ -1,0 +1,8 @@
+<tr class="patient_medical_record_number <%=cycle("oddrow","",  :name => "patient_medical_record_numbers")%>">
+	<td>
+		<%=patient_medical_record_number_show.medical_record_number_type.name  %>
+	</td>
+	<td>
+		<%= patient_medical_record_number_show.medical_record_number %>
+	</td>
+</tr>

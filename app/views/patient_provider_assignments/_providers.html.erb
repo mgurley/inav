@@ -1,0 +1,22 @@
+<table class="container">
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>Type</th>
+      <th>NPI</th>
+	  <th></th>
+	  <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patient.patient_provider_assignments.each do |patient_provider_assignment| %>
+    <tr class="<%= cycle("oddrow","", :name=>"patient_provider_assignments") %>">
+	  <td><%= link_to patient_provider_assignment.provider.full_name, provider_path(patient_provider_assignment.provider) %></td>
+	  <td><%= patient_provider_assignment.provider.provider_type.name %></td>
+	  <td><%= patient_provider_assignment.provider.national_provider_identifier %></td>
+      <td><%= link_to 'Edit',edit_patient_patient_provider_assignment_path(@patient, patient_provider_assignment) %></td>
+      <td><%= link_to 'Delete', patient_patient_provider_assignment_path(@patient, patient_provider_assignment), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

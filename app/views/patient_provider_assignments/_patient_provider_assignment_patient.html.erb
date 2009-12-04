@@ -1,0 +1,22 @@
+<table>
+	<tr>
+		<td><%=label_tag 'patient_first_name', 'First Name:'  %></td>
+		<td><%=text_field_tag 'first_name', @patient.first_name, :disabled => true %></td>
+	</tr>
+	<tr>
+		<td><%=label_tag 'patient_middle_name', 'Middle Name:'  %></td>
+		<td><%=text_field_tag 'middle_name', @patient.middle_name, :disabled => true %></td>
+	</tr>
+	<tr>
+		<td><%=label_tag 'patient_last_name', 'Last Name:'  %></td>
+		<td><%=text_field_tag 'last_name', @patient.last_name, :disabled => true %></td>
+	</tr>
+	<tr>
+		<td><%=label_tag 'patient_date_of_birth', 'Date of Birth:'  %></td>
+		<td><%=text_field_tag 'date_of_birth', @patient.date_of_birth, :disabled => true %></td>
+	</tr>
+	<tr>
+		<td><%=label_tag 'patient_gender_type_name', 'Gender:'  %></td>
+		<td><%=text_field_tag 'patient_gender_type_name', @patient.gender_type.name, :disabled => true %></td>
+	</tr>	
+</table>

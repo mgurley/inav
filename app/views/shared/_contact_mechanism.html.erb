@@ -1,0 +1,13 @@
+<tr class="contact_mechanism childform">
+	<td>
+		<%= f.select :contact_mechanism_type_id, ContactMechanismType.find(:all, :order=>'name').collect { | a | [a.name, a.id] }, {:include_blank => true } %>
+		<%= f.error_message_on(:contact_mechanism_type_id)  %>
+	</td>
+	<td>
+		<%= f.text_field :contact_mechanism_code %>
+		<%= f.error_message_on(:contact_mechanism_code) %>
+	</td>
+	<td>
+		<%= f.remove_link('Remove') %>
+	</td>
+</tr>

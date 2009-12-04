@@ -1,0 +1,18 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Patients', patients_url) %>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Patients"%>
+<% end %>
+
+<div id="patientinfo">
+	<% form_tag patients_path, :method => 'get', :id => "patientsearchform" do %>
+	  <p>
+	    <%= text_field_tag :search, params[:search] %>
+	    <%= submit_tag "Search", :name => nil %><span class="small">&nbsp;(First Name, Last Name or MRN)</span>
+	  </p>
+	<% end %>
+	
+	<%= render :partial => 'patients', :layout => nil %>
+</div>

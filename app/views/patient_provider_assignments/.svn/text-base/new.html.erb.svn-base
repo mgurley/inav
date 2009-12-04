@@ -1,0 +1,49 @@
+<% javascript 'patient_provider_assignment' %>
+
+
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Patients', patients_url) %>
+	/
+	<%= link_to('View Patient', patient_url(@patient)) %>
+	/
+	<%= link_to "Assign Provider to #{@patient.full_name}", new_patient_patient_provider_assignment_path(@patient)%>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Assign Provider to Patient"%>
+<% end %>
+
+<div id="patientproviderassignment">
+	<h3 class="plain">Assign Provider to <%= @patient.full_name %></h3>
+	<% form_for([@patient, @patient_provider_assignment]) do |f| %>
+	<div class="row">
+		<div class="label"><%= f.label :provider_id, "Search Providers:"%></div>
+		<div class="value"><%= belongs_to_auto_completer :patient_provider_assignment, :provider, :search, {:controller => :providers, :action => :auto_complete, :after_update_element => "updateProvider",
+		 	}, {}, {:method => :get,  :param_name =>'search', :skip_style=>true} %><%= error_message_on_tag "patient_provider_assignment", "provider_id" %>
+		</div>
+	</div>
+
+	<div class="row" id="patientproviderassignmentprovider">
+		<%= render :partial => 'patient_provider_assignments/patient_provider_assignment_provider', :locals => {:provider => @patient_provider_assignment.build_provider} %>
+	</div>
+
+	<div class="row">
+		<div class="label"><%= f.label :patient_provider_relationship_type_id, "Relationship *"%></div>
+		<div class="value"><%= f.select	:patient_provider_relationship_type_id,
+				get_patient_provider_relationship_types,
+			{:include_blank => true }
+		      %><%= error_message_on_tag "patient_provider_assignment", "patient_provider_relationship_type_id" %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="label"><%= f.label :relationship_description, "Relationship to Patient: *" %></div>
+		<div class="value"><%= f.text_field :relationship_description %><%= error_message_on_tag "patient_provider_assignment", "relationship_description" %></div>
+	</div>
+
+	<div class="row">
+		<div class="label">&nbsp;</div>
+		<div class="submit"><%= f.submit "Save" %>&nbsp;&nbsp;<%= link_to 'Cancel',patient_path(@patient) %></div>
+	</div>
+	<% end %>
+</div>	

@@ -1,0 +1,43 @@
+var patient_provider_relationship_types = new Hash();
+<% for patient_provider_relationship_type in @patient_provider_relationship_types -%>
+  patient_provider_relationship_types.set(<%= patient_provider_relationship_type.id %>, <%= patient_provider_relationship_type.is_allowed_free_text %> );
+<% end -%>
+
+function patientProviderRelationshipTypeInit() {
+	elt = $('patient_provider_assignment_patient_provider_relationship_type_id');
+  	value = elt.options[elt.selectedIndex].value;
+
+  	if (patient_provider_relationship_types.get(value))
+  	{
+  		$('patient_provider_assignment_relationship_description').writeAttribute('readonly',false);	
+		$('patient_provider_assignment_relationship_description').removeClassName('readonly')		
+	}
+	else
+	{
+		$('patient_provider_assignment_relationship_description').writeAttribute('readonly',true);	
+		$('patient_provider_assignment_relationship_description').addClassName('readonly')		
+	}
+	
+}
+
+function patientProviderRelationshipTypeSelected() {
+	patientProviderRelationshipTypeInit();
+	elt = $('patient_provider_assignment_patient_provider_relationship_type_id');
+  	value = elt.options[elt.selectedIndex].value;
+	text  = elt.options[elt.selectedIndex].text;
+	
+  	if (patient_provider_relationship_types.get(value))
+  	{
+		$('patient_provider_assignment_relationship_description').value ="";
+	}
+	else
+	{
+		$('patient_provider_assignment_relationship_description').value = text;
+	}
+	
+}
+
+document.observe('dom:loaded', function() {
+  patientProviderRelationshipTypeInit();
+  $('patient_provider_assignment_patient_provider_relationship_type_id').observe('change', patientProviderRelationshipTypeSelected);
+});

@@ -1,0 +1,67 @@
+<% content_for(:breadcrumbs)  do %>
+	<%= link_to('Patients', patients_url) %>
+	/
+	<%= link_to('View Patient', patient_url(@patient)) %>
+	/
+	<%= link_to "Edit Registration of Patient #{@patient.full_name} on Protocol", edit_patient_registration_path(@patient, @registration)%>
+<% end %>
+
+<% content_for(:header)  do %>
+	<%= "Edit Registration of Patient on Protocol"%>
+<% end %>
+
+<div id="registration">
+	<%= render :partial => 'patients/patient_show_general_information', :locals => {:patient => @patient, :navigaiton => false} %>
+
+
+	<div id="registrationform" class="clear">		
+		<% form_for([@patient, @registration]) do |f| %>
+			<%= error_message_on @registration, :id %>
+
+			<div class="row">
+				<div class="label"><%=label_tag 'registration_created-at', 'Registraion Date:'  %></div>
+				<div class="value"><%=text_field_tag 'created_at', format_date(@registration.created_at), :disabled => true %></div>
+			</div>
+
+			<div class="row">
+				<div class="label"><%= f.label :study_assigned_identifier, "Protocol: *"%></div>
+				<div class="value"><%= f.text_field	:study_assigned_identifier, :disabled => true%></div>
+			</div>
+			<div class="row">
+				<div class="label"><%= f.label :epoch_name, "Epoch/Segment: *"%></div>
+				<div class="value"><%= f.text_field :epoch_name, :disabled => true%><%= f.text_field :study_segment_name, :disabled => true%></div>
+			</div>
+
+			<div class="row">
+				<div class="label"><%= f.label :referring_provider_id, "Referring Provider: *"%></div>
+				<div class="value"><%= text_field_tag 'registration_referring_provider_id',  @registration.provider.full_name,:disabled => true%></div>
+			</div>
+
+			<div class="row">
+				<div class="label"><%= f.label :inflection_date, "Inflection Date: *"%></div>
+				<div class="value"><%= f.calendar_date_select :inflection_date, :year_range => 1.years.ago..1.years.from_now %>&nbsp;<%= error_message_on_tag "registration", "inflection_date" %></div>
+			</div>	
+
+			<div class="row">
+				<div class="label"><%= f.label :outcome_type_id, "Outcome: *"%></div>
+				<div class="value"><%= f.select	:outcome_type_id,
+						get_outcome_types,
+					{:include_blank => true }
+				      %><%= error_message_on_tag "registration", "outcome_type_id" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="label"><%= f.label :outcome_date, "End Date:"%></div>
+				<div class="value"><%= f.calendar_date_select :outcome_date,:year_range => 1.years.ago..1.years.from_now %>&nbsp;<%= error_message_on_tag "registration", "outcome_date" %></div>
+			</div>	
+			<div class="row">
+				<div class="label"><%= f.label :outcome, "Outcome Description:"%><%= error_message_on_tag "registration", "outcome" %></div>
+				<div class="value"><%= f.text_area :outcome %></div>
+			</div>
+			<div class="row">
+				<div class="label">&nbsp;</div>
+				<div class="submit"><%= f.submit "Save" %>&nbsp;&nbsp;<%= link_to 'Cancel',patient_path(@patient) %></div>
+			</div>
+		<% end %>
+	</div>
+</div>
