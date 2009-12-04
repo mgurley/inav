@@ -48,7 +48,7 @@ class RegistrationsController < ApplicationController
         flash[:notice] = 'Registration was successfully created.'
         format.html { redirect_to(@registration.registration_assignment_url) }
         format.xml  { render :xml => @registration, :status => :created, :location => patient_url(@patient) }
-      rescue
+      rescue Exception => e
         unless @registration.new_record?
           @registration = Registration.new()
         end
