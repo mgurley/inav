@@ -16,14 +16,14 @@ public
   # GET /patient_provider_assignments.xml
   def index
     #Nested resources only displayed in the context of its parent patient
-    redirect_to(home_url)
+    redirect_to(root_url)
   end
 
   # GET /patient_provider_assignments/1
   # GET /patient_provider_assignments/1.xml
   def show
     #These are nested resources that are only displayed in the context of their parent patient
-    redirect_to(home_url)
+    redirect_to(root_url)
   end
 
   # GET /patient_provider_assignments/new
