@@ -11,15 +11,13 @@ describe ProviderTypesController do
   end
   
   describe "responding to GET index" do
-
     it "should expose all provider_types as @provider_types" do
       ProviderType.should_receive(:find).with(:all).and_return([mock_provider_type])
       get :index
       assigns[:provider_types].should == [mock_provider_type]
     end
 
-    describe "with mime type of xml" do
-  
+    describe "with mime type of xml" do  
       it "should render all provider_types as xml" do
         request.env["HTTP_ACCEPT"] = "application/xml"
         ProviderType.should_receive(:find).with(:all).and_return(provider_types = mock("Array of ProviderTypes"))
@@ -27,13 +25,10 @@ describe ProviderTypesController do
         get :index
         response.body.should == "generated XML"
       end
-    
     end
-
   end
 
   describe "responding to GET show" do
-
     it "should expose the requested provider_type as @provider_type" do
       ProviderType.should_receive(:find).with("37").and_return(mock_provider_type)
       get :show, :id => "37"
@@ -49,35 +44,27 @@ describe ProviderTypesController do
         get :show, :id => "37"
         response.body.should == "generated XML"
       end
-
     end
-    
   end
 
   describe "responding to GET new" do
-  
     it "should expose a new provider_type as @provider_type" do
       ProviderType.should_receive(:new).and_return(mock_provider_type)
       get :new
       assigns[:provider_type].should equal(mock_provider_type)
     end
-
   end
 
   describe "responding to GET edit" do
-  
     it "should expose the requested provider_type as @provider_type" do
       ProviderType.should_receive(:find).with("37").and_return(mock_provider_type)
       get :edit, :id => "37"
       assigns[:provider_type].should equal(mock_provider_type)
     end
-
   end
 
   describe "responding to POST create" do
-
     describe "with valid params" do
-      
       it "should expose a newly created provider_type as @provider_type" do
         ProviderType.should_receive(:new).with({'these' => 'params'}).and_return(mock_provider_type(:save => true))
         post :create, :provider_type => {:these => 'params'}
@@ -89,11 +76,9 @@ describe ProviderTypesController do
         post :create, :provider_type => {}
         response.should redirect_to(provider_type_url(mock_provider_type))
       end
-      
     end
     
     describe "with invalid params" do
-
       it "should expose a newly created but unsaved provider_type as @provider_type" do
         ProviderType.stub!(:new).with({'these' => 'params'}).and_return(mock_provider_type(:save => false))
         post :create, :provider_type => {:these => 'params'}
@@ -105,15 +90,11 @@ describe ProviderTypesController do
         post :create, :provider_type => {}
         response.should render_template('new')
       end
-      
     end
-    
   end
 
   describe "responding to PUT udpate" do
-
     describe "with valid params" do
-
       it "should update the requested provider_type" do
         ProviderType.should_receive(:find).with("37").and_return(mock_provider_type)
         mock_provider_type.should_receive(:update_attributes).with({'these' => 'params'})
@@ -131,11 +112,9 @@ describe ProviderTypesController do
         put :update, :id => "1"
         response.should redirect_to(provider_type_url(mock_provider_type))
       end
-
     end
     
     describe "with invalid params" do
-
       it "should update the requested provider_type" do
         ProviderType.should_receive(:find).with("37").and_return(mock_provider_type)
         mock_provider_type.should_receive(:update_attributes).with({'these' => 'params'})
@@ -153,13 +132,10 @@ describe ProviderTypesController do
         put :update, :id => "1"
         response.should render_template('edit')
       end
-
     end
-
   end
 
   describe "responding to DELETE destroy" do
-
     it "should destroy the requested provider_type" do
       ProviderType.should_receive(:find).with("37").and_return(mock_provider_type)
       mock_provider_type.should_receive(:destroy)
@@ -171,7 +147,5 @@ describe ProviderTypesController do
       delete :destroy, :id => "1"
       response.should redirect_to(provider_types_url)
     end
-
   end
-
 end
