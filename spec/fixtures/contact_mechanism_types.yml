@@ -1,0 +1,16 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+Phone:
+  name: Phone 
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Mobile Phone:
+  name: Mobile Phone
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Email:
+  name: Email
+  created_by: testuser
+  created_ip: 0.0.0.0

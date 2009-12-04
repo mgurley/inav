@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  patient_id: 1
+  site_assigned_identifier: MyString
+  study_assigned_identifier: MyString
+  study_segment_id: MyString
+  registration_outcome: MyString
+  referring_provider_id: 1
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+two:
+  patient_id: 1
+  site_assigned_identifier: MyString
+  study_assigned_identifier: MyString
+  study_segment_id: MyString
+  registration_outcome: MyString
+  referring_provider_id: 1
+  created_by: testuser
+  created_ip: 0.0.0.0

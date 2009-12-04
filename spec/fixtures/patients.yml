@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+Bob:
+  first_name: Bob
+  last_name: Jones
+  middle_name: Same
+  date_of_birth: 1955-10-11
+  gender_type: male
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Mary:
+  first_name: Mary
+  last_name: Smith
+  middle_name: Cindy
+  date_of_birth: 1972-10-11
+  gender_type: female
+  created_by: testuser
+  created_ip: 0.0.0.0

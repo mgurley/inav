@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<studies xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://bioinformatics.northwestern.edu/ns/psc http://bioinformatics.northwestern.edu/ns/psc/psc.xsd' xmlns='http://bioinformatics.northwestern.edu/ns/psc'>
+  <study assigned-identifier='teststudy1'/>
+  <study assigned-identifier='teststudy2'/>
+  <study assigned-identifier='[ABC 1000]'/>
+  <study assigned-identifier='[ABC 1001]'/>
+  <study assigned-identifier='[ABC 1002]'/>
+  <study assigned-identifier='[ABC 1003]'/>
+  <study assigned-identifier='[ABC 1004]'/>
+  <study assigned-identifier='[ABC 1005]'/>
+  <study assigned-identifier='[ABC 1006]'/>
+  <study assigned-identifier='[ABC 1007]'/>
+</studies>

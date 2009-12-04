@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+Primary Care Physician:
+  name: Primary Care Physician
+  is_allowed_free_text: false
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Specialist:
+  name: Specialist
+  is_allowed_free_text: true
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Other:
+  name: Other
+  is_allowed_free_text: true
+  created_by: testuser
+  created_ip: 0.0.0.0
+

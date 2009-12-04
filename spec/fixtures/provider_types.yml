@@ -1,0 +1,32 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+Physician:
+  name: Physician
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Physician_Assistant:
+  name: Physician Assistant
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Nurse_Practitioner:
+  name: Nurse Practitioner
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Dentist:
+  name: Dentist
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Chiropractor:
+  name: Chiropractor
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Physical_Therapist:
+  name: Physical Therapist
+  created_by: testuser
+  created_ip: 0.0.0.0
+

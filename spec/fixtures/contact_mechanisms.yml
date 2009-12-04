@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  contact_mechanism_code: MyString
+  contact_mechanism_type: Phone
+  contactable: Mary (Patient) 
+  created_by: testuser
+  created_ip: 0.0.0.0
+two:
+  contact_mechanism_code: MyString
+  contact_mechanism_type: Email
+  contactable: Bob (Patient)
+  created_by: testuser
+  created_ip: 0.0.0.0

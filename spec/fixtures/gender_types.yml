@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+male:
+  name: male
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+female:
+  name: female
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+unknown:
+  name: unknown
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+not specified:
+  name: not specified
+  created_by: testuser
+  created_ip: 0.0.0.0
+  

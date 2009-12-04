@@ -1,0 +1,9 @@
+admin:
+  groups: administrators
+  portals: SHIP_PSC
+  password: admin
+
+user:
+  groups: users
+  portals: SHIP_PSC
+  password: user

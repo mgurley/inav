@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  patient: Bob
+  medical_record_number: 800
+  medical_record_number_type: NMH
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+two:
+  patient: Mary
+  medical_record_number: 900
+  medical_record_number_type: NMFF
+  created_by: testuser
+  created_ip: 0.0.0.0

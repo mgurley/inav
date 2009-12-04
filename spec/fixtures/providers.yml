@@ -1,0 +1,28 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+Doogie:
+  first_name: Doogie
+  last_name: Howser
+  middle_name: 
+  provider_type: Physician
+  national_provider_identifier: 1234567890
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Mildred:
+  first_name: Mildred
+  last_name: Ratchet
+  middle_name: J
+  provider_type: Nurse_Practitioner
+  national_provider_identifier: 9876543210
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+Florence:
+  first_name: Florence
+  last_name: Nightingale
+  middle_name: J
+  provider_type: Nurse_Practitioner
+  national_provider_identifier: 5555555555
+  created_by: testuser
+  created_ip: 0.0.0.0

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  country_code: MyString
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+two:
+  name: MyString
+  country_code: MyString
+  created_by: testuser
+  created_ip: 0.0.0.0

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  patient_id: 1
+  provider_id: 1
+  description: MyString
+  created_by: testuser
+  created_ip: 0.0.0.0
+
+two:
+  patient_id: 1
+  provider_id: 1
+  description: MyString
+  created_by: testuser
+  created_ip: 0.0.0.0

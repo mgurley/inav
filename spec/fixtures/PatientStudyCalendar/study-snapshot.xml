@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<study-snapshot assigned-identifier='teststudy1' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://bioinformatics.northwestern.edu/ns/psc http://bioinformatics.northwestern.edu/ns/psc/psc.xsd' xmlns='http://bioinformatics.northwestern.edu/ns/psc'>
+  <planned-calendar id='c5a055ef-316e-4b61-bcc9-b49a3ef9be0f'>
+    <epoch name='Treatment' id='b8b8bf5c-aa71-4df7-bd4e-a20809dcadcc'>
+      <study-segment name='Treatment1' id='39f00547-08dc-40eb-ac3f-b83bae334f1a'>
+        <period name='Cycle' id='427e99f9-0d41-438a-867a-c488f358a084' repetitions='3' duration-unit='day' duration-quantity='21' start-day='1'>
+          <planned-activity id='994862a5-2e87-45c8-a2cc-6842625a362d' day='6'>
+            <activity name='Intervention' code='Intervention' type='Intervention' description='Intervention' source='PSC - Manual Activity Creation'/>
+          </planned-activity>
+          <planned-activity id='af172de2-faf6-4373-8188-cd27f3d8f5bd' day='1'>
+            <activity name='Intervention' code='Intervention' type='Intervention' description='Intervention' source='PSC - Manual Activity Creation'/>
+          </planned-activity>
+          <planned-activity id='9385b476-26c7-46dd-b5f7-5b2d6ceedcf3' day='2'>
+            <activity name='Intervention' code='Intervention' type='Intervention' description='Intervention' source='PSC - Manual Activity Creation'/>
+          </planned-activity>
+        </period>
+      </study-segment>
+    </epoch>
+    <epoch name='Follow up' id='eb46de3b-004b-4bee-8dc8-15006b6007bb'>
+      <study-segment name='Follow up' id='35cf9d24-707f-472e-b539-06b2585c3f07'>
+        <period name='Follow up' id='8849873a-f9c7-486d-8556-12d23363d65e' repetitions='4' duration-unit='quarter' duration-quantity='1' start-day='1'>
+          <planned-activity id='0576003e-6a73-433d-8030-1a72fd410ec2' day='1'>
+            <activity name='Intervention' code='Intervention' type='Intervention' description='Intervention' source='PSC - Manual Activity Creation'/>
+          </planned-activity>
+          <planned-activity id='f437aad8-015c-4137-bdb7-c9e1b303ad11' day='1'>
+            <activity name='Lab Test' code='labtest' type='Lab Test' description='labtest' source='PSC - Manual Activity Creation'/>
+          </planned-activity>
+        </period>
+      </study-segment>
+    </epoch>
+  </planned-calendar>
+</study-snapshot>
