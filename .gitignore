@@ -1,3 +1,5 @@
 .DS_Store
 log/*.log
 tmp/**/*
+*.war
+db/development_structure.sql
