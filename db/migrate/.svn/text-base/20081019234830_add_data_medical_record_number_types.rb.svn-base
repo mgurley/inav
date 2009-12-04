@@ -1,0 +1,15 @@
+class AddDataMedicalRecordNumberTypes < ActiveRecord::Migration
+  def self.up
+    down
+    medical_record_number_type = MedicalRecordNumberType.new(:name => 'NMH', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    medical_record_number_type.save!
+
+    medical_record_number_type = MedicalRecordNumberType.new(:name => 'NMFF', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    medical_record_number_type.save!
+
+  end
+
+  def self.down
+    execute "DELETE FROM medical_record_number_types;"
+  end
+end

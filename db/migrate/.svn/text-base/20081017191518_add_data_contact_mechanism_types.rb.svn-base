@@ -1,0 +1,21 @@
+class AddDataContactMechanismTypes < ActiveRecord::Migration
+  def self.up
+    down
+    # execute "insert into contact_mechanism_types (id, name) values(1, 'Phone')"
+    # execute "insert into contact_mechanism_types (id, name) values(2, 'Mobile Phone')"
+    # execute "insert into contact_mechanism_types (id, name) values(3, 'Email')"
+    contact_mechanism_type = ContactMechanismType.new(:name => 'Phone', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    contact_mechanism_type.save!
+    
+    contact_mechanism_type = ContactMechanismType.new(:name => 'Mobile Phone', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    contact_mechanism_type.save!
+    
+    contact_mechanism_type = ContactMechanismType.new(:name => 'Email', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    contact_mechanism_type.save!
+
+  end
+
+  def self.down
+    execute "DELETE FROM contact_mechanism_types;"
+  end
+end

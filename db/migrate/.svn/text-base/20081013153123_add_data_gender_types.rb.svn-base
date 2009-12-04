@@ -1,0 +1,25 @@
+class AddDataGenderTypes < ActiveRecord::Migration
+  def self.up
+    down
+    # execute "insert into gender_types (id, name) values(1, 'male')"
+    # execute "insert into gender_types (id, name) values(2, 'female')"
+    # execute "insert into gender_types (id, name) values(3, 'unknown')"
+    # execute "insert into gender_types (id, name) values(4, 'not specified')"
+    gender_type = GenderType.new(:name => 'Male', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    gender_type.save!
+
+    gender_type = GenderType.new(:name => 'Female', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    gender_type.save!
+
+    gender_type = GenderType.new(:name => 'Unknown', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    gender_type.save!
+
+    gender_type = GenderType.new(:name => 'Not Specified', :created_by => 'mjg994', :created_ip => '0.0.0.0')
+    gender_type.save!
+
+  end
+
+  def self.down
+    execute "DELETE FROM gender_types;"
+  end
+end
