@@ -1,0 +1,135 @@
+/*-----------------------------------------------------------
+  Pure CSS Drop-down Menu
+  Last Updated: 12/31/2007 by Justin Spegele
+  Author: Justin Spegele
+          Spegele Design and Development
+          http://www.spegele.com/
+  This code is free to modify and use for any purpose, as
+  long as proper credit is given to the original designer.
+----------------------------------------------------------- */
+
+/* Overarching Menu
+    -----------------------------------*/
+.cssnav {
+        position:relative;
+        z-index:1000; 
+        font-size:12px;
+        font-family:Verdana, Arial, Helvetica, sans-serif;
+        font-weight:bold;
+        text-align:center;
+    }
+
+    .cssnav ul {
+        padding:0;
+        margin:0;
+        list-style-type:none;
+    }
+    .cssnav ul ul {
+        width:149px;
+        text-align:left;
+	}
+/*	Main list 
+    -----------------------------------*/
+    .cssnav li {
+        float:left;
+        width:150px;
+        position:relative;
+    }
+
+/*	First Level
+    -----------------------------------*/
+    /* Links */
+    .cssnav a, .cssnav a:visited {
+        display:block;
+        text-decoration:none; 
+        color:#fefefe; 
+        border:1px solid #fff; 
+        border-width:1px 0px 1px 1px; 
+        background:#D07A02; 
+        line-height:25px;
+    }
+
+    /* span */
+    span.current_user {
+        display:block;
+        text-decoration:none; 
+        color:#505050; 
+        border-width:1px 0px 1px 1px; 
+        background:#e8eaec; 
+        line-height:25px;
+    }
+
+    .cssnav  a.selected {
+        background:#FDB44E; 
+    }
+
+    /* Links on hover */
+    .cssnav a:hover, .cssnav ul ul a:hover{
+        color:#fff; 
+        background:#FDB44E;
+    }
+    .cssnav :hover > a, .cssnav ul ul :hover > a {
+        color:#fff;
+        background:#FDB44E;
+    }
+/*	Second Level
+    -----------------------------------*/
+    /* Links */
+    .cssnav ul ul a, .cssnav ul ul a:visited {
+        background:#D07A02;
+        line-height:1em; 
+        padding:5px 10px; 
+        width:128px;
+        border-width:0 1px 1px 1px;
+    }
+    /* Links on hover */
+    .cssnav ul ul a:hover {
+        background:#FDB44E;
+    }
+    /* Visibility */
+    .cssnav ul li:hover ul, .cssnav ul a:hover ul{
+        visibility:visible; 
+    }
+/*	Third Level
+    -----------------------------------*/
+    /* Links */
+    .cssnav ul ul ul a, .cssnav ul ul ul a:visited {
+        background:#578bb8;
+    }
+    /* Links on hover */
+    .cssnav ul ul ul a:hover {
+        background:#80b0da;
+    }
+    /* Positioning */
+    .cssnav ul ul ul{
+        left:150px; 
+        top:-1px; 
+    }
+    .cssnav ul ul ul.left {
+        left:-150px;
+    }
+    /* Visibility */
+    .cssnav ul :hover ul ul{
+        visibility:hidden;
+    }
+    .cssnav ul :hover ul :hover ul{
+        visibility:visible;
+    }
+/*	All Sub Levels 
+    -----------------------------------*/
+    /* Default visibility */
+    .cssnav ul ul {
+        visibility:hidden;
+        position:absolute;
+        top:26px;
+        left:0; 
+        border-top:1px solid #fff;
+    }
+/*	IE Table 
+    -----------------------------------*/
+    .cssnav table {
+        position:absolute;
+        top:0;
+        left:0;
+        border-collapse:collapse;
+    }

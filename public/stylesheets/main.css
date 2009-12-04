@@ -1,0 +1,167 @@
+.card {
+    border: 1px solid #444;
+    background-color: white;
+}
+.title-card {
+    float: left;
+    width: 30%;
+    margin: 0 1em 1em 0;
+}
+.title-card h1 {
+    margin: 0;
+    padding: 0.5em;
+    border-bottom: 1px solid #666;
+}
+.title-card .row {
+    font-size: 0.9em;
+}
+.title-card .label {
+    width: 30%;
+    color: #666;
+}
+.title-card .value {
+    margin-left: 35%;
+}
+.card .header {
+    background: #444;
+    color: white;
+    font-size: 0.8em;
+    padding: 2px;
+    margin: 0;
+}
+
+.notifications-card {
+    width: 30%;
+    margin-right:1em;
+    margin-bottom:1em;
+}
+
+.controls-card {
+    margin-left: 32%;
+    margin-bottom:1em;
+}
+
+.subsection {
+    border-bottom: 1px solid #666;
+}
+
+.subcollapsible h3 {
+    cursor: pointer;
+}
+
+.subcollapsible h3 .collapse-icon {
+    font-size:.8em;
+}
+
+
+
+.links-row{
+    margin:0.5em 0 0 0;
+}
+
+.links-row a {
+    margin:0 0.5em 0 0;
+}
+
+.day {
+    padding: 1em 0;
+    position: relative;
+}
+
+.day h3 {
+    float: left;
+    margin: 0;
+    font-size: 1em;
+    padding-top: 2px;
+    border-top: 0;
+    background: none;
+    font-weight: bold;
+}
+
+.day input {
+    margin:0 5px 0 0;
+}
+
+.day ul {
+    margin: 0 0 0 9em;
+    padding: 0;
+}
+
+.day ul li {
+    list-style-type: none;
+    padding: 0 0 5px 0;
+}
+
+.day ul li img {
+    vertical-align:middle;
+}
+
+.epochs-and-studySegments {
+    position: relative;
+}
+.epoch {
+    float: left;
+    height: 100%;
+    border: 1px solid #666;
+    border-right-width: 0;
+}
+.epoch.last {
+    border-right-width: 1px;
+}
+.epoch h4 {
+    margin: 0;
+    padding: 4px;
+    color: #666;
+}
+
+.studySegments {
+    padding: 0;
+    margin: 0;
+}
+.studySegments a {
+    text-decoration: none;
+    color: #444;
+}
+.studySegments li {
+    display: block;
+    border: 0 solid #ccc;
+    border-width: 1px 0;
+    margin: 4px 0;
+    padding: 3px;
+    /* for IE - we have to specify height to display the hover properly. */
+    /*height:1%;*/
+    min-height:1%;
+    max-height:100%;
+}
+.studySegments li:hover {
+    background-color: #ccc !important;
+}
+.studySegments li:hover a {
+    color: #000;
+}
+.studySegments li.selected {
+    background-color: #ddd;
+}
+
+a.control, .inplaceeditor-form a, form  {
+    font-weight: bold;
+    text-decoration: none;
+}
+a.control {
+    padding: 2px;
+    margin: 0 2px;
+    color: #444 !important;
+    border: 1px solid #999;
+    background-color: #ccc;
+    /*height: 10%;*/
+}
+a.control:hover {
+    border-color: #444;
+    background-color: #ddd;
+}
+
+.event-details {
+    color: #666;
+    font-style: italic;
+    font-size: 0.9em;
+}

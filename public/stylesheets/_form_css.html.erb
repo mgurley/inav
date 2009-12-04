@@ -1,0 +1,30 @@
+<%= form.error_messages %>
+<p><strong>Bold</strong> fields are required.</p>
+<fieldset><legend>Personal Information</legend>
+	<div class="notes">
+	  <h4>Personal Information</h4>
+	  <p class="last">Please enter the patient's personal information.</p>
+	 </div>
+	<div class="required">
+	  <%= form.label :first_name, "First Name" %>
+	  <%= form.text_field :first_name, :class => 'inputText'%>
+	</div>
+	<div class="optional">
+	  <%= form.label :middle_name, "Middle Name" %>
+	  <%= form.text_field :middle_name, :class => 'inputText'%>
+	</div>
+	<div class="required">
+	  <%= form.label :last_name, "Last Name" %>
+	  <%= form.text_field :last_name, :class => 'inputText'%>
+	</div>
+	<div class="required date">
+	  <%= form.label :date_of_birth, "Date of Birth"%>
+	  <%= form.date_select :date_of_birth, :start_year => 1900, :order => [:month,:day, :year]%>
+	</div>
+	<div class="required">
+	  <%= form.label :gender_type_id, "Gender" %>
+	  <%= select 'patient','gender_type_id',
+	  	       get_gender_types,
+	             {:include_blank => true } %>
+	</div>
+</fieldset>

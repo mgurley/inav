@@ -1,0 +1,93 @@
+/* Easy Clearing Method  of cotaning floats*/
+.clear:after {content: "."; display: block; height: 0; font-size:0; clear: both; visibility: hidden;}
+.clear { min-height: 1px;}
+* html .clear {height: 1px;}
+
+/* Misc classes and styles */
+.splitcontentleft {float:left; width:48%;}
+.splitcontentright {float:right; width:48%;}
+.right {float:right;}
+.left{float:left;}
+.clear {clear:both;}
+.small {font-size:0.8em;}
+.hide {display:none;}
+.textcenter {text-align:center;}
+.textright {text-align:right;}
+.important {color:#f02025; background-color:inherit; font-weight:bold;}
+.hide {display:none;}
+
+
+/*Flash styles*/
+.flash-notice{color: green;padding:10px 0 0 10px;}
+.flash-error{color: red;padding:10px 0 0 10px;}
+
+/*Form styles*/
+label{padding-right:5px;font-weight:bold;text-decoration:none;}
+input[type=text]{width:150px;}
+input[disabled=disabled]{background:#eee none;color:#222; font-style:italic;}
+.readonly {background:#eee none; color:#222; font-style: italic;}
+select{width:100px;}
+.input-text{width: 150px;}
+.select{width: 100px;}
+select.date{width:75px;}
+.fieldWithErrors{border: 1px red solid;}
+.formError{color:red;}
+.errorLabel { color: #F00; cursor: help; }
+#errorExplanation {width: 250px;border: 2px solid red;padding: 7px;padding-bottom: 12px;margin-bottom: 20px;background-color: #f0f0f0;}
+#errorExplanation h2 {text-align: left;font-weight: bold;padding: 5px 5px 5px 15px;font-size: 12px;margin: -7px;background-color: #c00;color: #fff;}
+#errorExplanation p {color: #333;margin-bottom: 0;padding: 5px;}
+#errorExplanation ul li {font-size: 12px;list-style: square;}
+tr.childform td {padding:10px 0px;}
+.radiobuttongroup {border: 1px #999999 solid;padding:2px; margin:2px;}
+
+/*Table Sorting Styles */
+thead th.sortup, thead th.sortdown {background: #aaf url('../images/sort_desc.png') no-repeat right center;}
+thead th.sortdown { background-image: url('../images/sort_asc.png'); }
+
+/*Patient styles*/
+#patienteditinfo{padding:10px 0 0 10px;}
+#patienteditgeneralinfo {float:left;width:35%;padding:0 0 10px 5px;}
+#patienteditaddressinfo {float:right;width:61%; padding:0 0 10px 5px; margin:0 20px 10px 0;}
+#patienteditaddressinfo .formError{display:inline;}
+#patienteditaddressinfo select {margin:10px 0 5px 0}
+#patienteditcontactinfo {float:right;width:61%; padding:0 0 10px 5px; margin:0 20px 10px 0;}
+#patienteditmedicalnumberinfo {float:right;width:61%; padding:0 0 10px 5px; margin:0 20px 10px 0;}
+
+#patientinfo{padding:10px 0 0 10px;}
+#patient {float:left;width:35%; padding:0 0 10px 5px;}
+#patientgeneralinfo	 textarea {background-color:#EEEEEE}
+#patientaddressinfo {padding:0 0 10px 5px; margin:10px 0px 10px 0;}
+#patientaddressinfo .formError{display:inline;}
+#patientaddressinfo select {margin:10px 0 5px 0}
+#patientcontactinfo {padding:0 0 10px 5px; margin:10px 0px 10px 0;}
+#patientmedicalnumberinfo {padding:0 0 10px 5px; margin:10px 0px 10px 0;}
+#patientassignments {float:right;width:61%; padding:0 0 10px 5px; margin:0 20px 10px 0;}
+
+/*Provider styles*/
+#providerinfo{padding:10px 0 0 10px;}
+#providergeneralinfo {float:left;width:35%;padding:0 0 10px 5px;	}
+#providergeneralinfo textarea {background-color:#EEEEEE}
+#provideraddressinfo {float:right;width:61%; padding:0 0 10px 5px; margin:0 20px 10px 0;}
+#provideraddressinfo .formError{display:inline;}
+#provideraddressinfo select {margin:10px 0 5px 0}
+#providercontactinfo {float:right;width:61%; padding:0 0 10px 5px; margin:0 20px 10px 0;}
+
+/*Registration styles*/
+#registrationinfo{padding:10px 0 0 10px;}
+#registration{padding:10px 0 0 10px;}
+#registrationform{padding:10px 0 0 10px;}
+#registrationform select {width:150px;}
+#registrationsearchform{ margin-bottom: 5px;}
+#registrationsearchform input[type=submit]{margin-left:5px;}
+
+/*Patient Provider Assignment styles*/
+#patientproviderassignment{padding:10px 0 0 10px;}
+#patientproviderassignmentform td {padding:5px;}
+#patientproviderassignment select {width:150px;}
+
+/*Autocomplete*/
+div.auto_complete {  width: 350px;background: #e8eaec;}
+div.auto_complete ul {border:1px solid #888;margin:0;padding:0;width:100%;list-style-type:none;}
+div.auto_complete ul li {margin:0;padding:3px;}
+div.auto_complete ul li.selected {background-color: #ffb;}
+div.auto_complete ul strong.highlight {color: #800; margin:0;padding:0;}

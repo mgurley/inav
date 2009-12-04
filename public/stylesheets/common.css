@@ -1,0 +1,198 @@
+body {
+    padding-bottom: 35px;
+}
+
+#body {
+    margin: 0.5em 1em;
+}
+
+a {
+    color: #00c;
+}
+
+a:visited {
+    color: #006;
+}
+
+a:hover {
+    color: #33f;
+}
+
+a:active {
+    color: #f00;
+}
+
+#footmenu {
+    margin-top: 2em;
+    padding: 0.5em;
+    border-top: 1px solid #444;
+    text-align: right;
+}
+
+#build-name {
+    color: #666;
+    font-size: 85%;
+    padding: 3px;
+    position: relative;
+    bottom: 0;
+    clear: both;
+}
+
+.error {
+    color: #c03;
+}
+
+.odd {
+    background-color: #eee;
+}
+
+.tip {
+    font-size: 80%;
+}
+
+#header {
+    background-color: #fff;
+}
+
+img#cabig-logo {
+    display: block;
+    float: left;
+}
+
+#breadcrumbs {
+    font-size: 10pt;
+    background-color: #444;
+    color: #fff;
+    padding: 6px 8px;
+}
+
+#breadcrumbs a {
+    color: #eee;
+    text-decoration: none;
+    border-bottom: 1px solid #999;
+    padding: 1px;
+}
+
+#breadcrumbs a:hover {
+    background-color: #999;
+    border-bottom-color: #eee;
+}
+
+img.indicator {
+    visibility: hidden;
+}
+
+form#login div.label {
+    width: 35%;
+}
+form#login div.submit {
+    text-align: right;
+}
+form#login {
+    width: 20em;
+}
+
+table.grid {
+    border-collapse: collapse;
+    border: 1px solid #444;
+}
+table.grid td, table.grid th {
+    text-align: center;
+    padding: .5em;
+    border: 1px solid #444;
+}
+
+table.grid td.blocked {
+    background-color:#999;
+}
+
+table.grid th {
+    background-color:#ddf
+}
+
+/* IE only */
+* html div.row, * html div.autoclear { height: 1% }
+
+#login-action { color: #ccc }
+
+/****** MODIFICATIONS TO lightbox.css STYLES */
+
+#lightbox {
+    background-color: #eee;
+    border: 2px outset black;
+    height: auto;
+}
+
+#lightbox h1 {
+    background-color: #000;
+    color: #fff;
+    padding: 0.5em 2em;
+}
+
+#lightbox-content {
+    margin: 1em 2em;
+    text-align: center;
+}
+
+/****** CTMS COMMONS OVERRIDES */
+
+#header {
+    background-image: url("../images/header_BG.png")
+}
+
+#header .background-R {
+    background-image: url("../images/header_BG_R.png")
+}
+input.autocomplete {
+    background-color: #CCE6FF
+}
+
+input.input-hint {
+    color: #999;
+    font-style: italic;
+}
+/*MGURLEY 11/18/2008	IN PSC, this is an inline-generated style so I am manually placing it this file*/
+/*Container ID*/
+#container {
+	width: 50em;background-color:#ddd; border:1px solid #999;border-collapse:collapse;
+}
+
+#container td {
+   vertical-align:top; padding:2px;
+}
+#container th {
+   text-align:left;vertical-align:top; padding:2px;
+}
+
+tr.oddrow {
+   background-color:#fff;
+}
+/*Container Class*/
+
+.container {
+	width: 35em;background-color:#ddd; border:1px solid #999;border-collapse:collapse;
+}
+
+
+.container td {
+   vertical-align:top; padding:2px;
+}
+.container th {
+   text-align:left;vertical-align:top; padding:2px;
+}
+
+tr.oddrow {
+   background-color:#fff;
+}
+
+.box h3.plain {
+background: #fff;
+border-top:1px solid #000000;
+padding:4px 8px;
+position:relative;
+}
+
+/*Overriding the Default*/
+div.row div.label {
+  width: 11em;
+}

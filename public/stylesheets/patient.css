@@ -1,0 +1,11 @@
+/*Container Class*/
+#patientassignments table.container {
+	width: 75%;background-color:#ddd; border:1px solid #999;border-collapse:collapse;
+}
+
+#patientassignments table.container td {
+   vertical-align:top; padding:2px;
+}
+#patientassignments table.container th {
+   text-align:left;vertical-align:top; padding:2px;
+}
