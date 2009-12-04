@@ -20,6 +20,11 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
 
+  config.gem 'bcdatabase', :version => '>= 0.6.3'
+  config.gem 'calendar_date_select', :version => '>= 1.1.5'
+  config.gem 'rubycas-client', :version => '>= 2.1.0'
+  config.gem 'will_paginate', :version => '>= 2.3.11'
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -30,6 +35,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
+  config.active_record.observers = :audit_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
@@ -38,4 +44,12 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  config.active_record.schema_format = :sql
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "ns.northwestern.edu",
+    :port => 25,
+    :domain => "northwestern.edu"
+  }
 end

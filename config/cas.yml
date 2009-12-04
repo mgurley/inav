@@ -1,0 +1,16 @@
+development:
+  :cas_base_url: https://localhost:8443/cas
+  :proxy_retrieval_url: https://localhost:8443/cas_callback/cas_proxy_callback/retrieve_pgt
+  :proxy_callback_url: https://localhost:8443/cas_callback/cas_proxy_callback/receive_pgt
+test:
+  :cas_base_url: https://localhost:8443/cas
+  :proxy_retrieval_url: https://localhost:8443/cas_callback/cas_proxy_callback/retrieve_pgt
+  :proxy_callback_url: https://localhost:8443/cas_callback/cas_proxy_callback/receive_pgt
+staging:
+  :cas_base_url: https://localhost:8443/cas
+  :proxy_retrieval_url: https://localhost:8443/cas_callback/cas_proxy_callback/retrieve_pgt
+  :proxy_callback_url: https://localhost:8443/cas_callback/cas_proxy_callback/receive_pgt
+production:
+  :cas_base_url: https://localhost:8443/cas
+  :proxy_retrieval_url: https://localhost:8443/cas_callback/cas_proxy_callback/retrieve_pgt
+  :proxy_callback_url: https://localhost:8443/cas_callback/cas_proxy_callback/receive_pgt
