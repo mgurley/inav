@@ -1,15 +1,9 @@
 <%
    require 'bcdatabase'
-    bcdb = Bcdatabase.load RAILS_ROOT+'/config/bcdatabase/'
+    bcdb = Bcdatabase.load INAV_CONFIG[:bcdatabase][:path]
 %>
 
-<%= bcdb.development :bcdatabase, :inav_development %>
-<%= bcdb.staging :bcstage, :inav_staging %>
-<%= bcdb.production :bcprod, :inav %>
-
-test:
-  adapter: postgresql
-  database: inav_test
-  username: inav_test
-  password: password
-  host: localhost
+<%= bcdb.development :bcdevelopment, :inav_development %>
+<%= bcdb.test :bcdevelopment, :inav_test %>
+<%= bcdb.staging :bcstaging, :inav_staging %>
+<%= bcdb.production :bcproduction, :inav %>

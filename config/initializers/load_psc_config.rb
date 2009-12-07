@@ -1,1 +1,0 @@
-PSC_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/psc.yml")[RAILS_ENV]

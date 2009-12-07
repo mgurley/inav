@@ -1,0 +1,21 @@
+:bcdatabase:
+  :path: <%= RAILS_ROOT %>/config/bcdatabase
+:cas:
+  :cas_base_url: https://localhost:8443/cas
+  :proxy_retrieval_url: https://localhost:8443/cas_callback/cas_proxy_callback/retrieve_pgt
+  :proxy_callback_url: https://localhost:8443/cas_callback/cas_proxy_callback/receive_pgt
+:psc:
+  :psc_canonical_uri: http://127.0.0.1:8080/psc/
+  :psc_service_uri: http://127.0.0.1:8080/psc/auth/cas_security_check
+  :psc_site: testsite
+  :psc_rest_url: http://127.0.0.1:8080/psc/api/v1/
+:smtp:
+  :address: ns.northwestern.edu
+  :port: 25
+  :domain: northwestern.edu
+:exception_notifier:
+  :exception_recipients:
+    - exception_recipient: m-gurley@northwestern.edu
+    - exception_recipient: r-sutphin@northwestern.edu
+  :sender_address: '"Inflection Navigator Application Error" <NO_REPLY@inflection-navigator.nubic.northwestern.edu>'
+  :email_prefix: [Inflection Navigator]

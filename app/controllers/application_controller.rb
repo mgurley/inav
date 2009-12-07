@@ -4,9 +4,9 @@
 class ApplicationController < ActionController::Base
   include UserSessionInfo
   include ExceptionNotifiable
-  ExceptionNotifier.exception_recipients = %w(m-gurley@northwestern.edu r-sutphin@northwestern.edu)
-  ExceptionNotifier.sender_address =%("Inflection Navigator Application Error" <NO_REPLY@inflection-navigator.nubic.northwestern.edu>)
-  ExceptionNotifier.email_prefix = "[Inflection Navigator] "
+  ExceptionNotifier.exception_recipients = INAV_CONFIG[:exception_notifier][:exception_recipients]
+  ExceptionNotifier.sender_address = INAV_CONFIG[:exception_notifier][:sender_address]
+  ExceptionNotifier.email_prefix = INAV_CONFIG[:exception_notifier][:email_prefix]
 
   before_filter CASClient::Frameworks::Rails::Filter
   before_filter :update_activity_time, :except => :session_expiry

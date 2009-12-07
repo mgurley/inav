@@ -24,11 +24,11 @@ module PatientStudyCalendar
 
       def self.get(path, options)
         args = authorization_header(options[:proxy_ticket])
-        response = open("#{PSC_CONFIG['psc_rest_url']}#{path}",args)
+        response = open("#{PSC_CONFIG[:psc_rest_url]}#{path}",args)
         xml = response.read
       rescue OpenURI::HTTPError => e
         status = e.io.status[0]
-        RAILS_DEFAULT_LOGGER.error("Failed to get URI #{PSC_CONFIG['psc_rest_url']}#{path}.  Error message: #{e.message}. Error status: #{status}")
+        RAILS_DEFAULT_LOGGER.error("Failed to get URI #{PSC_CONFIG[:psc_rest_url]}#{path}.  Error message: #{e.message}. Error status: #{status}")
         raise e
       end
 
@@ -39,14 +39,14 @@ module PatientStudyCalendar
         args[:body] = representation.to_s
         args.merge!(Resource.authorization_header(options[:proxy_ticket]))
 
-        response = open("#{PSC_CONFIG['psc_rest_url']}#{path}",args)
+        response = open("#{PSC_CONFIG[:psc_rest_url]}#{path}",args)
 
         store_metadata(response.meta)
 
         response
       rescue OpenURI::HTTPError => e
         status = e.io.status[0]
-        RAILS_DEFAULT_LOGGER.error("Failed to post to URI #{PSC_CONFIG['psc_rest_url']}#{path}.  Error message: #{e.message}. Error status: #{status}")
+        RAILS_DEFAULT_LOGGER.error("Failed to post to URI #{PSC_CONFIG[:psc_rest_url]}#{path}.  Error message: #{e.message}. Error status: #{status}")
         raise e
       end
 
@@ -55,9 +55,9 @@ module PatientStudyCalendar
       end
 
       def self.request_proxy_ticket(proxy_granting_ticket)
-        proxy_ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, PSC_CONFIG['psc_service_uri'])
+        proxy_ticket = CASClient::Frameworks::Rails::Filter.client.request_proxy_ticket(proxy_granting_ticket, PSC_CONFIG[:psc_service_uri])
       rescue Exception => e
-        RAILS_DEFAULT_LOGGER.error("Failed to request Proxy Ticket with with Proxy Granting Ticket  #{proxy_granting_ticket.ticket} for service uri #{PSC_CONFIG['psc_service_uri']}.  Error message: #{e.message}.")
+        RAILS_DEFAULT_LOGGER.error("Failed to request Proxy Ticket with with Proxy Granting Ticket  #{proxy_granting_ticket.ticket} for service uri #{PSC_CONFIG[:psc_service_uri]}.  Error message: #{e.message}.")
         raise e
       end
 

@@ -14,7 +14,7 @@ class Registration < ActiveRecord::Base
 
   def save_with_psc!(patient,options={})
     self.patient_id = patient.id
-    self.site_assigned_identifier = PSC_CONFIG['psc_site']
+    self.site_assigned_identifier = PSC_CONFIG[:psc_site]
     self.subject_coordinator_name = options[:subject_coordinator_name].to_s
     self.outcome_type_id = OutcomeType.find_by_name("Open").id
     subject = PatientStudyCalendar::Resources::Subject.new(patient.first_name, patient.last_name, patient.date_of_birth.to_s, patient.id, patient.gender_type.name)
@@ -28,7 +28,7 @@ class Registration < ActiveRecord::Base
   end
 
   def registration_assignment_url
-    PSC_CONFIG['psc_canonical_uri'] + "pages/subject?assignment=#{CGI.escape(desired_assignment_id)}"
+    PSC_CONFIG[:psc_canonical_uri] + "pages/subject?assignment=#{CGI.escape(desired_assignment_id)}"
   end
 
   def scheduled_calendar(cas_pgt)

@@ -46,10 +46,27 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   config.active_record.schema_format = :sql
 
+  inav_config_file =
+    case RAILS_ENV
+      when 'development','test'; "config/inav.yml"
+      when 'staging', 'produciton';
+        if defined?(JRUBY_VERSION)
+          require 'jruby'
+          catalina_home = Java::JavaLang::System.getProperty('catalina.home')
+          "#{catalina_home}/conf/inav/inav.yml"
+        else
+          "config/inav.yml"
+        end
+    end
+
+  require 'erb'
+
+  INAV_CONFIG = YAML.load(ERB.new(File.read(inav_config_file)).result)
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "ns.northwestern.edu",
-    :port => 25,
-    :domain => "northwestern.edu"
+    :address => INAV_CONFIG[:smtp][:address],
+    :port => INAV_CONFIG[:smtp][:port],
+    :domain => INAV_CONFIG[:smtp][:domain]
   }
 end

@@ -6,3 +6,8 @@ inav_development:
   database: inav_development
   username: inav_development
   password: inav_development
+
+inav_test:
+  database: inav_test
+  username: inav_test
+  password: inav_test
