@@ -47,11 +47,16 @@ Currently, the application is limited to running under the Tomcat application se
 
 These steps assume that you have installed the prerequisites.
 
-1. Download and unzip the installation folder.
-1. Create the databases.
-  1. Login to PostgreSql.  Pass to the -U switch the user appropriate to your environment: psql -U postgres -W
-  1. CREATE DATABASE inav_staging;
-  1. CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';
-  1. ALTER DATABASE inav_staging OWNER TO inav_staging;
-  1. ALTER USER inav_staging SUPERUSER;
-1. Hello world.
+<ol>
+  <li></li>
+  <li>Download and unzip the installation folder.</li>
+  <li>Create the databases.</li>
+  <ol>
+    <li>Login to PostgreSql.  Pass to the -U switch the user appropriate to your environment: psql -U postgres -W</li>
+    <li>CREATE DATABASE inav_staging;</li>
+    <li>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</li>
+    <li>ALTER DATABASE inav_staging OWNER TO inav_staging;s</li>
+    <li>ALTER USER inav_staging SUPERUSER;</li>
+  </ol>
+<li>Hello world</li>
+</ol>
