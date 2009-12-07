@@ -38,12 +38,12 @@ All of the source code for the Inflection Navigator application is contained wit
 
 ## Mandatory Components
 
-- The patient/provider registry Ruby on Rails application.  Available at: (http://github.com/mgurley/inav)
-- The protocol and patient-calendar management java web application -- the Patient Study Calendar.  Available at: (http://gforge.nci.nih.gov/frs/?group_id=31)
-- The CAS proxy callback application.  Available at: (http://github.com/mgurley/cas_callback)
+- The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
+- The protocol and patient-calendar management java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
+- The CAS proxy callback application.  Available at: [(http://github.com/mgurley/cas_callback](http://github.com/mgurley/cas_callback)
 
 ## Mandatory but Replaceable Components
-- The CAS Generic Handler: a generic authentication handler for CAS (Central Authentication Service).  Available at: (http://esup-casgeneric.sourceforge.net/index.html)
+- The CAS Generic Handler: a generic authentication handler for CAS (Central Authentication Service).  Available at: [http://esup-casgeneric.sourceforge.net/index.html](http://esup-casgeneric.sourceforge.net/index.html)
 
 # Installation Steps
 
