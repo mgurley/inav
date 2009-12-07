@@ -48,14 +48,22 @@ Currently, the application is limited to running under the Tomcat application se
 These steps assume that you have installed the prerequisites.
 
 <ol>
-  <li>Download and unzip the [installation folder](http://cloud.github.com/downloads/mgurley/inav/INAV.zip).</li>
-  <li>Create the databases.</li>
+  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/INAV.zip">installation folder</a></li>
+  <li>Create the PSC database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
   <ol>
-    <li>Login to PostgreSql.  Pass to the -U switch the user appropriate to your environment: psql -U postgres -W</li>
-    <li>CREATE DATABASE inav_staging;</li>
-    <li>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</li>
-    <li>ALTER DATABASE inav_staging OWNER TO inav_staging;s</li>
-    <li>ALTER USER inav_staging SUPERUSER;</li>
+    <li>Login to PostgreSql.  Log in with the user appropriate to your environment: <code>psql -U postgres -W</code></li>
+    <li><code>CREATE DATABASE study_calendar_staging;</code></li>
+    <li>Replace the the password in this step with a suitably secure password.<code>CREATE USER study_calendar_staging WITH CREATEDB PASSWORD 'study_calendar_staging';</code></li>
+    <li><code>ALTER DATABASE study_calendar_staging OWNER TO study_calendar_staging;</code></li>
+    <li><code>ALTER USER study_calendar_staging SUPERUSER;</code></li>
+  </ol>
+  <li>Create the INAV database.  Replace the name 'inav_staging' in the following steps if you prefer a different name.</li>
+  <ol>
+    <li>Login to PostgreSql.  Log in with the user appropriate to your environment: <code>psql -U postgres -W</code></li>
+    <li><code>CREATE DATABASE inav_staging;</code></li>
+    <li>Replace the the password in this step with a suitably secure password.<code>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</code></li>
+    <li><code>ALTER DATABASE inav_staging OWNER TO inav_staging;</code></li>
+    <li><code>ALTER USER inav_staging SUPERUSER;</code></li>
   </ol>
 <li>Hello world</li>
 </ol>
