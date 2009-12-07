@@ -21,7 +21,7 @@ The Inflection Navigator is a hybrid application composed of the following compo
 1. A light-weight patient and provider registry written in Ruby on Rails.
 1. A protocol and patient-calendar management Java web application utilizing the Patient Study Calendar -- a National Cancer Institute caBIG® open source software application.
 1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  This configuration should only be used for testing purposes.  For a production deployment, the packaged CAS server should be replaced by an existing CAS sever or be reconfigured to authenticate against a secure store of users.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.
-1. A proxy call back application to enable the patient/provider Ruby on Rails application to make CAS proxy calls to the Patient Study Calendar.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+1. A proxy call back application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to the Patient Study Calendar.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
 Despite this hybrid architecture, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol.
 
@@ -49,7 +49,6 @@ These steps assume that you have installed the prerequisites.
 
 1. Download and unzip the installation folder.
 1. Create the databases.
-
   1. Login to PostgreSql.  Pass to the -U switch the user appropriate to your environment: psql -U postgres -W
   1. CREATE DATABASE inav_staging;
   1. CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';
