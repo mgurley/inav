@@ -12,7 +12,7 @@ Ideally, the Navigator would have a web-based tool that assists them in:
 - Managing each patient's progress in completing the protocol.
 - Tracking and detailing the outcome of each patient.
 
-We have built such a tool -- the Inflection Navigator.
+Together -- the Szollosi Healthcare Innovation Program and the Northwester Bioinformatics Core -- have built such a tool -- the Inflection Navigator.
 
 # Technical Architecture
 
