@@ -19,7 +19,7 @@ We have built such a tool -- the Inflection Navigator.
 The Inflection Navigator is hybrid of two applications:
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
-2. A protocol and patient-calendar management java web application utilizing the Patient Study Calendar -- a National Cancer Institute caBIG® open source software application.
+1. A protocol and patient-calendar management java web application utilizing the Patient Study Calendar -- a National Cancer Institute caBIG® open source software application.
 
 Despite this hybrid architecture, a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol make the application feel like a unified application.
 
@@ -38,12 +38,12 @@ All of the source code for the Inflection Navigator application is contained wit
 
 ## Mandatory Components
 
-- The patient/provider registry Ruby on Rails application.  Available at: http://github.com/mgurley/inav
-- The protocol and patient-calendar management java web application -- the Patient Study Calendar.  Available at: http://gforge.nci.nih.gov/frs/?group_id=31
-- The CAS proxy callback application.  Available at: http://github.com/mgurley/cas_callback_
+- The patient/provider registry Ruby on Rails application.  Available at: (http://github.com/mgurley/inav)
+- The protocol and patient-calendar management java web application -- the Patient Study Calendar.  Available at: (http://gforge.nci.nih.gov/frs/?group_id=31)
+- The CAS proxy callback application.  Available at: (http://github.com/mgurley/cas_callback)
 
 ## Mandatory but Replaceable Components
-- The CAS Generic Handler: a generic authentication handler for CAS (Central Authentication Service).  Available at: http://esup-casgeneric.sourceforge.net/index.html
+- The CAS Generic Handler: a generic authentication handler for CAS (Central Authentication Service).  Available at: (http://esup-casgeneric.sourceforge.net/index.html)
 
 # Installation Steps
 
