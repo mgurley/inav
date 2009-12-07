@@ -12,25 +12,22 @@ Ideally, the Navigator would have a web-based tool that assists them in:
 - Managing each patient's progress in completing the protocol.
 - Tracking and detailing the outcome of each patient.
 
-Together -- the Szollosi Healthcare Innovation Program and the Northwester Bioinformatics Core -- have built such a tool -- the Inflection Navigator.
+The Szollosi Healthcare Innovation Program and the Northwestern Bioinformatics Core have built such a tool -- the Inflection Navigator.
 
 # Technical Architecture
 
-The Inflection Navigator is hybrid of two applications:
+The Inflection Navigator is a hybrid application composed of the following components:
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
 1. A protocol and patient-calendar management java web application utilizing the Patient Study Calendar -- a National Cancer Institute caBIG® open source software application.
+1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  This configuration should only be used for demonstration purposes.  For a production deployment, it should be replaced by a production CAS sever or be reconfigured to authenticate against a a secure store of users.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.
+1. A proxy call back application to enable the patient/provider Ruby on Rails application to make CAS proxy calls to the Patient Study Calendar.  See the documentation for the RubyCAS-Client for an explanation of the necessity of running a separate Rails application to enable a Rails application to act as a CAS proxy: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
-Despite this hybrid architecture, a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol make the application feel like a unified application.
-
-In addition to the two core applications, the installation download folder contains two additional applications:
-
-1.  A copy of the ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  This configuration should only be used for demonstration purposes.  For a production deployment, it should be replaced by an existing  CAS sever or be reconfigured to authenticated against a a secure store of users.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.
-1.  A proxy call back application to enable the patient/provider Ruby on Rails application to make CAS proxy calls to the Patient Study Calendar.  See the documentation for the RubyCAS-Client for further an explanation of the necessity of running a separate Rails application to enable a Rails application to act as a CAS proxy: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+Despite this hybrid architecture, a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol provide for a seamless end-user experience.
 
 # Source Code
 
-All of the source code for the application is contained within its download installation folder but the official URLs for the application's components can be found at the following locations:
+All of the source code for the application is contained within its download installation folder. The official URLs for the application's components can be found at the following locations:
 
 - The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-calendar management java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
@@ -44,7 +41,7 @@ All of the source code for the application is contained within its download inst
 - PostgreSQL 8.3.4 or higher.  Database server.  Available at: http://www.postgresql.org/download/
 - Jruby 1.4.0 or higher.  Java-implementation of the Ruby programming language.  Available at: http://jruby.org/download
 
-Currently, the application is limited to running under Apache and PostgreSQL.  This limitation will be be lifted in future releases.
+Currently, the application is limited to running under the Tomcat application server and PostgreSQL database server.  These limitations will be be lifted in future releases.
 
 # Installation Steps
 
