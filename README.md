@@ -27,7 +27,7 @@ Despite this hybrid architecture, a seamless end-user experience is provided by 
 
 # Source Code
 
-All of the source code for the application is contained within its download installation folder. The official URLs for the application's components can be found at the following locations:
+All of the source code for the application is contained within its [installation folder](http://cloud.github.com/downloads/mgurley/inav/INAV.zip). The official URLs for the application's components can be found at the following locations:
 
 - The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-calendar management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
@@ -48,8 +48,7 @@ Currently, the application is limited to running under the Tomcat application se
 These steps assume that you have installed the prerequisites.
 
 <ol>
-  <li></li>
-  <li>Download and unzip the installation folder.</li>
+  <li>Download and unzip the [installation folder](http://cloud.github.com/downloads/mgurley/inav/INAV.zip).</li>
   <li>Create the databases.</li>
   <ol>
     <li>Login to PostgreSql.  Pass to the -U switch the user appropriate to your environment: psql -U postgres -W</li>
