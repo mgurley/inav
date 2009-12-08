@@ -2,8 +2,8 @@
   :path: <%= RAILS_ROOT %>/config/bcdatabase
 :cas:
   :cas_base_url: https://localhost:8443/cas
-  :proxy_retrieval_url: https://localhost:8443/cas_callback/cas_proxy_callback/retrieve_pgt
-  :proxy_callback_url: https://localhost:8443/cas_callback/cas_proxy_callback/receive_pgt
+  :proxy_retrieval_url: https://localhost:8443/inav_cas_callback/cas_proxy_callback/retrieve_pgt
+  :proxy_callback_url: https://localhost:8443/inav_cas_callback/cas_proxy_callback/receive_pgt
 :psc:
   :psc_canonical_uri: http://127.0.0.1:8080/psc/
   :psc_service_uri: http://127.0.0.1:8080/psc/auth/cas_security_check
