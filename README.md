@@ -25,7 +25,7 @@ A seamless end-user experience is provided by a shared look and feel, inter-appl
 
 # Source Code
 
-All of the source code for the application is contained within its [installation folder](http://cloud.github.com/downloads/mgurley/inav/INAV.zip). The official URLs for the application's components can be found at the following locations:
+All of the source code for the application is contained within its [installation directory](http://cloud.github.com/downloads/mgurley/inav/INAV.zip). The official URLs for the application's components can be found at the following locations:
 
 - The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
@@ -48,12 +48,12 @@ These steps assume that you have installed the prerequisites.
 
 ## Download the software (Step 1)
 <ol>
-  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation folder.</a>  It contains the following folders and files</li>
+  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation directory.</a>  It contains the following directories and files</li>
   <ol>
-    <li>A folder named 'psc' containg the files 'psc.war', 'psc_install.doc' and a folder named 'conf-samples'.</li>
-    <li>A folder named 'inav' containg the file 'inav.war' and a folder named 'conf-samples'.</li>
-    <li>A folder named 'inav_cas_callback' containing the file 'inav_cas_callback.war'.</li>
-    <li>A folder named 'cas' containing the ESUP CAS server.</li>
+    <li>A directory named 'psc' containg the files 'psc.war', 'psc_install.doc' and a directory named 'conf-samples'.</li>
+    <li>A directory named 'inav' containg the file 'inav.war' and a directory named 'conf-samples'.</li>
+    <li>A directory named 'inav_cas_callback' containing the file 'inav_cas_callback.war'.</li>
+    <li>A directory named 'cas' containing the ESUP CAS server.</li>
   </ol>
 </ol>
 
@@ -80,14 +80,21 @@ These steps assume that you have installed the prerequisites.
 ## Install and configure the Patient Study Calendar (Step 3)
 
 <ol>
-  <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory.</li>
-  <li>Move the 'datasource.properties' file to $CATALINA_HOME/conf/psc.  If the 'psc' folder does not exist, create it and give read permissions on the file to the user which runs Tomcat on you system.</li>
+  <li>Find the 'datasource.properties' file in the psc/conf-samples directory in the installation directory.</li>
+  <li>Move the 'datasource.properties' file to $CATALINA_HOME/conf/psc.  If the 'psc' directory does not exist, create it and grant read permissions on the file to the user which runs Tomcat on your system.</li>
   <li>Enter the proper JDBC connection values as follows:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>JDBC Connection Parameter</th><th>Value</th></tr>
-      <tr><td>datasource.url</td><td>Use the proper JDBC url for your database.  With a database named “study_calendar_staging” this value would be 'jdbc:postgresql:study_staging'.</td></tr>
+      <tr><td>datasource.url</td><td>Use the proper JDBC url for your database.  With a database named “study_calendar_staging” this value would be 'jdbc:postgresql:study_calendar_staging'.</td></tr>
       <tr><td>datasource.username</td><td>The username to connect to the database from Step 2.</td></tr>
       <tr><td>datasource.password</td><td>The password to connect to the database from Step 2.</td></tr>
     </table>
   </li>
+  <li>Uncomment the line (delete the ‘#’ symbol) that corresponds to your database.</li>
+  <li>Find 'psc.war' file in the 'psc' directory in the installation directory.</li>
+  <li>Move the 'psc.war' file to $CATALINA_HOME/webapps.</li>
+  <li>Start Tomcat.</li>
+  <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likeley be: http://127.0.0.1:8080/psc</li>
+  <li>Follow the on-screen instructions to create your first user and site.  For more instructions regarding configuring the Patient Study Calendar, please see the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_Admin_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar Admin Guide</a> and the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_End_User_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar End User Guide</a></li>
 </ol>
+
