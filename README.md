@@ -2,9 +2,7 @@
 
 A patient receives a serious diagnosis from his or her physician. The physician instructs the patient to setup 3 tests, see 2 specialists and read material on the condition -- all within 2 weeks.
 
-- This 'Inflection Point' in the patient's health requires a lot of effort and coordination.  But, what if the patient's clinic designated a "Navigator" to guide the patient through these activities.
-- The Navigator follows a protocol tailored to the patient's diagnosis and ensures the protocol is completed in a timely and efficient manner.
-- Each patient diagnosis requires the Navigator to manage a distinct set of activities within a scheduled time frame.
+This 'Inflection Point' in the patient's health requires a lot of effort and coordination.  But, what if the patient's clinic designated a "Navigator" to guide the patient through these activities.  The Navigator follows a protocol tailored to the patient's diagnosis and ensures the protocol is completed in a timely and efficient manner.  Each patient diagnosis requires the Navigator to manage a distinct set of activities within a scheduled time frame.
 
 Ideally, the Navigator would have a web-based tool that assists them in:
 
@@ -19,8 +17,8 @@ The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and th
 The Inflection Navigator is a hybrid application composed of the following components:
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
-1. A protocol and patient-calendar management Java web application utilizing the Patient Study Calendar -- a National Cancer Institute caBIG® open source software application.
-1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  This configuration should only be used for testing purposes.  For a production deployment, the packaged CAS server should be replaced by an existing CAS sever or be reconfigured to authenticate against a secure store of users.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.
+1. A protocol and patient-activity management Java web application utilizing the National Cancer Institute caBIG®'s Patient Study Calendar -- an open-source software application.
+1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  (This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should reconfigured to authenticate against a secure store of users -- for example an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
 1. A proxy call back application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to the Patient Study Calendar.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
 Despite this hybrid architecture, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol.
@@ -30,9 +28,9 @@ Despite this hybrid architecture, a seamless end-user experience is provided by 
 All of the source code for the application is contained within its [installation folder](http://cloud.github.com/downloads/mgurley/inav/INAV.zip). The official URLs for the application's components can be found at the following locations:
 
 - The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
-- The protocol and patient-calendar management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
+- The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
 - The CAS proxy callback application.  Available at: [http://github.com/mgurley/cas_callback](http://github.com/mgurley/cas_callback)
-- The ESUP CAS Server and CAS Generic Handler handler.  Available at: [http://esup-casgeneric.sourceforge.net/index.html](http://esup-casgeneric.sourceforge.net/index.html)
+- The ESUP CAS Server and CAS generic handler.  Available at: [http://esup-casgeneric.sourceforge.net/index.html](http://esup-casgeneric.sourceforge.net/index.html)
 
 # Installation Prerequisites
 
