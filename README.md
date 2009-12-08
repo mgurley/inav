@@ -17,9 +17,9 @@ The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and th
 The Inflection Navigator is a hybrid application composed of the following components:
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
-1. A protocol and patient-activity management Java web application utilizing the National Cancer Institute caBIG®'s Patient Study Calendar -- an open-source software application.
-1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  (This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
-1. A proxy call back application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to the Patient Study Calendar.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+1. A protocol and patient-activity management Java web application utilizing the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source software application.
+1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  (<a name="authentication-warning">Warning!</a> This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
+1. A proxy call back application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to the PSC.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
 A seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol.
 
@@ -59,7 +59,7 @@ These steps assume that you have installed the prerequisites.
 
 ## Create the Databases (Step 2)
 <ol>
-  <li>Create the Patient Study Calendar database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
+  <li>Create the PSC database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
   <ol>
     <li>Login to PostgreSql with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
     <li><code>CREATE DATABASE study_calendar_staging;</code></li>
@@ -77,7 +77,7 @@ These steps assume that you have installed the prerequisites.
   </ol>
 </ol>
 
-## Install and configure the Patient Study Calendar (Step 3)
+## Install and configure the PSC (Step 3)
 
 <ol>
   <li>Find the 'datasource.properties' file in the psc/conf-samples directory in the installation directory.</li>
@@ -96,5 +96,22 @@ These steps assume that you have installed the prerequisites.
   <li>Start Tomcat.</li>
   <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likeley be: http://127.0.0.1:8080/psc</li>
   <li>Follow the on-screen instructions to create your first user and site.  For more instructions regarding configuring the Patient Study Calendar, please see the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_Admin_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar Admin Guide</a> and the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_End_User_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar End User Guide</a></li>
+  <ol>
+    <li>For the initial setup of PSC, make sure you select 'local' for the Authentication System.  Later we will change it to CAS.</li>
+    <li>Make sure to remember 'username' and 'password' of the first User you create for PSC.</li>
+    <li>Make sure to remember the 'site name' and 'assigned identifier' of your first PSC site.  Only create one site within PSC.  The INAV application currently only supports interacting with one PSC site.</li>
+  </ol>
+
 </ol>
 
+## Install and configure the CAS server
+
+<ol>
+  <li>Find the 'cas' directory in the installation directory.</li>
+  <li>Move the 'cas' directory to $CATALINA_HOME/webapps.</li>
+  <li>Make a directory named 'inav' in $CATALINA_HOME/conf.  Grant read permissions on the directory to the user which runs Tomcat on your system.</li>
+  <li>Find the 'inav-users.txt' file in the inav/conf-samples/ directory in the installation directory.</li>
+  <li>Move the 'inav-users.txt' file to $CATALINA_HOME/conf/inav/.  Grant read permissions on the the file to the user which runs Tomcat on your system.</li>
+  <li>This is the file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of usernames and password.  The initial copy of the file has the values'admin,password'.  Replace it with the username and password that you entered in Step 3</li>
+  <li>Any new users added to PSC will need to be added to this file  This configuration should only be used for testing purposes.  See <a href="authentication-warning">above.</a></li>
+</ol>
