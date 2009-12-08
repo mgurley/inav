@@ -29,7 +29,7 @@ All of the source code for the application is contained within its [installation
 
 - The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
-- The CAS proxy callback application.  Available at: [http://github.com/mgurley/cas_callback](http://github.com/mgurley/cas_callback)
+- The CAS proxy callback application.  Available at: [http://github.com/mgurley/inav_cas_callback](http://github.com/mgurley/inav_cas_callback)
 - The ESUP CAS Server and CAS generic handler.  Available at: [http://esup-casgeneric.sourceforge.net/index.html](http://esup-casgeneric.sourceforge.net/index.html)
 
 # Installation Prerequisites
@@ -45,9 +45,21 @@ Currently, the application is limited to running under the Tomcat application se
 
 These steps assume that you have installed the prerequisites.
 
+
+## Download the software
 <ol>
-  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/INAV.zip">installation folder</a></li>
-  <li>Create the PSC database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
+  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation folder.</a>It will contain the following folders and files</li>
+  <ol>
+    <li>A folder named 'patient study calendar' containg the file 'psc.war', the PSC installation guide, and a folder named 'conf-samples'.</li>
+    <li>A folder named 'inav' containg the file 'inav.war' and a folder named 'conf-samples'.</li>
+    <li>A folder named 'inav_cas_callback' containing the file 'inav_cas_callback.war'.</li>
+    <li>A folder named 'cas' containing the ESUP CAS server.</li>
+  </ol>
+</ol>
+
+## Create the Databases
+<ol>
+  <li>Create the Patient Study Calendar database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
   <ol>
     <li>Login to PostgreSql with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
     <li><code>CREATE DATABASE study_calendar_staging;</code></li>
@@ -63,5 +75,6 @@ These steps assume that you have installed the prerequisites.
     <li><code>ALTER DATABASE inav_staging OWNER TO inav_staging;</code></li>
     <li><code>ALTER USER inav_staging SUPERUSER;</code></li>
   </ol>
-<li>Hello world</li>
 </ol>
+
+## Install and configure the  Patient Study Calendar
