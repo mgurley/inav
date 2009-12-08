@@ -46,18 +46,18 @@ Currently, the application is limited to running under the Tomcat application se
 These steps assume that you have installed the prerequisites.
 
 
-## Download the software
+## Download the software (Step 1)
 <ol>
-  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation folder.</a>It will contain the following folders and files</li>
+  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation folder.</a>  It contains the following folders and files</li>
   <ol>
-    <li>A folder named 'patient study calendar' containg the file 'psc.war', the PSC installation guide, and a folder named 'conf-samples'.</li>
+    <li>A folder named 'psc' containg the files 'psc.war', 'psc_install.doc' and a folder named 'conf-samples'.</li>
     <li>A folder named 'inav' containg the file 'inav.war' and a folder named 'conf-samples'.</li>
     <li>A folder named 'inav_cas_callback' containing the file 'inav_cas_callback.war'.</li>
     <li>A folder named 'cas' containing the ESUP CAS server.</li>
   </ol>
 </ol>
 
-## Create the Databases
+## Create the Databases (Step 2)
 <ol>
   <li>Create the Patient Study Calendar database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
   <ol>
@@ -77,4 +77,17 @@ These steps assume that you have installed the prerequisites.
   </ol>
 </ol>
 
-## Install and configure the  Patient Study Calendar
+## Install and configure the Patient Study Calendar (Step 3)
+
+<ol>
+  <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory.</li>
+  <li>Move the 'datasource.properties' file to $CATALINA_HOME/conf/psc.  If the 'psc' folder does not exist, create it and give read permissions on the file to the user which runs Tomcat on you system.</li>
+  <li>Enter the proper JDBC connection values as follows:
+    <table border="0" cellspacing="5" cellpadding="5">
+      <tr><th>JDBC Connection Parameter</th><th>Value</th></tr>
+      <tr><td>datasource.url</td><td>Use the proper JDBC url for your database.  With a database named “study_calendar_staging” this value would be 'jdbc:postgresql:study_staging'.</td></tr>
+      <tr><td>datasource.username</td><td>The username to connect to the database from Step 2.</td></tr>
+      <tr><td>datasource.password</td><td>The password to connect to the database from Step 2.</td></tr>
+    </table>
+  </li>
+</ol>
