@@ -51,7 +51,7 @@ These steps assume that you have installed the prerequisites.
   <ol>
     <li>Login to PostgreSql with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
     <li><code>CREATE DATABASE study_calendar_staging;</code></li>
-    <li><code>CREATE USER study_calendar_staging WITH CREATEDB PASSWORD 'study_calendar_staging';</code><br />Replace the password with a suitably secure password.</li>
+    <li><code>CREATE USER study_calendar_staging WITH CREATEDB PASSWORD 'study_calendar_staging';</code><br />(Replace the password with a suitably secure password.)</li>
     <li><code>ALTER DATABASE study_calendar_staging OWNER TO study_calendar_staging;</code></li>
     <li><code>ALTER USER study_calendar_staging SUPERUSER;</code></li>
   </ol>
@@ -59,7 +59,7 @@ These steps assume that you have installed the prerequisites.
   <ol>
     <li>Login to PostgreSql with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
     <li><code>CREATE DATABASE inav_staging;</code></li>
-    <li><code>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</code><br />Replace the password with a suitably secure password.</li>
+    <li><code>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</code><br />(Replace the password with a suitably secure password.)</li>
     <li><code>ALTER DATABASE inav_staging OWNER TO inav_staging;</code></li>
     <li><code>ALTER USER inav_staging SUPERUSER;</code></li>
   </ol>
