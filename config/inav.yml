@@ -5,10 +5,10 @@
   :proxy_retrieval_url: https://localhost:8443/inav_cas_callback/cas_proxy_callback/retrieve_pgt
   :proxy_callback_url: https://localhost:8443/inav_cas_callback/cas_proxy_callback/receive_pgt
 :psc:
-  :psc_canonical_uri: http://127.0.0.1:8080/psc/
-  :psc_service_uri: http://127.0.0.1:8080/psc/auth/cas_security_check
+  :psc_canonical_uri: https://localhost:8443/psc/
+  :psc_service_uri: https://localhost:8443/psc/auth/cas_security_check
   :psc_site: testsite
-  :psc_rest_url: http://127.0.0.1:8080/psc/api/v1/
+  :psc_rest_url: https://localhost:8443/psc/api/v1/
 :smtp:
   :address: ns.northwestern.edu
   :port: 25
