@@ -18,7 +18,7 @@ The Inflection Navigator is a hybrid application composed of the following compo
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
 1. A protocol and patient-activity management Java web application utilizing the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source software application.
-1. The ESUP CAS Server configured to authenticate against a non-encrypted, file-based store of users.  (<a name="authentication-warning">Warning!</a> This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
+1. The ESUP CAS Server configured to authenticate against a unencrypted, file-based store of users.  (<a name="authentication-warning">Warning!</a> This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
 1. A proxy call back application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to the PSC.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
 A seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of the single sign on Central Authentication Service protocol.
@@ -80,8 +80,8 @@ These steps assume that you have installed the prerequisites.
 ## Install and configure the PSC (Step 3)
 
 <ol>
-  <li>Find the 'datasource.properties' file in the psc/conf-samples directory in the installation directory.</li>
-  <li>Move the 'datasource.properties' file to $CATALINA_HOME/conf/psc.  If the 'psc' directory does not exist, create it and grant read permissions on the file to the user which runs Tomcat on your system.</li>
+  <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory in the installation directory.</li>
+  <li>Move the 'datasource.properties' file to '$CATALINA_HOME/conf/psc'.  If the 'psc' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>Enter the proper JDBC connection values as follows:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>JDBC Connection Parameter</th><th>Value</th></tr>
@@ -92,13 +92,13 @@ These steps assume that you have installed the prerequisites.
   </li>
   <li>Uncomment the line (delete the ‘#’ symbol) that corresponds to your database.</li>
   <li>Find 'psc.war' file in the 'psc' directory in the installation directory.</li>
-  <li>Move the 'psc.war' file to $CATALINA_HOME/webapps.</li>
+  <li>Move the 'psc.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Start Tomcat.</li>
   <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likeley be: http://127.0.0.1:8080/psc</li>
   <li>Follow the on-screen instructions to create your first user and site.  For more instructions regarding configuring the Patient Study Calendar, please see the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_Admin_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar Admin Guide</a> and the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_End_User_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar End User Guide</a></li>
   <ol>
     <li>For the initial setup of PSC, make sure you select 'local' for the Authentication System.  Later we will change it to CAS.</li>
-    <li>Make sure to remember 'username' and 'password' of the first User you create for PSC.</li>
+    <li>Make sure to remember 'username' and 'password' of the first User you created for PSC.</li>
     <li>Make sure to remember the 'site name' and 'assigned identifier' of your first PSC site.  Only create one site within PSC.  The INAV application currently only supports interacting with one PSC site.</li>
   </ol>
 
@@ -108,10 +108,15 @@ These steps assume that you have installed the prerequisites.
 
 <ol>
   <li>Find the 'cas' directory in the installation directory.</li>
-  <li>Move the 'cas' directory to $CATALINA_HOME/webapps.</li>
-  <li>Make a directory named 'inav' in $CATALINA_HOME/conf.  Grant read permissions on the directory to the user which runs Tomcat on your system.</li>
-  <li>Find the 'inav-users.txt' file in the inav/conf-samples/ directory in the installation directory.</li>
-  <li>Move the 'inav-users.txt' file to $CATALINA_HOME/conf/inav/.  Grant read permissions on the the file to the user which runs Tomcat on your system.</li>
-  <li>This is the file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of usernames and password.  The initial copy of the file has the values'admin,password'.  Replace it with the username and password that you entered in Step 3</li>
-  <li>Any new users added to PSC will need to be added to this file  This configuration should only be used for testing purposes.  See <a href="authentication-warning">above.</a></li>
+  <li>Move the 'cas' directory to '$CATALINA_HOME/webapps'.</li>
+  <li>Make a directory named 'inav' in $CATALINA_HOME/conf.  Grant read permission on the directory to the user which runs Tomcat on your system.</li>
+  <li>Find the 'inav-users.txt' file in the 'inav/conf-samples' directory in the installation directory.</li>
+  <li>Move the 'inav-users.txt' file to '$CATALINA_HOME/conf/inav'.  Grant read permission on the file to the user which runs Tomcat on your system.</li>
+  <li>This is an unencrypted, file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of 'username' and 'password'.  The initial copy of the file has the values 'admin,password'.  Replace it with the username and password that you entered in Step 3.</li>
+  <li>Any new users added to PSC will need to be added to this file  <a href="#authentication-warning">Warning!  See above.</a>  This configuration should only be used for testing purposes.</li>
+  <li>Find the 'genericHandler.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
+  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on a MAC-based system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
+  <li>Find the 'LoggerConf.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
+  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory your system's Tomcat instance.  For example on a MAC-based system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'</li>
+  <li>Test your CAS server by going to http://hostname.domain:portnumber/cas.  For example on a development workstation, this will most likeley be: http://127.0.0.1:8080/cas.  A log in screen should appear.  Log in with the credentials you entered into the 'inav-users.txt' file.  You should get a message saying 'You have been logged in successfully.'</li>
 </ol>
