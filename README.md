@@ -46,7 +46,7 @@ These steps assume the prerequisites are installed on your target system.
 
 ## Download The Software (Section 1)
 <ol>
-  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation package.</a>  It contains the following directories and files</li>
+  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation package.</a>  It contains the following directories and files:</li>
   <ol>
     <li>A directory named 'psc' containg the files 'psc.war', 'psc_install.doc' and a directory named 'conf-samples'.</li>
     <li>A directory named 'inav' containg the file 'inav.war' and a directory named 'conf-samples'.</li>
@@ -183,7 +183,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>Property</th><th>Value</th></tr>
       <tr><td>bcdatabase.path:</td><td>The path to the 'bcstaging.yml' file from the preceding steps.</td></tr>
-      <tr><td>psc.psc_canonical_uri</td><td>The url to PSC server setup in section 3.  <strong>Note!</strong> It is important to end this URL with a trailing slash -- '/'.</td></tr>
+      <tr><td>psc.psc_canonical_uri</td><td>The url to the PSC server setup in section 3.  <strong>Note!</strong> It is important to end this URL with a trailing slash -- '/'.</td></tr>
       <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
       <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3.</td></tr>
       <tr><td>psc.psc_rest_url</td><td>The url to PSC server setup in section 3 with following path appended: '/api/v1/'.</td></tr>
@@ -199,18 +199,18 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.  The file 'inav.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav/'.</li>
   <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
-  <li>Create the INAV database schema
+  <li>Create the INAV database schema:
     <ol>
-      <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav//WEB-INF/'.</li>
+      <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
       <li>Run the following command: <cod>jruby -S rake db:migrate</code>.  This should create the database schema in the INAV database.</li>
     </ol>
   </li>
-  <li>Load Medical Record Number Types.  Within the INAV system, patients can be assigned medical record numbers.  Each medical record number has a medical record number type.  A medical record number type might correspond to a Hospital or a Physician Group.  The system does not come with any medical record number types.  To setup medical record number types, perform the following steps:
+  <li>Load Medical Record Number Types:  Within the INAV system, patients can be assigned medical record numbers.  Each medical record number has a medical record number type.  A medical record number type might correspond to a Hospital or a Physician Group.  The system does not come with any medical record number types.  To setup medical record number types appropriate to your environment, perform the following steps:
     <ol>
       <li>Find the file 'medical_record_number_types.yml' in the '$CATALINA_HOME/webapps/inav/WEB-INF/lib/setup/data' directory</li>
-      <li>Edit the entries in the'medical_record_number_types.yml' to names appropriate you your environment.  Save the file.</li>
+      <li>Edit the entries in the 'medical_record_number_types.yml' to names appropriate to your environment.  Save the file.</li>
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
@@ -221,7 +221,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
     <ol>
       <li>Go to https://hostname.domain:portnumber/inav.  On a development workstation, this will most likely be: https://localhost:8443/inav.</li>
       <li>Log in with the credentials you entered into the 'inav-users.txt' file. You should land on the Registrations page.</li>
-      <li>To test the CAS authentication between INAV and PSC, click the link labeld 'go to Patient Study Calendar' to test the CAS authentication between INAV and PSC.  You should and on the Dashboard page of PSC.</li>
+      <li>To test the CAS authentication between INAV and PSC, click the link labeld 'go to Patient Study Calendar'.  You should land on the Dashboard page of PSC.</li>
     </ol>
   </li>
 </ol>
