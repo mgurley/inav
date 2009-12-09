@@ -77,7 +77,7 @@ These steps assume the prerequisites are installed on your target system.
 
 <ol>
   <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory in the installation package.</li>
-  <li>Move the 'datasource.properties' file to '$CATALINA_HOME/conf/psc'.  If the 'psc' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
+  <li>Move the 'datasource.properties' file to '$CATALINA_HOME/conf/psc'.  If the 'psc' directory does not exist, create it and grant read permission on it to the user which runs Tomcat on your system.</li>
   <li>In the 'datasource.properties' file, enter the proper JDBC connection values as follows:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>JDBC Connection Parameter</th><th>Value</th></tr>
@@ -110,11 +110,11 @@ Optional.  If you already have a CAS server in your institution, move on to Sect
   <li>Find the 'inav-users.txt' file in the 'inav/conf-samples' directory in the installation package.</li>
   <li>Move the 'inav-users.txt' file to '$CATALINA_HOME/conf/inav'.  Grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>This is an unencrypted, file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of 'username' and 'password'.  The initial copy of the file has the values 'admin,password'.  Replace it with the username and password that you entered in Section 3.</li>
-  <li>Any new users added to PSC will need to be added to this file.  See above.  This configuration should only be used for testing purposes.</a></li>
+  <li>Any new users added to PSC will need to be added to this file.</a></li>
   <li>Find the 'genericHandler.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
-  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on a OSX system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
+  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on an OSX system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
   <li>Find the 'LoggerConf.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
-  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory of your system's Tomcat server.  For example, on a OSX system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'</li>
+  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory of your system's Tomcat server.  For example, on an OSX system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'</li>
   <li>Test the CAS server</li>
   <ol>
     <li>Go to http://hostname.domain:portnumber/cas.  On a development workstation, this will most likely be: http://localhost:8080/cas.</li>
@@ -129,8 +129,12 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
 <ol>
   <li>See <a href="http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html">http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html</a> to learn how to enable SSL directly on a Tomcat server. <strong>Note!</strong>  If a self-signed SSL certificate is not sufficient to meet you security policies, please investigate obtaining a certificate from a well-known CA</li>
   <li><code>$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -file tomcat.crt</code><br />  <strong>Note!</strong> The common name for the certificate created in this step should be a valid hostname for your system.</li>
-  <li>The Java client used by PSC needs to trust the certificate created in the preceding step.<br /><code>keytool -import -keystore $JAVA_HOME/lib/security/cacerts -file tomcat.crt/</code></li>
-  <li>Test the CAS server running under SSL</li>
+  <li>The Java client used by PSC needs to trust the certificate created in the preceding step.<br /><code>keytool -import -keystore $JAVA_HOME/lib/security/cacerts -file tomcat.crt</code></li>
+  <li>Test the CAS server running under SSL.</li>
+  <ol>
+    <li>Go to https://hostname.domain:portnumber/cas.  On a development workstation, this will most likely be: https://localhost:8443/cas.</li>
+    <li>Log in with the credentials you entered into the 'inav-users.txt' file.  A message should appear saying 'You have been logged in successfully.'</li>
+  </ol>
 </ol>
 
 ## Configure PSC to Use CAS (Section 6)
@@ -140,13 +144,13 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
   <li>Click the 'Configure authentication' menu item</li>
   <li>Select 'CAS' from the list.</li>
   <li>Enter in the Service URL field the URL to your institution's CAS server or the URL to the CAS server you installed in section 5.  On a development workstation, this will most likely be: https://localhost:8443/cas.  <strong>Note!</strong>  The host name of the CAS server must match the common name of the certificate you created in section 5.</li>
-  <li>Enter in the PSC base URL field the URL to this PSC instance.  On a development workstation, this will most likely be: https://localhost:8443/psc</li>
+  <li>Enter in the PSC base URL field the URL to your PSC instance.  On a development workstation, this will most likely be: https://localhost:8443/psc</li>
 </ol>
 
 
 ## Install and Configure the INAV CAS Callback Application (Section 7)
 
-The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  This separated application is necessitated by a limitation of Rails.  See above.
+The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  A limitation in the Rails platform necessitate a separate application to handle CAS proxy callbacks.
 
 <ol>
   <li>Find the file 'inav.yml' in the 'inav/conf-samples/' directory in the installation package.</li>
@@ -161,30 +165,31 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
   </li>
   <li>Find 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation package.</li>
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
-  <li>Restart Tomcat.</li>
+  <li>Restart Tomcat.  The file 'inav_cas_callback.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav_cas_callback/'.</li>
+  <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav_cas_callback/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
   <li>Test the Callback application</li>
   <ol>
-    <li>Go to URL you entered for the value of the proxy_retrieval_url in inav.yml.  You should get the following response: 'No pgtIou specified. Cannot retreive the pgtId.'</li>
-    <li>Go to URL you entered for the value of the proxy_callback_url in inav.yml.  You should get the following response: 'Okay, the server is up, but please specify a pgtIou and pgtId.'</li>
+    <li>Go to the URL you entered for the value of the cas.proxy_retrieval_url property in inav.yml.  You should get the following response: 'No pgtIou specified. Cannot retreive the pgtId.'</li>
+    <li>Go to the URL you entered for the value of the cas.proxy_callback_url property in inav.yml.  You should get the following response: 'Okay, the server is up, but please specify a pgtIou and pgtId.'</li>
   </ol>
 </ol>
 
 ## Install and Configure INAV (Section 8)
 <ol>
   <li>Find the file 'bcstaging.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation package.</li>
-  <li>Move the 'bcstaging.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
+  <li>Move the 'bcstaging.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the directory to the user which runs Tomcat on your system.</li>
   <li>In the 'bcstaging.yml' file, change the database, username and password fields to match the values you used in section 2.</li>
   <li>In the 'inav.yml' file, set the the following properties:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>Property</th><th>Value</th></tr>
-      <tr><td>bcdatabase.path:</td><td>The path to the 'bcstaging.yml' from the preceding steps.</td></tr>
+      <tr><td>bcdatabase.path:</td><td>The path to the 'bcstaging.yml' file from the preceding steps.</td></tr>
       <tr><td>psc.psc_canonical_uri</td><td>The url to PSC server setup in section 3.</td></tr>
       <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
-      <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3</td></tr>
+      <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3.</td></tr>
       <tr><td>psc.psc_rest_url</td><td>The url to PSC server setup in section 3 with following path appended: '/api/v1/'.</td></tr>
-      <tr><td>smtp.address</td><td>The url of SMTP sever to send emails from.</td></tr>
-      <tr><td>smtp.port</td><td>The port of SMTP sever to send emails from.</td></tr>
-      <tr><td>smtp.domain</td><td>The domain of SMTP sever to send emails from.</td></tr>
+      <tr><td>smtp.address</td><td>The url of the SMTP sever to send emails from.</td></tr>
+      <tr><td>smtp.port</td><td>The port of the SMTP sever to send emails from.</td></tr>
+      <tr><td>smtp.domain</td><td>The domain of the SMTP sever to send emails from.</td></tr>
       <tr><td>exception_notifier.exception_recipients</td><td>The list of emails addresses to send exception notifications.</td></tr>
       <tr><td>exception_notifier.sender_address</td><td>The email address to send exception notifications from.</td></tr>
       <tr><td>exception_notifier.email_prefix</td><td>The email prefix used to send exception notifications.</td></tr>
@@ -192,6 +197,19 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
   </li>
   <li>Find the 'inav.war' file in the 'inav' directory in the installation package.</li>
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
-  <li>Restart Tomcat.</li>
-  <li></li>
+  <li>Restart Tomcat.  The file 'inav.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav/'.</li>
+  <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
+  <li>Prepare the INAV database.</li>
+  <ol>
+    <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/'.</li>
+    <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
+    <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
+    <li>Run the following command: <cod>jruby -S rake db:migrate</code>  This should create the database schema in the INAV database.</li>
+  </ol>
+  <li>Test the INAV application</li>
+  <ol>
+    <li>Go to https://hostname.domain:portnumber/inav.  On a development workstation, this will most likely be: https://localhost:8443/inav.</li>
+    <li>Log in with the credentials you entered into the 'inav-users.txt' file. You should land on the Registrations page.</li>
+    <li>To test the CAS authentication between INAV and PSC, click the link labeld 'go to Patient Study Calendar' to test the CAS authentication between INAV and PSC.  You should and on the Dashboard page of PSC.</li>
+  </ol>
 </ol>
