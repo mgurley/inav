@@ -19,15 +19,15 @@ The Inflection Navigator is a hybrid application composed of the following compo
 1. A light-weight patient and provider registry written in Ruby on Rails.
 1. A protocol and patient-activity management Java web application based on the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source Java web application.
 1. The ESUP CAS Server configured to authenticate against an unencrypted, file-based store of users.  (<strong>Note!</strong>  This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should be reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
-1. A proxy callback application to enable the patient and provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<strong>Note!</strong>  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+1. A proxy callback application to enable the patient and provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<strong>Note!</strong>  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/))
 
-Within this hybrid application, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of single sign-on via the Central Authentication Service protocol.
+Within this hybrid application, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of single sign-on via the CAS protocol.
 
 # Source Code
 
 All of the source code for the application is contained within its [installation package](http://cloud.github.com/downloads/mgurley/inav/inav.zip). The official URLs for the application's components can be found at the following locations:
 
-- The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
+- The patient and provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
 - The CAS proxy callback application.  Available at: [http://github.com/mgurley/inav_cas_callback](http://github.com/mgurley/inav_cas_callback)
 - The ESUP CAS Server and CAS generic handler.  Available at: [http://esup-casgeneric.sourceforge.net/index.html](http://esup-casgeneric.sourceforge.net/index.html)
@@ -37,7 +37,7 @@ All of the source code for the application is contained within its [installation
 - Java SE Development Kit	JDK 5.0.  The Java SE development kit with JRE, compilers and debuggers  Available at: [http://java.sun.com/javase/downloads/index.jsp](http://java.sun.com/javase/downloads/index.jsp)
 - Apache Tomcat 5.5.17 or higher application servlet container.  Available at: [http://tomcat.apache.org/download-55.cgi](http://tomcat.apache.org/download-55.cgi)
 - PostgreSQL 8.3.4 or higher database server.  Available at: [http://www.postgresql.org/download/](http://www.postgresql.org/download/)
-- Jruby 1.4.0 or higher.  Java-implementation of the Ruby programming language.  Available at: [http://jruby.org/download](http://jruby.org/download)
+- JRuby 1.4.0 or higher.  Java-implementation of the Ruby programming language.  Available at: [http://jruby.org/download](http://jruby.org/download)
 
 # Installation Steps
 
@@ -87,7 +87,7 @@ These steps assume the prerequisites are installed on your target system.
     </table>
   </li>
   <li>In the 'datasource.properties' file, uncomment the line (delete the ‘#’ symbol) for PostgreSQL.</li>
-  <li>Find 'psc.war' file in the 'psc' directory in the installation package.</li>
+  <li>Find the 'psc.war' file in the 'psc' directory in the installation package.</li>
   <li>Move the 'psc.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.</li>
   <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likely be: http://localhost:8080/psc</li>
@@ -111,14 +111,14 @@ Optional.  If you already have a CAS server in your institution, move on to Sect
   <li>Move the 'inav-users.txt' file to '$CATALINA_HOME/conf/inav'.  Grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>This is an unencrypted, file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of 'username' and 'password'.  The initial copy of the file has the values 'admin,password'.  Replace it with the username and password that you entered in Section 3.</li>
   <li>Any new users added to PSC will need to be added to this file.</a></li>
-  <li>Find the 'genericHandler.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
-  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on an OSX system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
-  <li>Find the 'LoggerConf.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
-  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory of your system's Tomcat server.  For example, on an OSX system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'</li>
+  <li>Find the 'genericHandler.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory.</li>
+  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on an OSX system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'.</li>
+  <li>Find the 'LoggerConf.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory.</li>
+  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory of your system's Tomcat server.  For example, on an OSX system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'.</li>
   <li>Test the CAS server</li>
   <ol>
     <li>Go to http://hostname.domain:portnumber/cas.  On a development workstation, this will most likely be: http://localhost:8080/cas.</li>
-    <li>Log in with the credentials you entered into the 'inav-users.txt' file.  A message should appear saying 'You have been logged in successfully.'</li>
+    <li>Log in with the credentials you entered into the 'inav-users.txt' file.  A message should appear saying 'You have been logged in successfully.'.</li>
   </ol>
 </ol>
 
@@ -133,7 +133,7 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
   <li>Test the CAS server running under SSL.</li>
   <ol>
     <li>Go to https://hostname.domain:portnumber/cas.  On a development workstation, this will most likely be: https://localhost:8443/cas.</li>
-    <li>Log in with the credentials you entered into the 'inav-users.txt' file.  A message should appear saying 'You have been logged in successfully.'</li>
+    <li>Log in with the credentials you entered into the 'inav-users.txt' file.  A message should appear saying 'You have been logged in successfully.'.</li>
   </ol>
 </ol>
 
@@ -144,13 +144,13 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
   <li>Click the 'Configure authentication' menu item</li>
   <li>Select 'CAS' from the list.</li>
   <li>Enter in the Service URL field the URL to your institution's CAS server or the URL to the CAS server you installed in section 5.  On a development workstation, this will most likely be: https://localhost:8443/cas.  <strong>Note!</strong>  The host name of the CAS server must match the common name of the certificate you created in section 5.</li>
-  <li>Enter in the PSC base URL field the URL to your PSC instance.  On a development workstation, this will most likely be: https://localhost:8443/psc</li>
+  <li>Enter in the PSC base URL field the URL to your PSC instance.  On a development workstation, this will most likely be: https://localhost:8443/psc/</li>
 </ol>
 
 
 ## Install and Configure the INAV CAS Callback Application (Section 7)
 
-The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  A limitation in the Rails platform necessitate a separate application to handle CAS proxy callbacks.
+The Ruby on Rails patient and provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order to retrieve and update information on behalf of the authenticated user.  A limitation in the Rails platform necessitate a separate application to handle CAS proxy callbacks.
 
 <ol>
   <li>Find the file 'inav.yml' in the 'inav/conf-samples/' directory in the installation package.</li>
@@ -158,19 +158,19 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
   <li>In the 'inav.yml' file, set the the following properties:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>Property</th><th>Value</th></tr>
-      <tr><td>cas.cas_base_url:</td><td>The URL to your institution's CAS server or the URL to the CAS server installed in section 5</td></tr>
+      <tr><td>cas.cas_base_url:</td><td>The URL to your institution's CAS server or the URL to the CAS server installed in section 5.</td></tr>
       <tr><td>cas.proxy_retrieval_url:</td><td>This will most likely be similar to: http://hostname.domain:portnumber/inav_cas_callback/cas_proxy_callback/retrieve_pgt.  On a development workstation, it will most likely be: https://localhost:8443/inav_cas_callback/cas_proxy_callback/retrieve_pgt.</td></tr>
       <tr><td>cas.proxy_callback_url:</td><td>This will most likely be similar to: http://hostname.domain:portnumber/inav_cas_callback/cas_proxy_callback/receive_pgt.  On a development workstation, it will most likely be: https://localhost:8443/inav_cas_callback/cas_proxy_callback/receive_pgt.</td></tr>
     </table>
   </li>
-  <li>Find 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation package.</li>
-  <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
+  <li>Find the 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation package.</li>
+  <li>Move the 'inav_cas_callback.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.  The file 'inav_cas_callback.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav_cas_callback/'.</li>
   <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav_cas_callback/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
   <li>Test the Callback application</li>
   <ol>
-    <li>Go to the URL you entered for the value of the cas.proxy_retrieval_url property in inav.yml.  You should get the following response: 'No pgtIou specified. Cannot retreive the pgtId.'</li>
-    <li>Go to the URL you entered for the value of the cas.proxy_callback_url property in inav.yml.  You should get the following response: 'Okay, the server is up, but please specify a pgtIou and pgtId.'</li>
+    <li>Go to the URL you entered for the value of the cas.proxy_retrieval_url property in inav.yml.  You should get the following response: 'No pgtIou specified. Cannot retreive the pgtId.'.</li>
+    <li>Go to the URL you entered for the value of the cas.proxy_callback_url property in inav.yml.  You should get the following response: 'Okay, the server is up, but please specify a pgtIou and pgtId.'.</li>
   </ol>
 </ol>
 
@@ -183,7 +183,7 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>Property</th><th>Value</th></tr>
       <tr><td>bcdatabase.path:</td><td>The path to the 'bcstaging.yml' file from the preceding steps.</td></tr>
-      <tr><td>psc.psc_canonical_uri</td><td>The url to PSC server setup in section 3.</td></tr>
+      <tr><td>psc.psc_canonical_uri</td><td>The url to PSC server setup in section 3.  <strong>Note!</strong> It is important to end this URL with a trailing slash -- '/'.</td></tr>
       <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
       <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3.</td></tr>
       <tr><td>psc.psc_rest_url</td><td>The url to PSC server setup in section 3 with following path appended: '/api/v1/'.</td></tr>
@@ -199,12 +199,22 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.  The file 'inav.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav/'.</li>
   <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
-  <li>Prepare the INAV database.
+  <li>Create the INAV database schema
     <ol>
-      <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/'.</li>
+      <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav//WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
-      <li>Run the following command: <cod>jruby -S rake db:migrate</code>  This should create the database schema in the INAV database.</li>
+      <li>Run the following command: <cod>jruby -S rake db:migrate</code>.  This should create the database schema in the INAV database.</li>
+    </ol>
+  </li>
+  <li>Load Medical Record Number Types.  Within the INAV system, patients can be assigned medical record numbers.  Each medical record number has a medical record number type.  A medical record number type might correspond to a Hospital or a Physician Group.  The system does not come with any medical record number types.  To setup medical record number types, perform the following steps:
+    <ol>
+      <li>Find the file 'medical_record_number_types.yml' in the '$CATALINA_HOME/webapps/inav/WEB-INF/lib/setup/data' directory</li>
+      <li>Edit the entries in the'medical_record_number_types.yml' to names appropriate you your environment.  Save the file.</li>
+      <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
+      <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
+      <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
+      <li>Run the following command: <cod>jruby -S rake setup:medical_record_types</code>.  This should load the medical record number types into the INAV database.</li>
     </ol>
   </li>
   <li>Test the INAV application
@@ -228,5 +238,8 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
       <li>Registering patients on protocols.</li>
       <li>Managing patient schedules.</li>
     </ol>
+  <li>Create an administration interface to manage medical record number types.</li>
+  <li>Automate the invocation of migrations upon deployment of the INAV .war file.</li>
+  <li>Automate the patching of the JRuby rack library.</li>
   </li>
 </ol>
