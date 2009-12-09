@@ -10,7 +10,7 @@ The Navigator needs a tool that assists them in:
 - Managing each patient's progress in completing the protocol.
 - Tracking and detailing the outcome of each patient.
 
-The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern Biomedical Informatics](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
+The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern University Biomedical Informatics Center](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
 
 # Technical Architecture
 
@@ -19,7 +19,7 @@ The Inflection Navigator is a hybrid application composed of the following compo
 1. A light-weight patient and provider registry written in Ruby on Rails.
 1. A protocol and patient-activity management Java web application based on the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source Java web application.
 1. The ESUP CAS Server configured to authenticate against an unencrypted, file-based store of users.  (<strong>Note!</strong>  This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should be reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
-1. A proxy callback application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<strong>Note!</strong>  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+1. A proxy callback application to enable the patient and provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<strong>Note!</strong>  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
 Within this hybrid application, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of single sign-on via the Central Authentication Service protocol.
 
@@ -41,10 +41,10 @@ All of the source code for the application is contained within its [installation
 
 # Installation Steps
 
-These steps assume the prerequisites are installed.
+These steps assume the prerequisites are installed on your target system.
 
 
-## Download the software (Section 1)
+## Download The Software (Section 1)
 <ol>
   <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation package.</a>  It contains the following directories and files</li>
   <ol>
@@ -73,7 +73,7 @@ These steps assume the prerequisites are installed.
   </ol>
 </ol>
 
-## Install and configure PSC (Section 3)
+## Install and Configure PSC (Section 3)
 
 <ol>
   <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory in the installation package.</li>
@@ -99,9 +99,9 @@ These steps assume the prerequisites are installed.
   </ol>
 </ol>
 
-## Install and configure the CAS server (Section 4)
+## Install and Configure the CAS server (Section 4)
 
-Optional.  If you already have a CAS server in your  institution, move on to Section 5.
+Optional.  If you already have a CAS server in your institution, move on to Section 5.
 
 <ol>
   <li>Find the 'cas' directory in the installation package.</li>
@@ -122,7 +122,7 @@ Optional.  If you already have a CAS server in your  institution, move on to Sec
   </ol>
 </ol>
 
-## Configure Tomcat to use SSL (Section 5)
+## Configure Tomcat to Use SSL (Section 5)
 
 The Java CAS client used by PSC requires that the CAS server be served over SSL.
 
@@ -133,7 +133,7 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
   <li>Test the CAS server running under SSL</li>
 </ol>
 
-## Configure PSC to use CAS (Section 6)
+## Configure PSC to Use CAS (Section 6)
 
 <ol>
   <li>Log into PSC with the first user you setup in section 3.</li>
@@ -144,7 +144,7 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
 </ol>
 
 
-## Install and configure INAV CAS Callback Application (Section 7)
+## Install and Configure the INAV CAS Callback Application (Section 7)
 
 The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  This separated application is necessitated by a limitation of Rails.  See above.
 
@@ -169,7 +169,7 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
   </ol>
 </ol>
 
-## Install and configure INAV (Section 8)
+## Install and Configure INAV (Section 8)
 <ol>
   <li>Find the file 'bcstaging.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation package.</li>
   <li>Move the 'bcstaging.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
