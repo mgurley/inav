@@ -2,7 +2,7 @@
 
 A patient receives a serious diagnosis from his or her physician. The physician instructs the patient to setup 3 tests, see 2 specialists and read material on the condition -- all within 2 weeks.
 
-This 'Inflection Point' in the patient's health requires a lot of effort and coordination.  But, what if the patient's clinic designated a "Navigator" to guide the patient through these activities.  The Navigator follows a protocol tailored to the patient's diagnosis and ensures the protocol is completed in a timely and efficient manner.  Each patient diagnosis requires the Navigator to manage a distinct set of activities within a scheduled time frame.
+This 'Inflection Point' in the patient's health requires a lot of effort and coordination.  But, what if the patient's clinic designated a 'Navigator' to guide the patient through these activities.  The Navigator follows a protocol tailored to the patient's diagnosis and ensures the protocol is completed in a timely and efficient manner.  Each patient diagnosis requires the Navigator to manage a distinct set of activities within a scheduled time frame.
 
 The Navigator needs a tool that assists them in:
 
@@ -18,8 +18,8 @@ The Inflection Navigator is a hybrid application composed of the following compo
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
 1. A protocol and patient-activity management Java web application based on the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source Java web application.
-1. The ESUP CAS Server configured to authenticate against an unencrypted, file-based store of users.  (<a name="authentication-note">Note!</a> This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should be reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
-1. A proxy callback application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<a name="rails-proxy-note">Note!</a> See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+1. The ESUP CAS Server configured to authenticate against an unencrypted, file-based store of users.  (<strong>Note!</strong>  This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should be reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
+1. A proxy callback application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<strong>Note!</strong>  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
 Within this hybrid application, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of single sign-on via the Central Authentication Service protocol.
 
@@ -105,16 +105,16 @@ Optional.  If you already have a CAS server in your  institution, move on to Sec
 
 <ol>
   <li>Find the 'cas' directory in the installation directory.</li>
-  <li>Move the 'cas' directory to '$CATALINA_HOME/webapps'.</li>
+  <li>Copy the 'cas' directory to '$CATALINA_HOME/webapps'.</li>
   <li>Make a directory named 'inav' in '$CATALINA_HOME/conf'.  Grant read permission on the directory to the user which runs Tomcat on your system.</li>
   <li>Find the 'inav-users.txt' file in the 'inav/conf-samples' directory in the installation directory.</li>
   <li>Move the 'inav-users.txt' file to '$CATALINA_HOME/conf/inav'.  Grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>This is an unencrypted, file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of 'username' and 'password'.  The initial copy of the file has the values 'admin,password'.  Replace it with the username and password that you entered in Section 3.</li>
-  <li>Any new users added to PSC will need to be added to this file  <a href="#authentication-note">See above.  This configuration should only be used for testing purposes.</a></li>
+  <li>Any new users added to PSC will need to be added to this file.  See above.  This configuration should only be used for testing purposes.</a></li>
   <li>Find the 'genericHandler.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
-  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on a MAC-based system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
+  <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on a OSX system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
   <li>Find the 'LoggerConf.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
-  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory of your system's Tomcat server.  For example on a MAC-based system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'</li>
+  <li>Replace the content of the value attribute in the 'param' element with the path to the log directory of your system's Tomcat server.  For example, on a OSX system this might be '/opt/local/share/java/tomcat5/logs/esup-casgeneric.log'</li>
   <li>Test the CAS server</li>
   <ol>
     <li>Go to http://hostname.domain:portnumber/cas.  On a development workstation, this will most likely be: http://localhost:8080/cas.</li>
@@ -139,14 +139,14 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
   <li>Log into PSC with the first user you setup in section 3.</li>
   <li>Click the 'Configure authentication' menu item</li>
   <li>Select 'CAS' from the list.</li>
-  <li>Enter in the Service URL field the URL to your institution's CAS server or the URL to the CAS server you installed in section 5.  On a development workstation, this will most likely be: https://localhost:8443/cas.  <strong>Note:</strong>  The host name of the CAS server must match the common name of the certificate you created in section 5.</li>
+  <li>Enter in the Service URL field the URL to your institution's CAS server or the URL to the CAS server you installed in section 5.  On a development workstation, this will most likely be: https://localhost:8443/cas.  <strong>Note!</strong>  The host name of the CAS server must match the common name of the certificate you created in section 5.</li>
   <li>Enter in the PSC base URL field the URL to this PSC instance.  On a development workstation, this will most likely be: https://localhost:8443/psc</li>
 </ol>
 
 
 ## Install and configure INAV CAS Callback Application (Section 7)
 
-The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  This separated application is necessitated by a limitation of Rails.  <a href="#rails-proxy-note">See above.</a>
+The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  This separated application is necessitated by a limitation of Rails.  See above.
 
 <ol>
   <li>Find the file 'inav.yml' in the 'inav/conf-samples/' directory in the installation directory.</li>
