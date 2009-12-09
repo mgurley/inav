@@ -199,17 +199,34 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.  The file 'inav.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav/'.</li>
   <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
-  <li>Prepare the INAV database.</li>
-  <ol>
-    <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/'.</li>
-    <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
-    <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
-    <li>Run the following command: <cod>jruby -S rake db:migrate</code>  This should create the database schema in the INAV database.</li>
-  </ol>
-  <li>Test the INAV application</li>
-  <ol>
-    <li>Go to https://hostname.domain:portnumber/inav.  On a development workstation, this will most likely be: https://localhost:8443/inav.</li>
-    <li>Log in with the credentials you entered into the 'inav-users.txt' file. You should land on the Registrations page.</li>
-    <li>To test the CAS authentication between INAV and PSC, click the link labeld 'go to Patient Study Calendar' to test the CAS authentication between INAV and PSC.  You should and on the Dashboard page of PSC.</li>
-  </ol>
+  <li>Prepare the INAV database.
+    <ol>
+      <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/'.</li>
+      <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
+      <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
+      <li>Run the following command: <cod>jruby -S rake db:migrate</code>  This should create the database schema in the INAV database.</li>
+    </ol>
+  </li>
+  <li>Test the INAV application
+    <ol>
+      <li>Go to https://hostname.domain:portnumber/inav.  On a development workstation, this will most likely be: https://localhost:8443/inav.</li>
+      <li>Log in with the credentials you entered into the 'inav-users.txt' file. You should land on the Registrations page.</li>
+      <li>To test the CAS authentication between INAV and PSC, click the link labeld 'go to Patient Study Calendar' to test the CAS authentication between INAV and PSC.  You should and on the Dashboard page of PSC.</li>
+    </ol>
+  </li>
+</ol>
+
+## Roadmap
+
+<ol>
+  <li>Create an Inflection navigator User Guide that covers:
+    <ol>
+      <li>Setting up protocols.</li>
+      <li>Adding patients.</li>
+      <li>Adding providers.</li>
+      <li>Assigning providers to patients.</li>
+      <li>Registering patients on protocols.</li>
+      <li>Managing patient schedules.</li>
+    </ol>
+  </li>
 </ol>
