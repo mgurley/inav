@@ -4,28 +4,28 @@ A patient receives a serious diagnosis from his or her physician. The physician 
 
 This 'Inflection Point' in the patient's health requires a lot of effort and coordination.  But, what if the patient's clinic designated a "Navigator" to guide the patient through these activities.  The Navigator follows a protocol tailored to the patient's diagnosis and ensures the protocol is completed in a timely and efficient manner.  Each patient diagnosis requires the Navigator to manage a distinct set of activities within a scheduled time frame.
 
-Ideally, the Navigator would have a web-based tool that assists them in:
+The Navigator needs a tool that assists them in:
 
 - Applying a consistent protocol of activities to each patient based on their diagnosis.
 - Managing each patient's progress in completing the protocol.
 - Tracking and detailing the outcome of each patient.
 
-The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern Bioinformatics Center](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
+The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern Biomedical Informatics](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
 
 # Technical Architecture
 
 The Inflection Navigator is a hybrid application composed of the following components:
 
 1. A light-weight patient and provider registry written in Ruby on Rails.
-1. A protocol and patient-activity management Java web application utilizing the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source software application.
+1. A protocol and patient-activity management Java web application based on the National Cancer Institute caBIG®'s Patient Study Calendar(PSC) -- an open-source Java web application.
 1. The ESUP CAS Server configured to authenticate against an unencrypted, file-based store of users.  (<a name="authentication-note">Note!</a> This configuration should only be used for testing purposes.  For a production deployment, an institutional CAS server should be used or the ESUP CAS server should be reconfigured to authenticate against a secure store of users -- for example, an LDAP server.  See [http://esup-casgeneric.sourceforge.net/install.html ](http://esup-casgeneric.sourceforge.net/install.html) for further details.)
-1. A proxy call back application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to PSC.  See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
+1. A proxy callback application to enable the patient/provider registry Ruby on Rails application to make CAS proxy calls to PSC.  (<a name="rails-proxy-note">Note!</a> See the documentation for the RubyCAS-Client for an explanation of running a separate Rails application to enable CAS proxying: [http://rubycas-client.rubyforge.org/](http://rubycas-client.rubyforge.org/)
 
-Witin this hybrid application, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of single sign-on via the Central Authentication Service protocol.
+Within this hybrid application, a seamless end-user experience is provided by a shared look and feel, inter-application communication via RESTful API calls and the implementation of single sign-on via the Central Authentication Service protocol.
 
 # Source Code
 
-All of the source code for the application is contained within its [installation directory](http://cloud.github.com/downloads/mgurley/inav/INAV.zip). The official URLs for the application's components can be found at the following locations:
+All of the source code for the application is contained within its [installation package](http://cloud.github.com/downloads/mgurley/inav/inav.zip). The official URLs for the application's components can be found at the following locations:
 
 - The patient/provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
@@ -35,15 +35,13 @@ All of the source code for the application is contained within its [installation
 # Installation Prerequisites
 
 - Java SE Development Kit	JDK 5.0.  The Java SE development kit with JRE, compilers and debuggers  Available at: [http://java.sun.com/javase/downloads/index.jsp](http://java.sun.com/javase/downloads/index.jsp)
-- Apache Tomcat 5.5.17 or higher application servlet container for JSP.  Available at: [http://tomcat.apache.org/download-55.cgi](http://tomcat.apache.org/download-55.cgi)
+- Apache Tomcat 5.5.17 or higher application servlet container.  Available at: [http://tomcat.apache.org/download-55.cgi](http://tomcat.apache.org/download-55.cgi)
 - PostgreSQL 8.3.4 or higher database server.  Available at: [http://www.postgresql.org/download/](http://www.postgresql.org/download/)
 - Jruby 1.4.0 or higher.  Java-implementation of the Ruby programming language.  Available at: [http://jruby.org/download](http://jruby.org/download)
 
-Currently, the application is limited to running under the Tomcat application server and the PostgreSQL database server.  These limitations will be removed in future releases.
-
 # Installation Steps
 
-These steps assume that you have installed the prerequisites.
+These steps assume the prerequisites are installed.
 
 
 ## Download the software (Section 1)
@@ -53,7 +51,7 @@ These steps assume that you have installed the prerequisites.
     <li>A directory named 'psc' containg the files 'psc.war', 'psc_install.doc' and a directory named 'conf-samples'.</li>
     <li>A directory named 'inav' containg the file 'inav.war' and a directory named 'conf-samples'.</li>
     <li>A directory named 'inav_cas_callback' containing the file 'inav_cas_callback.war'.</li>
-    <li>A directory named 'cas' containing the ESUP CAS server.</li>
+    <li>A directory named 'cas' containing the ESUP CAS server (the Yale ITS CAS server and CAS Generic Handler).</li>
   </ol>
 </ol>
 
@@ -61,19 +59,17 @@ These steps assume that you have installed the prerequisites.
 <ol>
   <li>Create the PSC database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
   <ol>
-    <li>Login to PostgreSql with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
+    <li>Login to PostgreSQL with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
     <li><code>CREATE DATABASE study_calendar_staging;</code></li>
     <li><code>CREATE USER study_calendar_staging WITH CREATEDB PASSWORD 'study_calendar_staging';</code><br />(Replace the password with a suitably secure password.)</li>
     <li><code>ALTER DATABASE study_calendar_staging OWNER TO study_calendar_staging;</code></li>
-    <li><code>ALTER USER study_calendar_staging SUPERUSER;</code></li>
   </ol>
   <li>Create the INAV database.  Replace the name 'inav_staging' in the following steps if you prefer a different name.</li>
   <ol>
-    <li>Login to PostgreSql with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
+    <li>Login to PostgreSQL with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
     <li><code>CREATE DATABASE inav_staging;</code></li>
     <li><code>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</code><br />(Replace the password with a suitably secure password.)</li>
     <li><code>ALTER DATABASE inav_staging OWNER TO inav_staging;</code></li>
-    <li><code>ALTER USER inav_staging SUPERUSER;</code></li>
   </ol>
 </ol>
 
@@ -90,10 +86,10 @@ These steps assume that you have installed the prerequisites.
       <tr><td>datasource.password</td><td>The password to connect to the database from Section 2.</td></tr>
     </table>
   </li>
-  <li>In the 'datasource.properties' file, uncomment the line (delete the ‘#’ symbol) that corresponds to your database.</li>
+  <li>In the 'datasource.properties' file, uncomment the line (delete the ‘#’ symbol) for PostgreSQL.</li>
   <li>Find 'psc.war' file in the 'psc' directory in the installation directory.</li>
   <li>Move the 'psc.war' file to '$CATALINA_HOME/webapps'.</li>
-  <li>Start Tomcat.</li>
+  <li>Restart Tomcat.</li>
   <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likely be: http://localhost:8080/psc</li>
   <li>Follow the on-screen instructions to create your first user and site.  For more instructions regarding configuring PSC, please see the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_Admin_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar Admin Guide</a> and the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_End_User_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar End User Guide</a></li>
   <ol>
@@ -101,7 +97,6 @@ These steps assume that you have installed the prerequisites.
     <li>Make sure to remember the 'username' and 'password' of the first User you create for PSC.</li>
     <li>Make sure to remember the 'site name' and 'assigned identifier' of your first PSC site.  Only create one site within PSC.  The INAV application currently only supports interacting with one PSC site.</li>
   </ol>
-
 </ol>
 
 ## Install and configure the CAS server (Section 4)
@@ -115,7 +110,7 @@ Optional.  If you already have a CAS server in your  institution, move on to Sec
   <li>Find the 'inav-users.txt' file in the 'inav/conf-samples' directory in the installation directory.</li>
   <li>Move the 'inav-users.txt' file to '$CATALINA_HOME/conf/inav'.  Grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>This is an unencrypted, file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of 'username' and 'password'.  The initial copy of the file has the values 'admin,password'.  Replace it with the username and password that you entered in Section 3.</li>
-  <li>Any new users added to PSC will need to be added to this file  <a href="#authentication-note">Note!  See above.</a>  This configuration should only be used for testing purposes.</li>
+  <li>Any new users added to PSC will need to be added to this file  <a href="#authentication-note">See above.  This configuration should only be used for testing purposes.</a></li>
   <li>Find the 'genericHandler.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
   <li>Replace the content in the 'filename' element in the 'genericHandler.xml' file with the full path to the 'inav-users.txt' file.  For example, on a MAC-based system this might be '/opt/local/share/java/tomcat5/conf/inav/inav-users.txt'</li>
   <li>Find the 'LoggerConf.xml' file in the '$CATALINA_HOME/webapps/cas/WEB-INF' directory</li>
@@ -148,4 +143,55 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
   <li>Enter in the PSC base URL field the URL to this PSC instance.  On a development workstation, this will most likely be: https://localhost:8443/psc</li>
 </ol>
 
-## Install and configure INAV (Section 7)
+
+## Install and configure INAV CAS Callback Application (Section 7)
+
+The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  This separated application is necessitated by a limitation of Rails.  <a href="#rails-proxy-note">See above.</a>
+
+<ol>
+  <li>Find the file 'inav.yml' in the 'inav/conf-samples/' directory in the installation directory.</li>
+  <li>Move the 'inav.yml' file to '$CATALINA_HOME/conf/inav/'.</li>
+  <li>In the 'inav.yml' file, set the the following properties:
+    <table border="0" cellspacing="5" cellpadding="5">
+      <tr><th>Property</th><th>Value</th></tr>
+      <tr><td>cas.cas_base_url:</td><td>The URL to your institution's CAS server or the URL to the CAS server installed in section 5</td></tr>
+      <tr><td>cas.proxy_retrieval_url:</td><td>This will most likely be similar to: http://hostname.domain:portnumber/inav_cas_callback/cas_proxy_callback/retrieve_pgt.  On a development workstation, it will most likely be: https://localhost:8443/inav_cas_callback/cas_proxy_callback/retrieve_pgt.</td></tr>
+      <tr><td>cas.proxy_callback_url:</td><td>This will most likely be similar to: http://hostname.domain:portnumber/inav_cas_callback/cas_proxy_callback/receive_pgt.  On a development workstation, it will most likely be: https://localhost:8443/inav_cas_callback/cas_proxy_callback/receive_pgt.</td></tr>
+    </table>
+  </li>
+  <li>Find 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation directory.</li>
+  <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
+  <li>Restart Tomcat.</li>
+  <li>Test the Callback application</li>
+  <ol>
+    <li>Go to URL you entered for the value of the proxy_retrieval_url in inav.yml.  You should get the following response: 'No pgtIou specified. Cannot retreive the pgtId.'</li>
+    <li>Go to URL you entered for the value of the proxy_callback_url in inav.yml.  You should get the following response: 'Okay, the server is up, but please specify a pgtIou and pgtId.'</li>
+  </ol>
+</ol>
+
+## Install and configure INAV (Section 8)
+<ol>
+  <li>Find the file 'bcstaging.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation directory.</li>
+  <li>Move the 'bcstaging.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
+  <li>In the 'bcstaging.yml' file, change the database, username and password fields to match the values you used in section 2.</li>
+  <li>In the 'inav.yml' file, set the the following properties:
+    <table border="0" cellspacing="5" cellpadding="5">
+      <tr><th>Property</th><th>Value</th></tr>
+      <tr><td>bcdatabase.path:</td><td>The path to the 'bcstaging.yml' from the preceding steps.</td></tr>
+      <tr><td>psc.psc_canonical_uri</td><td>The url to PSC server setup in section 3.</td></tr>
+      <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
+      <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3</td></tr>
+      <tr><td>psc.psc_rest_url</td><td>The url to PSC server setup in section 3 with following path appended: '/api/v1/'.</td></tr>
+      <tr><td>smtp.address</td><td>The url of SMTP sever to send emails from.</td></tr>
+      <tr><td>smtp.port</td><td>The port of SMTP sever to send emails from.</td></tr>
+      <tr><td>smtp.domain</td><td>The domain of SMTP sever to send emails from.</td></tr>
+      <tr><td>exception_notifier.exception_recipients</td><td>The list of emails addresses to send exception notifications.</td></tr>
+      <tr><td>exception_notifier.sender_address</td><td>The email address to send exception notifications from.</td></tr>
+      <tr><td>exception_notifier.email_prefix</td><td>The email prefix used to send exception notifications.</td></tr>
+    </table>
+  </li>
+  <li>Find the 'inav.war' file in the 'inav' directory in the installation directory.</li>
+  <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
+  <li>Restart Tomcat.</li>
+  <li></li>
+</ol>
