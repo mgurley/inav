@@ -52,7 +52,7 @@ Rails::Initializer.run do |config|
       when 'staging', 'production';
         if defined?(JRUBY_VERSION)
           require 'jruby'
-          catalina_home = Java::JavaLang::System.getProperty('catalina.home')
+          catalina_home = Java::JavaLang::System.getProperty('catalina.home') || ENV['CATALINA_HOME']
           "#{catalina_home}/conf/inav/inav.yml"
         else
           "config/inav.yml"
