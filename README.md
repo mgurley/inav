@@ -12,6 +12,8 @@ The Navigator needs a tool that assists them in:
 
 The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern University Biomedical Informatics Center](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
 
+For questions or inquiries about the application, please contact <a href="mailto:m-gurley@northwestern.edu">Michael Gurley</a> at the Northwestern University Biomedical Informatics Center.  The Inflection Navigaotr released under the MIT license
+
 # Technical Architecture
 
 The Inflection Navigator is a hybrid application composed of the following components:
@@ -241,5 +243,18 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
   <li>Create an administration interface to manage medical record number types.</li>
   <li>Automate the invocation of migrations upon deployment of the INAV .war file.</li>
   <li>Automate the patching of the JRuby rack library.</li>
+  <li>Support other database platforms.</li>
+  <li>Support other Java application server platforms.</li>
   </li>
 </ol>
+
+
+## Credits
+
+The Inflection Navigator was developed for [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) by the [Northwestern University Biomedical Informatics Center][NUBIC].
+
+[NUBIC]: http://www.nucats.northwestern.edu/centers/nubic/index.html
+
+### Copyright
+
+Copyright (c) 2009 Michael Gurley. See LICENSE for details.
