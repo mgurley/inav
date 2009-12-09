@@ -46,7 +46,7 @@ These steps assume the prerequisites are installed.
 
 ## Download the software (Section 1)
 <ol>
-  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation directory.</a>  It contains the following directories and files</li>
+  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation package.</a>  It contains the following directories and files</li>
   <ol>
     <li>A directory named 'psc' containg the files 'psc.war', 'psc_install.doc' and a directory named 'conf-samples'.</li>
     <li>A directory named 'inav' containg the file 'inav.war' and a directory named 'conf-samples'.</li>
@@ -76,7 +76,7 @@ These steps assume the prerequisites are installed.
 ## Install and configure PSC (Section 3)
 
 <ol>
-  <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory in the installation directory.</li>
+  <li>Find the 'datasource.properties' file in the 'psc/conf-samples' directory in the installation package.</li>
   <li>Move the 'datasource.properties' file to '$CATALINA_HOME/conf/psc'.  If the 'psc' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>In the 'datasource.properties' file, enter the proper JDBC connection values as follows:
     <table border="0" cellspacing="5" cellpadding="5">
@@ -87,7 +87,7 @@ These steps assume the prerequisites are installed.
     </table>
   </li>
   <li>In the 'datasource.properties' file, uncomment the line (delete the ‘#’ symbol) for PostgreSQL.</li>
-  <li>Find 'psc.war' file in the 'psc' directory in the installation directory.</li>
+  <li>Find 'psc.war' file in the 'psc' directory in the installation package.</li>
   <li>Move the 'psc.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.</li>
   <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likely be: http://localhost:8080/psc</li>
@@ -104,10 +104,10 @@ These steps assume the prerequisites are installed.
 Optional.  If you already have a CAS server in your  institution, move on to Section 5.
 
 <ol>
-  <li>Find the 'cas' directory in the installation directory.</li>
+  <li>Find the 'cas' directory in the installation package.</li>
   <li>Copy the 'cas' directory to '$CATALINA_HOME/webapps'.</li>
   <li>Make a directory named 'inav' in '$CATALINA_HOME/conf'.  Grant read permission on the directory to the user which runs Tomcat on your system.</li>
-  <li>Find the 'inav-users.txt' file in the 'inav/conf-samples' directory in the installation directory.</li>
+  <li>Find the 'inav-users.txt' file in the 'inav/conf-samples' directory in the installation package.</li>
   <li>Move the 'inav-users.txt' file to '$CATALINA_HOME/conf/inav'.  Grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>This is an unencrypted, file-based store of users that the CAS server will look up for authentication.  It is a comma-separated list of 'username' and 'password'.  The initial copy of the file has the values 'admin,password'.  Replace it with the username and password that you entered in Section 3.</li>
   <li>Any new users added to PSC will need to be added to this file.  See above.  This configuration should only be used for testing purposes.</a></li>
@@ -149,7 +149,7 @@ The Java CAS client used by PSC requires that the CAS server be served over SSL.
 The Ruby on Rails patient/provider registry component of the INAV application needs to make proxy CAS calls to the PSC application in order retrieve and update information on behalf of the authenticated user.  This separated application is necessitated by a limitation of Rails.  See above.
 
 <ol>
-  <li>Find the file 'inav.yml' in the 'inav/conf-samples/' directory in the installation directory.</li>
+  <li>Find the file 'inav.yml' in the 'inav/conf-samples/' directory in the installation package.</li>
   <li>Move the 'inav.yml' file to '$CATALINA_HOME/conf/inav/'.</li>
   <li>In the 'inav.yml' file, set the the following properties:
     <table border="0" cellspacing="5" cellpadding="5">
@@ -159,7 +159,7 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
       <tr><td>cas.proxy_callback_url:</td><td>This will most likely be similar to: http://hostname.domain:portnumber/inav_cas_callback/cas_proxy_callback/receive_pgt.  On a development workstation, it will most likely be: https://localhost:8443/inav_cas_callback/cas_proxy_callback/receive_pgt.</td></tr>
     </table>
   </li>
-  <li>Find 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation directory.</li>
+  <li>Find 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation package.</li>
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.</li>
   <li>Test the Callback application</li>
@@ -171,7 +171,7 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
 
 ## Install and configure INAV (Section 8)
 <ol>
-  <li>Find the file 'bcstaging.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation directory.</li>
+  <li>Find the file 'bcstaging.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation package.</li>
   <li>Move the 'bcstaging.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the file to the user which runs Tomcat on your system.</li>
   <li>In the 'bcstaging.yml' file, change the database, username and password fields to match the values you used in section 2.</li>
   <li>In the 'inav.yml' file, set the the following properties:
@@ -190,7 +190,7 @@ The Ruby on Rails patient/provider registry component of the INAV application ne
       <tr><td>exception_notifier.email_prefix</td><td>The email prefix used to send exception notifications.</td></tr>
     </table>
   </li>
-  <li>Find the 'inav.war' file in the 'inav' directory in the installation directory.</li>
+  <li>Find the 'inav.war' file in the 'inav' directory in the installation package.</li>
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.</li>
   <li></li>
