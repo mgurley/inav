@@ -223,7 +223,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
     <ol>
       <li>Go to https://hostname.domain:portnumber/inav.  On a development workstation, this will most likely be: https://localhost:8443/inav.</li>
       <li>Log in with the credentials you entered into the 'inav-users.txt' file. You should land on the Registrations page.</li>
-      <li>To test the CAS authentication between INAV and PSC, click the link labeld 'go to Patient Study Calendar'.  You should land on the Dashboard page of PSC.</li>
+      <li>To test the CAS authentication between INAV and PSC, click the link labeled 'go to Patient Study Calendar'.  You should land on the Dashboard page of PSC without being prompted to log in again.</li>
     </ol>
   </li>
 </ol>
