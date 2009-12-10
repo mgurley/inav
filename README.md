@@ -93,12 +93,13 @@ These steps assume the prerequisites are installed on your target system.
   <li>Move the 'psc.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.</li>
   <li>Using a web browser, go to the PSC URL as determined by your Tomcat configuration.  This will most likely be similar to: http://hostname.domain:portnumber/psc.  On a development workstation, this will most likely be: http://localhost:8080/psc</li>
-  <li>Follow the on-screen instructions to create your first user and site.  For more instructions regarding configuring PSC, please see the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_Admin_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar Admin Guide</a> and the <a href="http://gforge.nci.nih.gov/plugins/scmcvs/cvsweb.php/studycalendar/PhaseIII/PSC_End_User_Guide.doc?rev=1.1;content-type=application%2Foctet-stream;cvsroot=studycalendar">Patient Study Calendar End User Guide</a></li>
-  <ol>
-    <li>For the initial setup of PSC, make sure you select 'local' for the Authentication System.  Later it will change to CAS.</li>
-    <li>Make sure to remember the 'username' and 'password' of the first User you create for PSC.</li>
-    <li>Make sure to remember the 'site name' and 'assigned identifier' of your first PSC site.  Only create one site within PSC.  The INAV application currently only supports interacting with one PSC site.</li>
-  </ol>
+  <li>Follow the on-screen instructions to create your first user and site.  For more instructions regarding configuring PSC, please see the <a href="https://cabig-kc.nci.nih.gov/CTMS/KC/index.php/PSC_Administration_Guide">Patient Study Calendar Admin Guide</a> and the <a href="https://cabig-kc.nci.nih.gov/CTMS/KC/index.php/PSC_End_User_Guide">Patient Study Calendar End User Guide</a>
+    <ol>
+      <li>For the initial setup of PSC, make sure you select 'local' for the Authentication System.  Later it will change to CAS.</li>
+      <li>Make sure to remember the 'username' and 'password' of the first User you create for PSC.</li>
+      <li>Make sure to remember the 'site name' and 'assigned identifier' of your first PSC site.  Only create one site within PSC.  The INAV application currently only supports interacting with one PSC site.</li>
+    </ol>
+  </li>
 </ol>
 
 ## Install and Configure the CAS server (Section 4)
