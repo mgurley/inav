@@ -59,19 +59,19 @@ These steps assume the prerequisites are installed on your target system.
 
 ## Create the Databases (Section 2)
 <ol>
-  <li>Create the PSC database.  Replace the name 'study_calendar_staging' in the following steps if you prefer a different name.</li>
+  <li>Create the PSC database.  Replace the name 'study_calendar' in the following steps if you prefer a different name.</li>
   <ol>
     <li>Login to PostgreSQL with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
-    <li><code>CREATE DATABASE study_calendar_staging;</code></li>
-    <li><code>CREATE USER study_calendar_staging WITH CREATEDB PASSWORD 'study_calendar_staging';</code><br />(Replace the password with a suitably secure password.)</li>
-    <li><code>ALTER DATABASE study_calendar_staging OWNER TO study_calendar_staging;</code></li>
+    <li><code>CREATE DATABASE study_calendar;</code></li>
+    <li><code>CREATE USER study_calendar WITH CREATEDB PASSWORD 'study_calendar';</code><br />(Replace the password with a suitably secure password.)</li>
+    <li><code>ALTER DATABASE study_calendar OWNER TO study_calendar;</code></li>
   </ol>
-  <li>Create the INAV database.  Replace the name 'inav_staging' in the following steps if you prefer a different name.</li>
+  <li>Create the INAV database.  Replace the name 'inav' in the following steps if you prefer a different name.</li>
   <ol>
     <li>Login to PostgreSQL with a user appropriate to your environment.<br /><code>psql -U postgres -W</code></li>
-    <li><code>CREATE DATABASE inav_staging;</code></li>
-    <li><code>CREATE USER inav_staging WITH CREATEDB PASSWORD 'inav_staging';</code><br />(Replace the password with a suitably secure password.)</li>
-    <li><code>ALTER DATABASE inav_staging OWNER TO inav_staging;</code></li>
+    <li><code>CREATE DATABASE inav;</code></li>
+    <li><code>CREATE USER inav WITH CREATEDB PASSWORD 'inav';</code><br />(Replace the password with a suitably secure password.)</li>
+    <li><code>ALTER DATABASE inav OWNER TO inav;</code></li>
   </ol>
 </ol>
 
@@ -83,7 +83,7 @@ These steps assume the prerequisites are installed on your target system.
   <li>In the 'datasource.properties' file, enter the proper JDBC connection values as follows:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>JDBC Connection Parameter</th><th>Value</th></tr>
-      <tr><td>datasource.url</td><td>Use the proper JDBC url for your database.  With a database named “study_calendar_staging” this value would be 'jdbc:postgresql:study_calendar_staging'.</td></tr>
+      <tr><td>datasource.url</td><td>Use the proper JDBC url for your database.  With a database named “study_calendar” this value would be 'jdbc:postgresql:study_calendar'.</td></tr>
       <tr><td>datasource.username</td><td>The username to connect to the database from Section 2.</td></tr>
       <tr><td>datasource.password</td><td>The password to connect to the database from Section 2.</td></tr>
     </table>
@@ -179,13 +179,13 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
 
 ## Install and Configure INAV (Section 8)
 <ol>
-  <li>Find the file 'bcstaging.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation package.</li>
-  <li>Move the 'bcstaging.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the directory to the user which runs Tomcat on your system.</li>
-  <li>In the 'bcstaging.yml' file, change the database, username and password fields to match the values you used in section 2.</li>
+  <li>Find the file 'bcdatabase.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation package.</li>
+  <li>Move the 'bcdatabase.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the directory to the user which runs Tomcat on your system.</li>
+  <li>In the 'bcdatabase.yml' file, change the database, username and password fields to match the values you used in section 2.</li>
   <li>In the 'inav.yml' file, set the the following properties:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>Property</th><th>Value</th></tr>
-      <tr><td>bcdatabase.path:</td><td>The path to the 'bcstaging.yml' file from the preceding steps.</td></tr>
+      <tr><td>bcdatabase.path:</td><td>The path to the 'bcdatabase.yml' file from the preceding steps.</td></tr>
       <tr><td>psc.psc_canonical_uri</td><td>The url to the PSC server setup in section 3.  <strong>Note!</strong> It is important to end this URL with a trailing slash -- '/'.</td></tr>
       <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
       <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3.</td></tr>
@@ -206,7 +206,6 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
     <ol>
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
-      <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
       <li>Run the following command: <cod>jruby -S rake db:migrate</code>.  This should create the database schema in the INAV database.</li>
     </ol>
   </li>
@@ -216,7 +215,6 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
       <li>Edit the entries in the 'medical_record_number_types.yml' to names appropriate to your environment.  Save the file.</li>
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
-      <li>Set a RAILS_ENV environment variable.  For example, on an OSX system this might be <code>export RAILS_ENV=staging</code>.</li>
       <li>Run the following command: <cod>jruby -S rake setup:medical_record_types</code>.  This should load the medical record number types into the INAV database.</li>
     </ol>
   </li>
