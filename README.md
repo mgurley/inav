@@ -39,7 +39,6 @@ All of the source code for the application is contained within its [installation
 - Java SE Development Kit	JDK 5.0.  The Java SE development kit with JRE, compilers and debuggers  Available at: [http://java.sun.com/javase/downloads/index.jsp](http://java.sun.com/javase/downloads/index.jsp)
 - Apache Tomcat 5.5.17 or higher application servlet container.  Available at: [http://tomcat.apache.org/download-55.cgi](http://tomcat.apache.org/download-55.cgi)
 - PostgreSQL 8.3.4 or higher database server.  Available at: [http://www.postgresql.org/download/](http://www.postgresql.org/download/)
-- JRuby 1.4.0 or higher.  Java-implementation of the Ruby programming language.  Available at: [http://jruby.org/download](http://jruby.org/download)
 
 # Installation Steps
 
@@ -130,7 +129,7 @@ Optional.  If you already have a CAS server in your institution, move on to Sect
 The Java CAS client used by PSC requires that the CAS server be served over SSL.
 
 <ol>
-  <li>See <a href="http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html">http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html</a> to learn how to enable SSL directly on a Tomcat server. <strong>Note!</strong>  If a self-signed SSL certificate is not sufficient to meet you security policies, please investigate obtaining a certificate from a well-known CA</li>
+  <li>See <a href="http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html">http://tomcat.apache.org/tomcat-5.5-doc/ssl-howto.html</a> to learn how to enable SSL directly on a Tomcat server. <strong>Note!</strong>  If a self-signed SSL certificate is not sufficient to meet your security policies, please investigate obtaining a certificate from a well-known CA</li>
   <li><code>$JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA -file tomcat.crt</code><br />  <strong>Note!</strong> The common name for the certificate created in this step should be a valid hostname for your system.</li>
   <li>The Java client used by PSC needs to trust the certificate created in the preceding step.<br /><code>keytool -import -keystore $JAVA_HOME/lib/security/cacerts -file tomcat.crt</code></li>
   <li>Test the CAS server running under SSL.</li>
@@ -169,7 +168,6 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
   <li>Find the 'inav_cas_callback.war' file in the 'inav_cas_callback' directory in the installation package.</li>
   <li>Move the 'inav_cas_callback.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.  The file 'inav_cas_callback.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav_cas_callback/'.</li>
-  <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav_cas_callback/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
   <li>Test the Callback application</li>
   <ol>
     <li>Go to the URL you entered for the value of the cas.proxy_retrieval_url property in inav.yml.  You should get the following response: 'No pgtIou specified. Cannot retreive the pgtId.'.</li>
@@ -179,13 +177,14 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
 
 ## Install and Configure INAV (Section 8)
 <ol>
-  <li>Find the file 'bcdatabase.yml' in the 'inav/conf-samples/bcdatabase' directory in the installation package.</li>
-  <li>Move the 'bcdatabase.yml' file to '$CATALINA_HOME/conf/inav/bcdatabase'.  If the 'bcdatabase' directory does not exist, create it and grant read permission on the directory to the user which runs Tomcat on your system.</li>
-  <li>In the 'bcdatabase.yml' file, change the database, username and password fields to match the values you used in section 2.</li>
+  <li>Find the file 'inav.yml' that you moved into the '$CATALINA_HOME/conf/inav/' directory in section 7.</li>
   <li>In the 'inav.yml' file, set the the following properties:
     <table border="0" cellspacing="5" cellpadding="5">
       <tr><th>Property</th><th>Value</th></tr>
-      <tr><td>bcdatabase.path:</td><td>The path to the 'bcdatabase.yml' file from the preceding steps.</td></tr>
+      <tr><td>default.host</td><td>The host name of the computer where your PostgreSQL database server resides.</td></tr>
+      <tr><td>inav.database</td><td>The name of the INAV database that you created in section 2, step 2.2.</td></tr>
+      <tr><td>inav.username</td><td>The username of the owner of the INAV database that you created in section 2, step 2.2.</td></tr>
+      <tr><td>inav.password</td><td>The password of the owner of the INAV database that you created in section 2, step 2.2.</td></tr>
       <tr><td>psc.psc_canonical_uri</td><td>The url to the PSC server setup in section 3.  <strong>Note!</strong> It is important to end this URL with a trailing slash -- '/'.</td></tr>
       <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
       <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3.</td></tr>
@@ -201,21 +200,22 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
   <li>Find the 'inav.war' file in the 'inav' directory in the installation package.</li>
   <li>Move the 'inav.war' file to '$CATALINA_HOME/webapps'.</li>
   <li>Restart Tomcat.  The file 'inav.war' should have expanded into a directory named '$CATALINA_HOME/webapps/inav/'.</li>
-  <li>Find and delete the JRuby rack 'jruby-rack-0.9.5.jar' file in '$CATALINA_HOME/webapps/inav/WEB-INF/lib'.  This step enables a patch in the JRuby Rack library that is not yet available in the latest release.</li>
   <li>Create the INAV database schema:
     <ol>
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
-      <li>Run the following command: <cod>jruby -S rake db:migrate</code>.  This should create the database schema in the INAV database.</li>
+      <li>Ensure that you have a GEM_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export GEM_HOME=/opt/local/share/java/tomcat5/webapps/inav/WEB-INF/gems</code>.</li>
+      <li>Run the following command: <cod>java -jar lib/jruby-complete-1.4.0.jar -S rake db:migrate RAILS_ENV=production</code>.  This should create the database schema in the INAV database.</li>
     </ol>
   </li>
   <li>Load Medical Record Number Types:  Within the INAV system, patients can be assigned medical record numbers.  Each medical record number has a medical record number type.  A medical record number type might correspond to a Hospital or a Physician Group.  The system does not come with any medical record number types.  To setup medical record number types appropriate to your environment, perform the following steps:
     <ol>
-      <li>Find the file 'medical_record_number_types.yml' in the '$CATALINA_HOME/webapps/inav/WEB-INF/lib/setup/data' directory</li>
-      <li>Edit the entries in the 'medical_record_number_types.yml' to names appropriate to your environment.  Save the file.</li>
+      <li>Find the file 'inav.yml' that you moved into the '$CATALINA_HOME/conf/inav/' directory in section 7.</li>
+      <li>In the 'inav.yml' file, edit the entries in the 'medical_record_number_types' property to names appropriate to your environment.</li>
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
-      <li>Run the following command: <cod>jruby -S rake setup:medical_record_types</code>.  This should load the medical record number types into the INAV database.</li>
+      <li>Ensure that you have a GEM_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export GEM_HOME=/opt/local/share/java/tomcat5/webapps/inav/WEB-INF/gems</code>.</li>
+      <li>Run the following command: <cod>java -jar lib/jruby-complete-1.4.0.jar -S rake setup:medical_record_types RAILS_ENV=production</code>.  This should load the medical record number types into the INAV database.</li>
     </ol>
   </li>
   <li>Test the INAV application

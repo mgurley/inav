@@ -1,5 +1,14 @@
-:bcdatabase:
-  :path: <%= RAILS_ROOT %>/config/bcdatabase
+default:
+  adapter: postgresql
+  host: localhost
+inav_development:
+  database: inav_development
+  username: inav_development
+  password: inav_development
+inav_test:
+  database: inav_test
+  username: inav_test
+  password: inav_test
 :cas:
   :cas_base_url: https://localhost:8443/cas
   :proxy_retrieval_url: https://localhost:8443/inav_cas_callback/cas_proxy_callback/retrieve_pgt
@@ -19,3 +28,6 @@
     - exception_recipient: r-sutphin@northwestern.edu
   :sender_address: '"Inflection Navigator Application Error" <NO_REPLY@inflection-navigator.nubic.northwestern.edu>'
   :email_prefix: [Inflection Navigator]
+:medical_record_number_types:
+- :name: NMH
+- :name: NMFF

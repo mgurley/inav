@@ -24,6 +24,7 @@ Rails::Initializer.run do |config|
   config.gem 'calendar_date_select', :version => '>= 1.1.5'
   config.gem 'rubycas-client', :version => '>= 2.1.0'
   config.gem 'will_paginate', :version => '>= 2.3.11'
+  config.gem 'ci_reporter', :version => '>= 1.6.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -46,7 +47,7 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
   config.active_record.schema_format = :sql
 
-  inav_config_file =
+  INAV_CONFIG_FILE =
     case RAILS_ENV
       when 'development','test'; "config/inav.yml"
       when 'staging', 'production';
@@ -61,7 +62,7 @@ Rails::Initializer.run do |config|
 
   require 'erb'
 
-  INAV_CONFIG = YAML.load(ERB.new(File.read(inav_config_file)).result)
+  INAV_CONFIG = YAML.load(ERB.new(File.read(INAV_CONFIG_FILE)).result)
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {

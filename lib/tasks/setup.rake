@@ -1,7 +1,7 @@
 namespace :setup do
   desc 'Medical Record Number Types'
   task(:medical_record_types => :environment) do
-    medical_record_number_types = YAML::load_file(RAILS_ROOT+'/lib/setup/data/medical_record_number_types.yml')
+    medical_record_number_types = YAML::load_file(INAV_CONFIG_FILE)
 
     medical_record_number_types[:medical_record_number_types].each do |medical_record_number_type|
       save_medical_record_number_type(medical_record_number_type[:name])

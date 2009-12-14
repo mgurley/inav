@@ -1,9 +1,9 @@
 <%
    require 'bcdatabase'
-    bcdb = Bcdatabase.load INAV_CONFIG[:bcdatabase][:path]
+    bcdb = Bcdatabase::DatabaseConfigurations.new(INAV_CONFIG_FILE)
 %>
 
-<%= bcdb.development :bcdevelopment, :inav_development %>
-<%= bcdb.test :bcdevelopment, :inav_test %>
-<%= bcdb.staging :bcstaging, :inav_staging %>
-<%= bcdb.production :bcproduction, :inav %>
+<%= bcdb.development :inav, :inav_development %>
+<%= bcdb.test :inav, :inav_test %>
+<%= bcdb.staging :inav, :inav_staging %>
+<%= bcdb.production :inav, :inav %>
