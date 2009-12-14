@@ -205,7 +205,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Ensure that you have a GEM_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export GEM_HOME=/opt/local/share/java/tomcat5/webapps/inav/WEB-INF/gems</code>.</li>
-      <li>Run the following command: <cod>java -jar lib/jruby-complete-1.4.0.jar -S rake db:migrate RAILS_ENV=production</code>.  This should create the database schema in the INAV database.</li>
+      <li>Run the following command: <code>java -jar lib/jruby-complete-1.4.0.jar -S rake db:migrate RAILS_ENV=production</code>.  This should create the database schema in the INAV database.</li>
     </ol>
   </li>
   <li>Load Medical Record Number Types:  Within the INAV system, patients can be assigned medical record numbers.  Each medical record number has a medical record number type.  A medical record number type might correspond to a Hospital or a Physician Group.  The system does not come with any medical record number types.  To setup medical record number types appropriate to your environment, perform the following steps:
@@ -215,7 +215,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Ensure that you have a GEM_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export GEM_HOME=/opt/local/share/java/tomcat5/webapps/inav/WEB-INF/gems</code>.</li>
-      <li>Run the following command: <cod>java -jar lib/jruby-complete-1.4.0.jar -S rake setup:medical_record_types RAILS_ENV=production</code>.  This should load the medical record number types into the INAV database.</li>
+      <li>Run the following command: <code>java -jar lib/jruby-complete-1.4.0.jar -S rake setup:medical_record_types RAILS_ENV=production</code>.  This should load the medical record number types into the INAV database.</li>
     </ol>
   </li>
   <li>Test the INAV application
