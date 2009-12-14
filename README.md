@@ -256,4 +256,4 @@ The Inflection Navigator was developed for the [Szollosi Healthcare Innovation P
 
 ### Copyright
 
-Copyright (c) 2009 Michael Gurley, Northwestern University. See LICENSE for details.
+Copyright (c) 2009 Northwestern University. See LICENSE for details.
