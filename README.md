@@ -12,7 +12,7 @@ The Navigator needs a tool that assists them in:
 
 The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern University Biomedical Informatics Center](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
 
-For questions about the the Inflection Navigator, please contact <a href="mailto:m-gurley@northwestern.edu">Michael Gurley</a>, <a href="mailto:wakibbe@northwestern.edu">Warren Kibbe</a> or <a href="mailto:s-whitaker@northwestern.edu">Sean Whitaker</a> at the [Northwestern University Biomedical Informatics Center][NUBIC].
+For questions about the Inflection Navigator, please contact <a href="mailto:m-gurley@northwestern.edu">Michael Gurley</a>, <a href="mailto:wakibbe@northwestern.edu">Warren Kibbe</a> or <a href="mailto:s-whitaker@northwestern.edu">Sean Whitaker</a> at the [Northwestern University Biomedical Informatics Center][NUBIC].
 
 # Technical Architecture
 
