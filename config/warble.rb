@@ -34,7 +34,7 @@ Warbler::Config.new do |config|
   # so that they can be packaged in the war file.
   # The Rails gems are included by default unless the vendor/rails directory is present.
   # config.gems << "tzinfo"
-  config.gems += ['activerecord-jdbc-adapter', 'activerecord-jdbcpostgresql-adapter', 'jruby-openssl']
+  config.gems += ['activerecord-jdbc-adapter', 'activerecord-jdbcpostgresql-adapter', 'jruby-openssl', 'ci_reporter']
 
   # Uncomment this if you don't want to package rails gem.
   # config.gems -= ["rails"]
