@@ -12,7 +12,7 @@ The Navigator needs a tool that assists them in:
 
 The [Szollosi Healthcare Innovation Program](http://www.theshiphome.org/) and the [Northwestern University Biomedical Informatics Center](http://www.nucats.northwestern.edu/centers/nubic/index.html) have built such a tool -- the Inflection Navigator.
 
-For questions about the the Inflection Navigator, please contact <a href="mailto:m-gurley@northwestern.edu">Michael Gurley</a> at the [Northwestern University Biomedical Informatics Center][NUBIC].
+For questions about the the Inflection Navigator, please contact <a href="mailto:m-gurley@northwestern.edu">Michael Gurley</a>, <a href="mailto:wakibbe@northwestern.edu">Warren Kibbe</a> or <a href="mailto:s-whitaker@northwestern.edu">Sean Whitaker</a> at the [Northwestern University Biomedical Informatics Center][NUBIC].
 
 # Technical Architecture
 
@@ -27,7 +27,7 @@ Within this hybrid application, a seamless end-user experience is provided by a 
 
 # Source Code
 
-All of the source code for the application is contained within its [installation package](http://cloud.github.com/downloads/mgurley/inav/inav.zip). The official URLs for the application's components can be found at the following locations:
+All of the source code for the application is contained within its [installation package](http://download.nubic.northwestern.edu/inav-2009-12-14.zip). The official URLs for the application's components can be found at the following locations:
 
 - The patient and provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
@@ -47,7 +47,7 @@ These steps assume the prerequisites are installed on your target system.
 
 ## Download The Software (Section 1)
 <ol>
-  <li>Download and unzip the <a href="http://cloud.github.com/downloads/mgurley/inav/inav.zip">installation package.</a>  It contains the following directories and files:</li>
+  <li>Download and unzip the <a href="http://download.nubic.northwestern.edu/inav-2009-12-14.zip">installation package.</a>  It contains the following directories and files:</li>
   <ol>
     <li>A directory named 'psc' containg the files 'psc.war', 'psc_install.doc' and a directory named 'conf-samples'.</li>
     <li>A directory named 'inav' containg the file 'inav.war' and a directory named 'conf-samples'.</li>
