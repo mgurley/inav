@@ -186,7 +186,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
       <tr><td>inav.username</td><td>The username of the owner of the INAV database that you created in section 2, step 2.2.</td></tr>
       <tr><td>inav.password</td><td>The password of the owner of the INAV database that you created in section 2, step 2.2.</td></tr>
       <tr><td>psc.psc_canonical_uri</td><td>The url to the PSC server setup in section 3.  <strong>Note!</strong> It is important to end this URL with a trailing slash -- '/'.</td></tr>
-      <tr><td>psc.psc_service_uri</td><td>The url to PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
+      <tr><td>psc.psc_service_uri</td><td>The url to the PSC server setup in section 3 with following path appended: '/auth/cas_security_check'.</td></tr>
       <tr><td>psc.psc_site</td><td>The 'assigned identifier' of the PSC site you setup in section 3.</td></tr>
       <tr><td>psc.psc_rest_url</td><td>The url to PSC server setup in section 3 with following path appended: '/api/v1/'.</td></tr>
       <tr><td>smtp.address</td><td>The url of the SMTP sever to send emails from.</td></tr>
@@ -205,7 +205,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Ensure that you have a GEM_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export GEM_HOME=/opt/local/share/java/tomcat5/webapps/inav/WEB-INF/gems</code>.</li>
-      <li>Run the following command: <code>java -jar lib/jruby-complete-1.4.0.jar -S rake db:migrate RAILS_ENV=production</code>.  This should create the database schema in the INAV database.</li>
+      <li>Run the following command:<br /><code>java -jar lib/jruby-complete-1.4.0.jar -S rake db:migrate RAILS_ENV=production</code>.<br />This should create the database schema in the INAV database.</li>
     </ol>
   </li>
   <li>Load Medical Record Number Types:  Within the INAV system, patients can be assigned medical record numbers.  Each medical record number has a medical record number type.  A medical record number type might correspond to a Hospital or a Physician Group.  The system does not come with any medical record number types.  To setup medical record number types appropriate to your environment, perform the following steps:
@@ -215,7 +215,7 @@ The Ruby on Rails patient and provider registry component of the INAV applicatio
       <li>Open a command shell and move to the directory '$CATALINA_HOME/webapps/inav/WEB-INF/'.</li>
       <li>Ensure that you have a CATALINA_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export CATALINA_HOME=/opt/local/share/java/tomcat5/</code>.</li>
       <li>Ensure that you have a GEM_HOME environment variable set.  If you do not, set it.  For example, on an OSX system this might be <code>export GEM_HOME=/opt/local/share/java/tomcat5/webapps/inav/WEB-INF/gems</code>.</li>
-      <li>Run the following command: <code>java -jar lib/jruby-complete-1.4.0.jar -S rake setup:medical_record_types RAILS_ENV=production</code>.  This should load the medical record number types into the INAV database.</li>
+      <li>Run the following command:<br /><code>java -jar lib/jruby-complete-1.4.0.jar -S rake setup:medical_record_types RAILS_ENV=production</code>.<br />This should load the medical record number types into the INAV database.</li>
     </ol>
   </li>
   <li>Test the INAV application
