@@ -47,7 +47,7 @@ These steps assume the prerequisites are installed on your target system.
 
 ## Download The Software (Section 1)
 <ol>
-  <li>Download and unzip the <a href="http://download.nubic.northwestern.edu/inav-2009-12-14.zip">installation package.</a>  It contains the following directories and files:</li>
+  <li>Download and unzip the <a href="http://download.nubic.northwestern.edu/inav/inav-2009-12-14.zip">installation package.</a>  It contains the following directories and files:</li>
   <ol>
     <li>A directory named 'psc' containg the files 'psc.war', 'psc_install.doc' and a directory named 'conf-samples'.</li>
     <li>A directory named 'inav' containg the file 'inav.war' and a directory named 'conf-samples'.</li>
