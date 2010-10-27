@@ -27,7 +27,7 @@ Within this hybrid application, a seamless end-user experience is provided by a 
 
 # Source Code
 
-All of the source code for the application is contained within its [installation package](http://download.nubic.northwestern.edu/inav-2009-12-14.zip). The official URLs for the application's components can be found at the following locations:
+All of the source code for the application is contained within its [installation package](http://download.nubic.northwestern.edu/inav/inav-2009-12-14.zip). The official URLs for the application's components can be found at the following locations:
 
 - The patient and provider registry Ruby on Rails application.  Available at: [http://github.com/mgurley/inav](http://github.com/mgurley/inav)
 - The protocol and patient-activity management Java web application -- the Patient Study Calendar.  Available at: [http://gforge.nci.nih.gov/frs/?group_id=31](http://gforge.nci.nih.gov/frs/?group_id=31)
