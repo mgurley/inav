@@ -71,7 +71,7 @@ ul.tabs li {
 
 #sections {
   position: absolute;
-  top: 22px; left: 131px;
+  top: 22px; left: 229px;
   background: url(../images/chrome/section_L1.gif) no-repeat top left;
   padding-left: 1px;
   font-size: .85em;
@@ -164,7 +164,7 @@ ul.tabs li {
 /* Each pane will contain one or more "boxes" */
 .box {
   background-color: #fff;
-  margin-bottom: 12px; 
+  margin-bottom: 12px;
 }
 .box .header {
   background: url(../images/chrome/boxheader_BG.gif) repeat-x top #1972C7;
@@ -333,7 +333,7 @@ img.indicator {
 }
 
 /*
-  Styles for Table Data 
+  Styles for Table Data
 */
 table.tablecontent {
     border-collapse: collapse;

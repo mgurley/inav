@@ -1,15 +1,15 @@
 <% content_for(:breadcrumbs)  do %>
-	<%= link_to('Patients', patients_url) %>
+	<%= link_to('Participants', patients_url) %>
 	/
-	<%= link_to("Edit Patient #{ h @patient.full_name}", edit_patient_url(@patient)) %>
+	<%= link_to("Edit Participant #{ h @patient.full_name}", edit_patient_url(@patient)) %>
 <% end %>
 
 <% content_for(:header)  do %>
-	<%= "Edit Patient"%>
+	<%= "Edit Participant"%>
 <% end %>
 
 <div id="patientinfo">
-	
+
 	<% form_for(@patient) do |f| %>
 
 		<%= render :partial => f %>

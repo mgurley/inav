@@ -13,16 +13,20 @@
 	<%= calendar_date_select_includes "red" %>
 	<%= stylesheet_link_tag 'main', :media => "screen, print"%>
 	<%= yield(:head) %>
+
+  <% if controller.class == SurveyorController %>
+    <%= surveyor_includes %>
+  <% end %>
 </head>
  <body>
 	<div id="header">
 		<div class="background-R">
-			<%= image_tag("logo.png", :width=>"129", :height=>"40", :alt=>"Inflection Navigator" ) %>
+			<%= image_tag("logo.png", :alt=>"ICS Navigator" ) %>
 	    </div>
 
 	    <div id="login-action">
 			 go to
-			<a href="<%= PSC_CONFIG[:psc_canonical_uri] %>">Patient Study Calendar</a>
+			<a href="<%= PSC_CONFIG[:psc_canonical_uri] %>">Calendars</a>
 			|
         <%= link_to 'Log out', logout_path %>
 	    </div>
