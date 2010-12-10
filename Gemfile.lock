@@ -23,6 +23,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
+    ci_reporter (1.6.2)
+      builder (>= 2.1.2)
     factory_girl (1.2.4)
     fastercsv (1.5.3)
     haml (3.0.24)
@@ -65,6 +67,7 @@ DEPENDENCIES
   bundler
   calendar_date_select (= 1.15)
   capistrano
+  ci_reporter
   factory_girl (= 1.2.4)
   highline (= 1.6.1)
   pg
