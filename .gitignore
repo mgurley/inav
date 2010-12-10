@@ -3,3 +3,4 @@ log/*.log
 tmp/**/*
 *.war
 db/development_structure.sql
+.bundle

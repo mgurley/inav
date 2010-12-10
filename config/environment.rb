@@ -20,11 +20,6 @@ Rails::Initializer.run do |config|
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
 
-  config.gem 'bcdatabase', :version => '>= 1.0.0'
-  config.gem 'calendar_date_select', :version => '>= 1.1.5'
-  config.gem 'rubycas-client', :version => '>= 2.1.0'
-  config.gem 'will_paginate', :version => '>= 2.3.11'
-
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
